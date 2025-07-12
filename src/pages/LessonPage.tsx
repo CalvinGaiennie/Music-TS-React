@@ -1,7 +1,7 @@
 import PageWrapper from "../components/PageWrapper";
 
-function Lessons() {
+function LessonPage() {
   return <PageWrapper title="Lessons" mainComponent={<div>Lessons</div>} />;
 }
 
-export default Lessons;
+export default LessonPage;

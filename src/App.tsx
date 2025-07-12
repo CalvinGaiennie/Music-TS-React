@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+import Metronome from "./pages/MetronomePage";
+import Login from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
+import LessonListPage from "./pages/LessonListPage";
+import IndividualLessonPage from "./pages/IndividualLessonPage";
+import FretboardSimulatorPage from "./pages/FretboardSimulatorPage";
+import EarTrainerPage from "./pages/EarTrainerPage";
 import NavBar from "./components/NavBar";
-import Lessons from "./pages/Lessons";
-import FretboardSimulator from "./pages/FretboardSimulator";
-import EarTrainer from "./pages/EarTrainer";
-import Metronome from "./pages/Metronome";
-import Login from "./pages/Login";
 
 function App() {
   return (
@@ -13,10 +14,14 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/lessons" element={<Lessons />} />
-          <Route path="/fretboard-simulator" element={<FretboardSimulator />} />
-          <Route path="/ear-trainer" element={<EarTrainer />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/lessons" element={<LessonListPage />} />
+          <Route path="/lessons/:lessonId" element={<IndividualLessonPage />} />
+          <Route
+            path="/fretboard-simulator"
+            element={<FretboardSimulatorPage />}
+          />
+          <Route path="/ear-trainer" element={<EarTrainerPage />} />
           <Route path="/metronome" element={<Metronome />} />
           <Route path="/login" element={<Login />} />
         </Routes>

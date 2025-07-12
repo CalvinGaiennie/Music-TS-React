@@ -1,6 +1,6 @@
 import PageWrapper from "../components/PageWrapper";
 
-function FretboardSimulator() {
+function FretboardSimulatorPage() {
   return (
     <PageWrapper
       title="Fretboard Simulator"
@@ -9,4 +9,4 @@ function FretboardSimulator() {
   );
 }
 
-export default FretboardSimulator;
+export default FretboardSimulatorPage;

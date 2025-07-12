@@ -1,0 +1,4 @@
+Styling
+- make the navbar a hamburger menu when the screen width makes it two lines.
+Bugs
+Features

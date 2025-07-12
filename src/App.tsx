@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Metronome from "./pages/MetronomePage";
-import Login from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
-import LessonListPage from "./pages/LessonListPage";
-import IndividualLessonPage from "./pages/IndividualLessonPage";
+import NavBar from "./components/NavBar";
 import FretboardSimulatorPage from "./pages/FretboardSimulatorPage";
 import EarTrainerPage from "./pages/EarTrainerPage";
-import NavBar from "./components/NavBar";
+import LessonListPage from "./pages/LessonListPage";
+import MetronomePage from "./pages/MetronomePage";
+import LoginPage from "./pages/LoginPage";
+import IndividualLessonPage from "./pages/IndividualLessonPage";
 
 function App() {
   return (
@@ -22,8 +22,8 @@ function App() {
             element={<FretboardSimulatorPage />}
           />
           <Route path="/ear-trainer" element={<EarTrainerPage />} />
-          <Route path="/metronome" element={<Metronome />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/metronome" element={<MetronomePage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
     </div>

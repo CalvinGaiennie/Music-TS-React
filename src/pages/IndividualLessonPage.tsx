@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import PageWrapper from "../components/PageWrapper";
+import React from "react";
 
 function IndividualLessonPage() {
   const { lessonId } = useParams<{ lessonId: string }>();
@@ -9,6 +10,11 @@ function IndividualLessonPage() {
       id: 1,
       title: "How to learn guitar.",
       description: "How to learn guitar.",
+      sections: [
+        { type: "h3", content: "heres some stuff" },
+        { type: "p", content: "heres some other stuff" },
+        { type: "p", content: "heres some more stuff" },
+      ],
     },
     {
       id: 2,
@@ -30,11 +36,39 @@ function IndividualLessonPage() {
 
   const lesson = lessons.find((lesson) => lesson.id === parseInt(lessonId!));
 
+  function renderContent(content: any) {
+    switch (content.type) {
+      case "h1":
+        return <h1>{content.content}</h1>;
+      case "h2":
+        return <h2>{content.content}</h2>;
+      case "h3":
+        return <h3>{content.content}</h3>;
+      case "p":
+        return <p>{content.content}</p>;
+      // case "list":
+      //   return (
+      //     <ul>
+      //       {content.content.map((item: string, index: number) => (
+      //         <li key={index}>{item}</li>
+      //       ))}
+      //     </ul>
+      //   );
+      default:
+        return <p>{content.content}</p>;
+    }
+  }
+
   return (
     <PageWrapper
       title={lesson?.title || "Lesson Not Found"}
       mainComponent={
         <div>
+          {lesson?.sections?.map((section, index) => (
+            <React.Fragment key={`${lesson.id}-section-${index}`}>
+              {renderContent(section)}
+            </React.Fragment>
+          ))}
           <p>{lesson?.description}</p>
         </div>
       }

@@ -10,8 +10,8 @@ function NavBar() {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link fs-5 text-dark" to="/lessons">
-            Lessons
+          <NavLink className="nav-link fs-5 text-dark" to="/ear-trainer">
+            Ear Trainer
           </NavLink>
         </li>
         <li className="nav-item">
@@ -23,13 +23,13 @@ function NavBar() {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link fs-5 text-dark" to="/ear-trainer">
-            Ear Trainer
+          <NavLink className="nav-link fs-5 text-dark" to="/metronome">
+            Metronome
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link fs-5 text-dark" to="/metronome">
-            Metronome
+          <NavLink className="nav-link fs-5 text-dark" to="/lessons">
+            Lessons
           </NavLink>
         </li>
         <li>

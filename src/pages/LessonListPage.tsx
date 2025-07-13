@@ -7,6 +7,11 @@ const lessons = [
     id: 1,
     title: "How to learn guitar.",
     description: "How to learn guitar.",
+    sections: [
+      { type: "h3", content: "heres some stuff" },
+      { type: "p", content: "heres some other stuff" },
+      { type: "p", content: "heres some more stuff" },
+    ],
   },
   {
     id: 2,

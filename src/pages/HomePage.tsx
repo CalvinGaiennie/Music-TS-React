@@ -1,5 +1,5 @@
 import PageWrapper from "../components/PageWrapper";
-import ConnectionTest from "../components/ConnectionTest";
+import GetUsers from "../components/GetUsers";
 
 function HomePage() {
   return (
@@ -13,7 +13,7 @@ function HomePage() {
             I was learning guitar.
           </p>
           <hr />
-          <ConnectionTest />
+          <GetUsers />
         </div>
       }
     />

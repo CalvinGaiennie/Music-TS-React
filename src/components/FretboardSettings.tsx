@@ -2,9 +2,10 @@ import { notes } from "../assets/resources";
 
 function FretboardSettings({ state, dispatch }: { state: any; dispatch: any }) {
   return (
-    <div className="container d-flex flex-column align-items-center mt-4">
-      <div className="d-flex flex-row align-items-center justify-content-center mb-2">
-        <p className="me-2 mb-0">Scale:</p>
+    <div style={{ width: "100%", maxWidth: "400px" }}>
+      {/* Scale Selector */}
+      <div className="mb-3 mt-4">
+        <label className="form-label">Scale:</label>
         <select
           className="form-select"
           value={state.currentScale}
@@ -23,8 +24,10 @@ function FretboardSettings({ state, dispatch }: { state: any; dispatch: any }) {
           <option value="minorArpeggio">Minor Arpeggio</option>
         </select>
       </div>
-      <div className="d-flex flex-row align-items-center justify-content-center mb-2">
-        <p className="me-2 mb-0">Key:</p>
+
+      {/* Key Selector */}
+      <div className="mb-3">
+        <label className="form-label">Key:</label>
         <select
           className="form-select"
           value={state.currentKey}
@@ -34,27 +37,12 @@ function FretboardSettings({ state, dispatch }: { state: any; dispatch: any }) {
         >
           <option value="empty">Empty</option>
           {notes.map((note) => (
-            <option value={note.value}>{note.display}</option>
+            <option key={note.value} value={note.value}>
+              {note.display}
+            </option>
           ))}
         </select>
       </div>
-      {/* <div className="d-flex flex-row align-items-center justify-content-center mb-2">
-          <p className="me-2 mb-0">Shape:</p>
-          <select
-            className="form-select"
-            value={state.currentShape}
-            onChange={(e) =>
-              dispatch({ type: "setCurrentShape", payload: e.target.value })
-            }
-          >
-            <option value="empty">Empty</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div> */}
     </div>
   );
 }

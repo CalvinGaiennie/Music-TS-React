@@ -134,7 +134,7 @@ function EarTrainerPage() {
         </audio>
 
         {/* Instrument Selector */}
-        <div className="mb-3">
+        <div className="mb-3 mt-4">
           <label className="form-label">Instrument:</label>
           <select
             className="form-select"

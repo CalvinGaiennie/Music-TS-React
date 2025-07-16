@@ -12,25 +12,30 @@ function MetronomeSettings({
   };
 }) {
   return (
-    <div className="d-flex flex-column mt-4 mb-4 gap-4">
-      <div>
-        <h3>BPM</h3>
+    <div style={{ width: "100%", maxWidth: "400px" }}>
+      {/* BPM Selector */}
+      <div className="mb-3">
+        <label className="form-label">BPM:</label>
         <select
+          className="form-select"
           onChange={(e) =>
             dispatch({ type: "SET_BPM", payload: parseInt(e.target.value) })
           }
           value={state.bpm}
         >
           {Array.from({ length: 161 }, (_, i) => (
-            <option key={i} value={i + 40} selected={i === 80}>
+            <option key={i} value={i + 40}>
               {i + 40}
             </option>
           ))}
         </select>
       </div>
-      <div>
-        <h3>Note Type</h3>
+
+      {/* Note Type Selector */}
+      <div className="mb-3">
+        <label className="form-label">Note Type:</label>
         <select
+          className="form-select"
           onChange={(e) =>
             dispatch({
               type: "SET_NOTE_TYPE",
@@ -40,15 +45,16 @@ function MetronomeSettings({
           value={state.noteType}
         >
           <option value="4">Quarter</option>
-          <option value="8" selected>
-            Eighth
-          </option>
+          <option value="8">Eighth</option>
           <option value="16">Sixteenth</option>
         </select>
       </div>
-      <div>
-        <h3>Measures Per Rudiment</h3>
+
+      {/* Measures Per Rudiment Selector */}
+      <div className="mb-3">
+        <label className="form-label">Measures Per Rudiment:</label>
         <select
+          className="form-select"
           onChange={(e) =>
             dispatch({
               type: "SET_NUM_OF_MEASURES",

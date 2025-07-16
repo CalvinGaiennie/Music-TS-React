@@ -6,7 +6,6 @@ function LessonListPage() {
     <div className="container d-flex flex-column align-items-center">
       <h1 className="mb-4">Lesson List</h1>
       <div>
-        <h1>Lesson List</h1>
         <ul className="list-unstyled">
           {lessons.map((lesson) => (
             <Link

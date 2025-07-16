@@ -49,8 +49,8 @@ function MetronomePage() {
     <div className="container d-flex flex-column align-items-center">
       <h1>Metronome</h1>
       <div className="d-flex flex-row align-items-center justify-content-center gap-4">
-        <MetronomeSettings dispatch={dispatch} state={state} />
         <Metronome {...state} />
+        <MetronomeSettings dispatch={dispatch} state={state} />
       </div>
     </div>
   );

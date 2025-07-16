@@ -8,6 +8,7 @@ const initialState = {
   lengthOfBeat: 60 / 100,
   noteType: 8,
   numOfMeasures: 2,
+  rudimentToStartOn: 1,
 };
 
 type Action = { type: string; payload: number };
@@ -24,6 +25,8 @@ function reducer(state: typeof initialState, action: Action) {
       return { ...state, lengthOfBeat: action.payload };
     case "SET_NUM_OF_MEASURES":
       return { ...state, numOfMeasures: action.payload };
+    case "SET_RUDIMENT_TO_START_ON":
+      return { ...state, rudimentToStartOn: action.payload };
     default:
       return state;
   }
@@ -42,6 +45,7 @@ function MetronomePage() {
     state.noteType,
     state.numOfMeasures,
     state.numOfBeats,
+    state.rudimentToStartOn,
     dispatch,
   ]);
 

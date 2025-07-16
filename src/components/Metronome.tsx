@@ -5,10 +5,12 @@ function Metronome({
   lengthOfBeat,
   noteType,
   numOfMeasures,
+  rudimentToStartOn,
 }: {
   lengthOfBeat: number;
   noteType: number;
   numOfMeasures: number;
+  rudimentToStartOn: number;
 }) {
   const rudiments = [
     {
@@ -113,7 +115,9 @@ function Metronome({
     },
   ];
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentRudimentIndex, setCurrentRudimentIndex] = useState(0);
+  const [currentRudimentIndex, setCurrentRudimentIndex] = useState(
+    rudimentToStartOn - 1
+  );
 
   const intervalRef = useRef<number | null>(null);
   const toggleButtonRef = useRef<HTMLButtonElement | null>(null);

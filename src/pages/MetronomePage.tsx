@@ -9,6 +9,7 @@ function MetronomePage() {
       </p>
       <p>scales. maybe integrate this with the fretboard simulator</p>
       <p>Maybe do some strumming patterns and exercises</p>
+      <p>allow people to log workouts to see progress over time</p>
     </div>
   );
 }

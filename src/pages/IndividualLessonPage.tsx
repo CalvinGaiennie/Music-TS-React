@@ -38,7 +38,6 @@ function IndividualLessonPage() {
             {renderContent(section)}
           </React.Fragment>
         ))}
-        <p>{lesson?.description}</p>
       </div>
     </div>
   );

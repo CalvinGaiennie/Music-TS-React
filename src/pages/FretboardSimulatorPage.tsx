@@ -2,15 +2,30 @@ import { useEffect, useReducer } from "react";
 import styles from "./Fretboard.module.css";
 import FretboardSettings from "../components/FretboardSettings";
 
-const initialState = {
+type State = {
+  currentKey: string;
+  currentScale: string;
+  currentShape: string;
+  isScaleActive: boolean;
+  hoveredFret: string | null;
+};
+
+type Action =
+  | { type: "setCurrentKey"; payload: string }
+  | { type: "setCurrentScale"; payload: string }
+  | { type: "setCurrentShape"; payload: string }
+  | { type: "setIsScaleActive"; payload: boolean }
+  | { type: "setHoveredFret"; payload: string | null };
+
+const initialState: State = {
   currentKey: "empty",
   currentScale: "empty",
   currentShape: "empty",
   isScaleActive: false,
-  hoveredFret: null as string | null,
+  hoveredFret: null,
 };
 
-function reducer(state: any, action: any) {
+function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "setCurrentKey":
       return { ...state, currentKey: action.payload };
@@ -30,7 +45,7 @@ function reducer(state: any, action: any) {
 function FretboardSimulatorPage() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const scales = {
+  const scales: Record<string, number[]> = {
     allnotes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], // Just the root note
     octaves: [0, 12], // Root note and its octave
     major: [0, 2, 4, 5, 7, 9, 11],
@@ -66,7 +81,7 @@ function FretboardSimulatorPage() {
     if (scaleName === "empty") return [];
     const startIndex = notes.findIndex((note) => note === startNote);
     return scales[scaleName].map(
-      (interval) => notes[(interval + startIndex) % 12]
+      (interval: number) => notes[(interval + startIndex) % 12]
     );
   }
 

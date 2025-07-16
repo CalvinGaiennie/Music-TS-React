@@ -2,12 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./Metronome.module.css";
 
 function Metronome({
-  numOfBeats,
   lengthOfBeat,
   noteType,
   numOfMeasures,
 }: {
-  numOfBeats: number;
   lengthOfBeat: number;
   noteType: number;
   numOfMeasures: number;
@@ -148,8 +146,10 @@ function Metronome({
       intervalRef.current = setInterval(() => {
         playClick();
 
+        const beatsPerMeasure = noteType;
+
         // Increment measure counter when we complete a full measure
-        if (currBeatRef.current === numOfBeats - 1) {
+        if (currBeatRef.current === beatsPerMeasure - 1) {
           currMeasureRef.current = currMeasureRef.current + 1;
           if (measureNumberDiv.current) {
             measureNumberDiv.current.innerHTML =
@@ -157,7 +157,7 @@ function Metronome({
           }
         }
 
-        currBeatRef.current = (currBeatRef.current + 1) % numOfBeats;
+        currBeatRef.current = (currBeatRef.current + 1) % beatsPerMeasure;
 
         // Change rudiment after completing the specified number of measures
         if (
@@ -169,7 +169,7 @@ function Metronome({
             (prevIndex) => (prevIndex + 1) % rudiments.length
           );
         }
-      }, lengthOfBeat * 1000);
+      }, (lengthOfBeat * 1000) / (noteType / 4));
 
       setIsPlaying(true);
       if (toggleButtonRef.current) {

@@ -1,5 +1,6 @@
 Styling
 - make the navbar a hamburger menu when the screen width makes it two lines.
+-get the fretboard to add frets as the screen width grows and look into making it responsive
 
 Features
 -Get the backend hosted and connected

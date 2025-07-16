@@ -243,6 +243,7 @@ export const songList = {
 
 export const instrumentDifficulties = {
   guitar: [
+    "intervals",
     "simple-melody",
     "complex-melody",
     "riffs",
@@ -255,6 +256,7 @@ export const instrumentDifficulties = {
     "no-restrictions",
   ],
   piano: [
+    "intervals",
     "simple-melody",
     "complex-melody",
     "riffs",
@@ -267,6 +269,7 @@ export const instrumentDifficulties = {
     "no-restrictions",
   ],
   bass: [
+    "intervals",
     "simple-melody",
     "complex-melody",
     "riffs",
@@ -300,6 +303,7 @@ export const instrumentDifficulties = {
 
 export const realSongListRealDifficulty = {
   guitar: {
+    intervals: [],
     "simple-melody": [
       {
         Path: "/Songs/ET_MO_A_ElPaso.mp3",
@@ -409,6 +413,7 @@ export const realSongListRealDifficulty = {
     ],
   },
   piano: {
+    intervals: [],
     "simple-melody": [],
     "complex-melody": [],
     riffs: [],
@@ -421,6 +426,7 @@ export const realSongListRealDifficulty = {
     "no-restrictions": [],
   },
   bass: {
+    intervals: [],
     "simple-melody": [],
     "complex-melody": [],
     riffs: [],

@@ -1,0 +1,82 @@
+.nut {
+  width: 8px;
+  height: 148px;
+  background-color: black;
+  border: 1px solid black;
+}
+
+.string {
+  display: flex;
+  height: 25px;
+  background-color: #8b4513;
+  z-index: 2;
+}
+
+.fretnut {
+  width: 50px;
+  border-right: 2px solid black;
+  display: flex; /* Add this */
+  align-items: center;
+  position: relative;
+  background-color: black;
+}
+
+.fret {
+  width: 50px;
+  border-right: 2px solid black;
+  display: flex; /* Add this */
+  align-items: center;
+  position: relative;
+}
+
+.innerFret {
+  width: 106%;
+  position: absolute;
+  z-index: 3;
+  background: repeating-linear-gradient(
+    90deg,
+    grey,
+    grey 2px,
+    #999 2px,
+    #999 4px
+  );
+}
+
+.flex {
+  display: flex;
+}
+
+.active {
+  background-color: #b16b3b;
+  color: white;
+}
+
+.active::before {
+  content: attr(data-noteName);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  color: white;
+  font-weight: bold;
+}
+
+.innerFret.string1 {
+  height: 5px;
+}
+.innerFret.string2 {
+  height: 6px;
+}
+.innerFret.string3 {
+  height: 7px;
+}
+.innerFret.string4 {
+  height: 8px;
+}
+.innerFret.string5 {
+  height: 9px;
+}
+.innerFret.string6 {
+  height: 10px;
+}

@@ -20,7 +20,7 @@ function FretboardSettings({
   dispatch: (action: Action) => void;
 }) {
   return (
-    <div style={{ width: "100%", maxWidth: "400px" }}>
+    <div style={{ width: "100%", maxWidth: "400px" }} className="mb-2">
       {/* Scale Selector */}
       <div className="mb-3 mt-4">
         <label className="form-label">Scale:</label>

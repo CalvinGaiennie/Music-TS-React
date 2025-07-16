@@ -59,8 +59,8 @@ function FretboardSimulatorPage() {
   return (
     <div className="container d-flex flex-column align-items-center">
       <h1 className="mb-4">Fretboard Simulator</h1>
-      <Fretboard dispatch={dispatch} state={state} />
       <FretboardSettings state={state} dispatch={dispatch} />
+      <Fretboard dispatch={dispatch} state={state} />
     </div>
   );
 }

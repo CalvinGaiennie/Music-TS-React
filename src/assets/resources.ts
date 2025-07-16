@@ -108,7 +108,7 @@ export const lessons = [
     title: "Applying Theory to the Fretboard",
     description: "Applying Theory to the Fretboard",
     sections: [
-      { type: "h3", style: "", content: "Applying Theory to the Fretboard" },
+      { type: "h1", style: "", content: "Applying Theory to the Fretboard" },
       {
         type: "h3",
         style: "",

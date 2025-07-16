@@ -10,8 +10,8 @@ function HomePage() {
           conains some basic lessons and a couple tools I wish existed when I
           was learning guitar.
         </p>
-        <hr />
-        <GetUsers />
+        {/* <hr />
+        <GetUsers /> */}
       </div>
     </div>
   );

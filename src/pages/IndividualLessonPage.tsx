@@ -10,13 +10,13 @@ function IndividualLessonPage() {
   function renderContent(content: { type: string; content: string }) {
     switch (content.type) {
       case "h1":
-        return <h1>{content.content}</h1>;
+        return <h1 className="mb-2">{content.content}</h1>;
       case "h2":
-        return <h2>{content.content}</h2>;
+        return <h2 className="mb-2 mt-2">{content.content}</h2>;
       case "h3":
-        return <h3>{content.content}</h3>;
+        return <h3 className="mb-2 mt-2">{content.content}</h3>;
       case "p":
-        return <p>{content.content}</p>;
+        return <p className="mb-2">{content.content}</p>;
       // case "list":
       //   return (
       //     <ul>

@@ -71,9 +71,9 @@ function MetronomeSettings({
           ))}
         </select>
       </div>
-      <div className="mb-3">
+      {/* <div className="mb-3">
         <label className="form-label">Rudiment To Start On:</label>
-        {/* <select
+        <select
           className="form-select"
           onChange={(e) =>
             dispatch({
@@ -103,8 +103,8 @@ function MetronomeSettings({
           <option value="18">18</option>
           <option value="19">19</option>
           <option value="20">20</option>
-        </select> */}
-      </div>
+        </select>
+      </div> */}
     </div>
   );
 }

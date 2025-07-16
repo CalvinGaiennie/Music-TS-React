@@ -106,7 +106,6 @@ function FretboardSimulatorPage() {
   return (
     <div className="container d-flex flex-column align-items-center">
       <h1 className="mb-4">Fretboard Simulator</h1>
-      {/* <p>description</p> */}
       <div className={styles.fretboard}>
         <div style={{ marginLeft: "50px" }}>
           {Array.from({ length: 6 }).map((_, i) => (

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React from "react";
+
 import { lessons } from "../assets/resources";
 
 function IndividualLessonPage() {
@@ -34,9 +34,9 @@ function IndividualLessonPage() {
     <div className="container d-flex flex-column align-items-center">
       <div>
         {lesson?.sections?.map((section, index) => (
-          <React.Fragment key={`${lesson.id}-section-${index}`}>
+          <div key={`${lesson.id}-section-${index}`} className={section.style}>
             {renderContent(section)}
-          </React.Fragment>
+          </div>
         ))}
       </div>
     </div>

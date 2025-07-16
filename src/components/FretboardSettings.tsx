@@ -1,6 +1,24 @@
 import { notes } from "../assets/resources";
 
-function FretboardSettings({ state, dispatch }: { state: any; dispatch: any }) {
+type State = {
+  currentKey: string;
+  currentScale: string;
+};
+
+type Action =
+  | { type: "setCurrentKey"; payload: string }
+  | { type: "setCurrentScale"; payload: string }
+  | { type: "setCurrentShape"; payload: string }
+  | { type: "setIsScaleActive"; payload: boolean }
+  | { type: "setHoveredFret"; payload: string | null };
+
+function FretboardSettings({
+  state,
+  dispatch,
+}: {
+  state: State;
+  dispatch: (action: Action) => void;
+}) {
   return (
     <div style={{ width: "100%", maxWidth: "400px" }}>
       {/* Scale Selector */}

@@ -117,7 +117,7 @@ function EarTrainerPage() {
   return (
     <div className="container d-flex flex-column align-items-center">
       <h1 className="mb-4">Ear Trainer</h1>
-      <p>
+      <p style={{ maxWidth: "600px" }} className="text-center mb-4">
         Here are banks of songs with very stripped down arrangements organized
         by instrument and difficulty, making it easy to find songs that are
         appropriate for your skill level.

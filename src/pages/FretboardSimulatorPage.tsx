@@ -1,11 +1,9 @@
-import PageWrapper from "../components/PageWrapper";
-
 function FretboardSimulatorPage() {
   return (
-    <PageWrapper
-      title="Fretboard Simulator"
-      mainComponent={<div>Fretboard Simulator</div>}
-    />
+    <div className="container d-flex flex-column align-items-center">
+      <h1 className="mb-4">Fretboard Simulator</h1>
+      <div>Fretboard Simulator</div>
+    </div>
   );
 }
 

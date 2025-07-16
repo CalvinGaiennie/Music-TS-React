@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import PageWrapper from "../components/PageWrapper";
-
 // Sample lesson data - you can move this to a separate file later
 const lessons = [
   {
@@ -33,26 +31,24 @@ const lessons = [
 
 function LessonListPage() {
   return (
-    <PageWrapper
-      title="Guitar Lessons"
-      mainComponent={
-        <div>
-          <h1>Lesson List</h1>
-          <ul className="list-unstyled">
-            {lessons.map((lesson) => (
-              <Link
-                key={lesson.id}
-                to={`/lessons/${lesson.id}`}
-                className="mb-3 p-3 border rounded-3 text-decoration-none text-dark d-block"
-              >
-                <h3>{lesson.title}</h3>
-                <p>{lesson.description}</p>
-              </Link>
-            ))}
-          </ul>
-        </div>
-      }
-    />
+    <div className="container d-flex flex-column align-items-center">
+      <h1 className="mb-4">Lesson List</h1>
+      <div>
+        <h1>Lesson List</h1>
+        <ul className="list-unstyled">
+          {lessons.map((lesson) => (
+            <Link
+              key={lesson.id}
+              to={`/lessons/${lesson.id}`}
+              className="mb-3 p-3 border rounded-3 text-decoration-none text-dark d-block"
+            >
+              <h3>{lesson.title}</h3>
+              <p>{lesson.description}</p>
+            </Link>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }
 

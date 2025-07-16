@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import PageWrapper from "../components/PageWrapper";
 import React from "react";
 
 function IndividualLessonPage() {
@@ -36,7 +35,7 @@ function IndividualLessonPage() {
 
   const lesson = lessons.find((lesson) => lesson.id === parseInt(lessonId!));
 
-  function renderContent(content: any) {
+  function renderContent(content: { type: string; content: string }) {
     switch (content.type) {
       case "h1":
         return <h1>{content.content}</h1>;
@@ -60,19 +59,16 @@ function IndividualLessonPage() {
   }
 
   return (
-    <PageWrapper
-      title={lesson?.title || "Lesson Not Found"}
-      mainComponent={
-        <div>
-          {lesson?.sections?.map((section, index) => (
-            <React.Fragment key={`${lesson.id}-section-${index}`}>
-              {renderContent(section)}
-            </React.Fragment>
-          ))}
-          <p>{lesson?.description}</p>
-        </div>
-      }
-    />
+    <div className="container d-flex flex-column align-items-center">
+      <div>
+        {lesson?.sections?.map((section, index) => (
+          <React.Fragment key={`${lesson.id}-section-${index}`}>
+            {renderContent(section)}
+          </React.Fragment>
+        ))}
+        <p>{lesson?.description}</p>
+      </div>
+    </div>
   );
 }
 

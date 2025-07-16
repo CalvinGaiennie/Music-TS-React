@@ -1,7 +1,10 @@
-import PageWrapper from "../components/PageWrapper";
-
 function LoginPage() {
-  return <PageWrapper title="Login" mainComponent={<div>Login</div>} />;
+  return (
+    <div className="container d-flex flex-column align-items-center">
+      <h1 className="mb-4">Login</h1>
+      <div>Login</div>
+    </div>
+  );
 }
 
 export default LoginPage;

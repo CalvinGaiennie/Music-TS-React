@@ -4,16 +4,29 @@ export const lessons = [
     title: "How to learn guitar.",
     description: "How to learn guitar.",
     sections: [
-      { type: "h3", content: "heres some stuff" },
+      { type: "h1", content: "How to learn guitar" },
       {
-        type: "p",
-        content:
-          "setting goals, kind of guitar, type of music, ect. explain that I am going to cover the stuff that applies to pretty much everyone and helps you to be well rounded",
+        type: "h3",
+        content: "What is your goal?",
       },
       {
         type: "p",
         content:
-          "mention the absolute basics, how to hold it learn the parts, ect",
+          "kind of guitar, type of music, ect. explain that I am going to cover the stuff that applies to pretty much everyone and helps you to be well rounded",
+      },
+      {
+        type: "h3",
+        content: "What I'm going to cover",
+      },
+      {
+        type: "p",
+        content:
+          "I am going to cover the stuff that applies to pretty much everyone and helps you to be well rounded",
+      },
+      {
+        type: "p",
+        content:
+          "Mention the absolute basics, how to hold it learn the parts, ect",
       },
       {
         type: "p",
@@ -27,9 +40,16 @@ export const lessons = [
     title: "Essential Music Theory",
     description: "Notes In Music Major Scale How to Make Chords Keys",
     sections: [
+      { type: "h1", content: "Why Learn Music Theory" },
       { type: "h3", content: "Notes In Music" },
+      { type: "p", content: "Notes In Music" },
+      { type: "h3", content: "Major Scale" },
       { type: "p", content: "Major Scale" },
+      { type: "h3", content: "Minor Scale" },
+      { type: "p", content: "Minor Scale" },
+      { type: "h3", content: "Invtervals and How to Make Chords" },
       { type: "p", content: "Invtervals and How to Make Chords" },
+      { type: "h3", content: "Keys" },
       { type: "p", content: "Keys" },
     ],
   },
@@ -38,15 +58,36 @@ export const lessons = [
     title: "Thoughts on ear training",
     description: "Thoughts on ear training",
     sections: [
+      { type: "h1", content: "Thoughts on ear training" },
       { type: "h3", content: "Thoughts on ear training" },
+      { type: "p", content: "Thoughts on ear training" },
+      { type: "h3", content: "Why ear training" },
+      { type: "p", content: "Why ear training" },
+      {
+        type: "h3",
+        content: "super quick note about the traditiional interval method",
+      },
       {
         type: "p",
-        content: "using the pentatonic scale to find the key of a song",
+        content: "super quick note about the traditiional interval method",
+      },
+      {
+        type: "h3",
+        content:
+          "why I built my ear training system,easy acoustic songs and melodies vs full tracks",
       },
       {
         type: "p",
         content:
           "why I built my ear training system,easy acoustic songs and melodies vs full tracks",
+      },
+      {
+        type: "h3",
+        content: "using the pentatonic scale to find the key of a song",
+      },
+      {
+        type: "p",
+        content: "using the pentatonic scale to find the key of a song",
       },
     ],
   },
@@ -57,16 +98,73 @@ export const lessons = [
     sections: [
       { type: "h3", content: "Applying Theory to the Fretboard" },
       {
+        type: "h3",
+        content:
+          "Prerequisites Learning the Fretboard, learn the E and A String, Fretboard Octive Hack,",
+      },
+      {
         type: "p",
         content:
           "Prerequisites Learning the Fretboard, learn the E and A String, Fretboard Octive Hack,",
       },
+      { type: "h3", content: "Barre Chords and the Caged System," },
       { type: "p", content: "Barre Chords and the Caged System," },
+      { type: "h3", content: "The Pentatonic Scale," },
       { type: "p", content: "The Pentatonic Scale," },
+      { type: "h3", content: "Triads," },
       { type: "p", content: "Triads," },
+      { type: "h3", content: "Playing the Changes" },
       { type: "p", content: "Playing the Changes" },
+      { type: "h3", content: "Arpeggios" },
       { type: "p", content: "Arpeggios" },
+      { type: "h3", content: "OP Exersice my favorite exersize" },
       { type: "p", content: "OP Exersice my favorite exersize" },
+    ],
+  },
+  {
+    id: 5,
+    title: "Playing With Others",
+    description: "Playing With Others",
+    sections: [
+      { type: "h1", content: "Playing With Others" },
+      { type: "h3", content: "Improvising" },
+      { type: "p", content: "improvising" },
+      { type: "h3", content: "Feel and Ears. Musicianship" },
+      { type: "p", content: "feel and ears. Musicianship" },
+      { type: "h3", content: "Nashville Number System" },
+      { type: "p", content: "nashville number system" },
+      { type: "h3", content: "Standard Tunes" },
+      { type: "p", content: "standard tunes" },
+    ],
+  },
+  {
+    id: 6,
+    title: "Learning Songs",
+    description: "Learning Songs",
+    sections: [
+      { type: "h1", content: "Learning Songs" },
+      { type: "h3", content: "Learning Songs" },
+      { type: "p", content: "learning songs" },
+    ],
+  },
+  {
+    id: 7,
+    title: "The Importance of the Blues",
+    description: "The Importance of the Blues",
+    sections: [
+      { type: "h1", content: "The Importance of the Blues" },
+      { type: "h3", content: "The Importance of the Blues" },
+      { type: "p", content: "the importance of the blues" },
+    ],
+  },
+  {
+    id: 8,
+    title: "My Favorite Online Resources and Teachers",
+    description: "My Favorite Online Resources and Teachers",
+    sections: [
+      { type: "h1", content: "My Favorite Online Resources and Teachers" },
+      { type: "h3", content: "My Favorite Online Resources and Teachers" },
+      { type: "p", content: "the importance of the blues" },
     ],
   },
 ];

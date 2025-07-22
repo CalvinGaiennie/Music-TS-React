@@ -168,11 +168,11 @@ export const lessons = [
   },
   {
     id: 7,
-    title: "The Importance of the Blues",
-    description: "The Importance of the Blues",
+    title: "The Blues",
+    description: "The Blues",
     sections: [
-      { type: "h3", style: "", content: "The Importance of the Blues" },
-      { type: "p", style: "", content: "the importance of the blues" },
+      { type: "h3", style: "", content: "The Blues" },
+      { type: "p", style: "", content: "the blues" },
     ],
   },
   {

@@ -8,7 +8,7 @@ function HomePage() {
         <p>
           This site is intended for begginer and Intermediate guitar players. It
           conains some basic lessons and a couple tools I wish existed when I
-          was learning guitar.
+          was learning guitar...
         </p>
         {/* <hr />
         <GetUsers /> */}

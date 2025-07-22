@@ -1,4 +1,4 @@
-import GetUsers from "../components/GetUsers";
+// import GetUsers from "../components/GetUsers";
 
 function HomePage() {
   return (

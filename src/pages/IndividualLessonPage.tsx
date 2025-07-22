@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 
 import { lessons } from "../assets/resources";
+import styles from "./IndividualLessonPage.module.css";
 
 function IndividualLessonPage() {
   const { lessonId } = useParams<{ lessonId: string }>();
@@ -12,27 +13,22 @@ function IndividualLessonPage() {
       case "h1":
         return <h1 className="mb-2">{content.content}</h1>;
       case "h2":
-        return <h2 className="mb-2 mt-2">{content.content}</h2>;
+        return <h2 className="mt-3 mb-3 ms-1">{content.content}</h2>;
       case "h3":
-        return <h3 className="mb-2 mt-2">{content.content}</h3>;
+        return <h3 className="mt-3 mb-3 ms-1">{content.content}</h3>;
+      case "img":
+        return <img src={content.content} alt="lesson" />;
       case "p":
-        return <p className="mb-2">{content.content}</p>;
-      // case "list":
-      //   return (
-      //     <ul>
-      //       {content.content.map((item: string, index: number) => (
-      //         <li key={index}>{item}</li>
-      //       ))}
-      //     </ul>
-      //   );
+        return <p className="mb-2 ms-2">{content.content}</p>;
       default:
         return <p>{content.content}</p>;
     }
   }
 
   return (
-    <div className="container d-flex flex-column align-items-center">
-      <div>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <h1 className="text-center mb-4">{lesson?.title}</h1>
         {lesson?.sections?.map((section, index) => (
           <div key={`${lesson.id}-section-${index}`} className={section.style}>
             {renderContent(section)}

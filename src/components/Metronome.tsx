@@ -228,6 +228,7 @@ function Metronome({
       >
         Start Workout
       </button>
+      <p>add a description here</p>
     </div>
   );
 }

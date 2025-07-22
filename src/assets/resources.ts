@@ -1,10 +1,9 @@
 export const lessons = [
   {
     id: 1,
-    title: "How to learn guitar.",
+    title: "How to Learn Guitar",
     description: "How to learn guitar.",
     sections: [
-      { type: "h1", content: "How to learn guitar" },
       {
         type: "h3",
         style: "",
@@ -46,7 +45,6 @@ export const lessons = [
     title: "Essential Music Theory",
     description: "Notes In Music Major Scale How to Make Chords Keys",
     sections: [
-      { type: "h1", style: "", content: "Why Learn Music Theory" },
       { type: "h3", style: "", content: "Notes In Music" },
       { type: "p", style: "", content: "Notes In Music" },
       { type: "h3", style: "", content: "Major Scale" },
@@ -61,12 +59,9 @@ export const lessons = [
   },
   {
     id: 3,
-    title: "Thoughts on ear training",
+    title: "Thoughts on Ear Training",
     description: "Thoughts on ear training",
     sections: [
-      { type: "h1", style: "", content: "Thoughts on ear training" },
-      { type: "h3", style: "", content: "Thoughts on ear training" },
-      { type: "p", style: "", content: "Thoughts on ear training" },
       { type: "h3", style: "", content: "Why ear training" },
       { type: "p", style: "", content: "Why ear training" },
       {
@@ -108,7 +103,6 @@ export const lessons = [
     title: "Applying Theory to the Fretboard",
     description: "Applying Theory to the Fretboard",
     sections: [
-      { type: "h1", style: "", content: "Applying Theory to the Fretboard" },
       {
         type: "h3",
         style: "",
@@ -140,7 +134,6 @@ export const lessons = [
     title: "Playing With Others",
     description: "Playing With Others",
     sections: [
-      { type: "h1", style: "", content: "Playing With Others" },
       { type: "h3", style: "", content: "Improvising" },
       { type: "p", style: "", content: "improvising" },
       { type: "h3", style: "", content: "Feel and Ears. Musicianship" },
@@ -154,7 +147,6 @@ export const lessons = [
     title: "Learning Songs",
     description: "Learning Songs",
     sections: [
-      { type: "h1", style: "", content: "Learning Songs" },
       { type: "h3", style: "", content: "The Different Ways to Learn Songs" },
       {
         type: "p",
@@ -179,7 +171,6 @@ export const lessons = [
     title: "The Importance of the Blues",
     description: "The Importance of the Blues",
     sections: [
-      { type: "h1", style: "", content: "The Importance of the Blues" },
       { type: "h3", style: "", content: "The Importance of the Blues" },
       { type: "p", style: "", content: "the importance of the blues" },
     ],
@@ -189,11 +180,6 @@ export const lessons = [
     title: "My Favorite Online Resources and Teachers",
     description: "My Favorite Online Resources and Teachers",
     sections: [
-      {
-        type: "h1",
-        style: "",
-        content: "My Favorite Online Resources and Teachers",
-      },
       {
         type: "h3",
         style: "",

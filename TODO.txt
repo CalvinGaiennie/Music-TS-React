@@ -2,6 +2,10 @@ Styling
 - make the navbar a hamburger menu when the screen width makes it two lines.
 -get the fretboard to add frets as the screen width grows and look into making it responsive
 -relayout the metronome page especially the settings
+-add the ability to make certain words bold in the lessons
+-set default fonts, and font sizes.
+-decide how I want to layout text. ex align left or align center
+-improve the individual lessongs page padding / max width styling transition
 
 Features
 -Get the backend hosted and connected

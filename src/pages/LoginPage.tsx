@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { login } from "../services/api";
 
 function LoginPage() {
   const [formData, setFormData] = useState({
@@ -13,7 +14,15 @@ function LoginPage() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setMessage("Login successful");
+    login(formData.username, formData.password)
+      .then((data) => {
+        setMessage(data.token || "Login successful!");
+        console.log("datamessage", data);
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+        setMessage(error.message || "Login failed. Please try again.");
+      });
   }
 
   return (
@@ -46,16 +55,7 @@ function LoginPage() {
             value={formData.password}
           />
         </div>
-        {message && (
-          <div
-            className={`alert ${
-              message.includes("successful") ? "alert-success" : "alert-danger"
-            }`}
-            role="alert"
-          >
-            {message}
-          </div>
-        )}
+        {message && <div role="alert">{message}</div>}
         <button type="submit" className="btn btn-primary">
           Submit
         </button>

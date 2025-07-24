@@ -32,6 +32,11 @@ function NavBar() {
             Lessons
           </NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className="nav-link fs-5 text-dark" to="/contribute">
+            Contribute
+          </NavLink>
+        </li>
         <li>
           <NavLink className="nav-link fs-5 text-dark" to="/login">
             Login

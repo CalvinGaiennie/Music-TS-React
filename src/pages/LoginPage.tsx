@@ -16,8 +16,14 @@ function LoginPage() {
     e.preventDefault();
     login(formData.username, formData.password)
       .then((data) => {
-        setMessage(data.token || "Login successful!");
-        console.log("datamessage", data);
+        // Store the token in localStorage
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          setMessage("Login successful! Token saved.");
+          console.log("Token saved:", data.token);
+        } else {
+          setMessage("Login successful but no token received!");
+        }
       })
       .catch((error) => {
         console.error("Login error:", error);

@@ -7,6 +7,7 @@ import LessonListPage from "./pages/LessonListPage";
 import MetronomePage from "./pages/MetronomePage";
 import LoginPage from "./pages/LoginPage";
 import IndividualLessonPage from "./pages/IndividualLessonPage";
+import UserContributionPage from "./pages/UserContributionPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           />
           <Route path="/ear-trainer" element={<EarTrainerPage />} />
           <Route path="/metronome" element={<MetronomePage />} />
+          <Route path="/contribute" element={<UserContributionPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>

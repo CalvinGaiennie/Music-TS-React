@@ -1,3 +1,11 @@
+// AudioFile interfaces
+export interface AudioFile {
+  audioFileId?: number;
+  userId?: number;
+  fileName: string;
+  fileData?: string; // Base64 encoded file data
+}
+
 export type Instrument =
   | "guitar"
   | "piano"

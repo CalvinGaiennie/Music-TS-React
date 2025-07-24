@@ -181,7 +181,7 @@ function TrackContributionForm() {
             value="fileName"
             placeholder="Enter a descriptive name for your audio file"
             disabled={loading}
-            formText="Give your file a meaningful name (e.g., 'Guitar Solo - Blues in A')"
+            formText=""
             state={state}
             dispatch={dispatch}
           />
@@ -192,7 +192,7 @@ function TrackContributionForm() {
             value="songTip"
             placeholder="Enter a tip for this track"
             disabled={loading}
-            formText="Suggest a tip for users struggling to learn this track."
+            formText=""
             state={state}
             dispatch={dispatch}
           />
@@ -202,7 +202,7 @@ function TrackContributionForm() {
             value="songKey"
             placeholder="Enter the key of the song"
             disabled={loading}
-            formText="What is the key of the song?"
+            formText=""
             state={state}
             dispatch={dispatch}
           />
@@ -212,7 +212,7 @@ function TrackContributionForm() {
             value="songChords"
             placeholder="Enter the chords of the song"
             disabled={loading}
-            formText="What are the chords of the song?"
+            formText=""
             state={state}
             dispatch={dispatch}
           />
@@ -222,7 +222,7 @@ function TrackContributionForm() {
             value="songInstrument"
             placeholder="Enter the instrument of the song"
             disabled={loading}
-            formText="What is the instrument of the song?"
+            formText=""
             state={state}
             dispatch={dispatch}
           />
@@ -232,7 +232,7 @@ function TrackContributionForm() {
             value="songDifficulty"
             placeholder="Enter the difficulty of the song"
             disabled={loading}
-            formText="What is the difficulty of the song?"
+            formText=""
             state={state}
             dispatch={dispatch}
           />

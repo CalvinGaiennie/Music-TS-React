@@ -6,6 +6,20 @@ export interface AudioFile {
   fileData?: string; // Base64 encoded file data
 }
 
+export interface AudioTrack {
+  audioTrackId?: number;
+  userId?: number;
+  songName: string;
+  songTip: string;
+  songKey: string;
+  songChords: string;
+  songInstrument: string;
+  songDifficulty: string;
+  songData: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 export type Instrument =
   | "guitar"
   | "piano"

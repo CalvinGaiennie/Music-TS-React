@@ -109,6 +109,36 @@ export const getAudioFiles = async (
   }
 };
 
+// Get My Audio Files
+export const getMyAudioFiles = async () => {
+  try {
+    const token = getAuthToken();
+    if (!token) {
+      throw new Error("No authentication token found. Please log in first.");
+    }
+    const response = await fetch(`${API_BASE_URL}/AudioFile/GetMyAudioFiles`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Server error:", errorText);
+      throw new Error(
+        `Failed to get my audio files: ${response.status} ${response.statusText}`
+      );
+    }
+
+    const data = await response.json();
+    console.log("My audio files:", data);
+    return data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};
+
 // Upsert audio file
 export const upsertAudioFile = async (audioFile: AudioFile) => {
   try {

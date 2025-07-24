@@ -1,6 +1,6 @@
 import { useState, useEffect, useReducer } from "react";
-import { getMyAudioFiles, upsertAudioFile } from "../services/api";
-import type { AudioFile } from "../assets/earTrainerTypesAndInterfaces";
+import { getMyAudioTracks, upsertAudioTrack } from "../services/api";
+import type { AudioTrack } from "../assets/earTrainerTypesAndInterfaces";
 import FormInput from "./FormInput";
 
 const initialState = {
@@ -9,6 +9,7 @@ const initialState = {
   songChords: "",
   songInstrument: "",
   songDifficulty: "",
+  tracks: [] as AudioTrack[],
 };
 
 const reducer = (state: typeof initialState, action: any) => {
@@ -23,24 +24,18 @@ const reducer = (state: typeof initialState, action: any) => {
       return { ...state, songInstrument: action.payload };
     case "setSongDifficulty":
       return { ...state, songDifficulty: action.payload };
+    case "setTracks":
+      return { ...state, tracks: action.payload };
   }
   return { ...state, ...action };
 };
 
 function TrackContributionForm() {
-  const [files, setFiles] = useState<AudioFile[]>([]);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [state, dispatch] = useReducer(reducer, initialState);
-  useEffect(() => {
-    const fetchFiles = async () => {
-      const data = await getMyAudioFiles();
-      setFiles(data);
-    };
-    fetchFiles();
-  }, []);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -49,6 +44,14 @@ function TrackContributionForm() {
       setFileName(file.name);
     }
   };
+
+  useEffect(() => {
+    const fetchFiles = async () => {
+      const data = await getMyAudioTracks();
+      dispatch({ type: "setTracks", payload: data });
+    };
+    fetchFiles();
+  }, []);
 
   const fileToBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -76,12 +79,17 @@ function TrackContributionForm() {
       // Convert file to base64
       const base64Data = await fileToBase64(selectedFile);
 
-      const audioFile: AudioFile = {
-        fileName: fileName,
-        fileData: base64Data,
+      const audioTrack: AudioTrack = {
+        songName: fileName,
+        songTip: state.songTip,
+        songKey: state.songKey,
+        songChords: state.songChords,
+        songInstrument: state.songInstrument,
+        songDifficulty: state.songDifficulty,
+        songData: base64Data,
       };
 
-      await upsertAudioFile(audioFile);
+      await upsertAudioTrack(audioTrack);
       setMessage("File uploaded successfully!");
 
       // Clear form
@@ -92,8 +100,8 @@ function TrackContributionForm() {
       }
 
       // Reload files
-      const updatedFiles = await getMyAudioFiles();
-      setFiles(updatedFiles);
+      const updatedTracks = await getMyAudioTracks();
+      dispatch({ type: "setTracks", payload: updatedTracks });
     } catch (error) {
       console.error("Error uploading file:", error);
       setMessage(
@@ -309,18 +317,24 @@ function TrackContributionForm() {
           </h5>
         </div>
         <div className="card-body">
-          {files.length > 0 ? (
+          {state.tracks.length > 0 ? (
             <div className="list-group">
-              {files.map((file, i) => (
+              {state.tracks.map((track, i) => (
                 <div
-                  key={`${file.fileName}-${i}`}
+                  key={`${track.songName}-${i}`}
                   className="list-group-item d-flex justify-content-between align-items-center"
                 >
                   <div>
-                    <h6 className="mb-1">{file.fileName}</h6>
-                    {file.userId && (
+                    <h6 className="mb-1">{track.songName}</h6>
+                    {track.userId && (
                       <small className="text-muted">
-                        User ID: {file.userId}
+                        User ID: {track.userId}
+                      </small>
+                    )}
+                    <span> </span>
+                    {track.songTip && (
+                      <small className="text-muted">
+                        Song Tip: {track.songTip}
                       </small>
                     )}
                   </div>

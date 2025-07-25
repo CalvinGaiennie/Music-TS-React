@@ -23,3 +23,8 @@ Bugs
 
 Research
 -look into how difficult it would be to change songs speeds without changing their keys
+
+
+
+PRIORITY
+HOST BACKEND

@@ -1,9 +1,58 @@
-// import { useState } from "react";
+import { useEffect, useReducer } from "react";
 // import LessonContributionForm from "../components/LessonContributionForm";
 import TrackContributionForm from "../components/TrackContributionForm";
+import type { AudioTrack } from "../assets/earTrainerTypesAndInterfaces";
+import { getMyAudioTracks } from "../services/api";
+const initialState = {
+  songName: "",
+  songTip: "",
+  songKey: "",
+  songChords: "",
+  songInstrument: "",
+  songDifficulty: "",
+  tracks: [] as AudioTrack[],
+};
 
+const reducer = (
+  state: typeof initialState,
+  action: { type: string; payload: string | AudioTrack[] }
+) => {
+  switch (action.type) {
+    case "setSongName":
+      return { ...state, songName: action.payload as string };
+    case "setSongTip":
+      return { ...state, songTip: action.payload as string };
+    case "setSongKey":
+      return { ...state, songKey: action.payload as string };
+    case "setSongChords":
+      return { ...state, songChords: action.payload as string };
+    case "setSongInstrument":
+      return { ...state, songInstrument: action.payload as string };
+    case "setSongDifficulty":
+      return { ...state, songDifficulty: action.payload as string };
+    case "setTracks":
+      return { ...state, tracks: action.payload as AudioTrack[] };
+  }
+  return { ...state, ...action };
+};
 function UserContributionPage() {
+  const [state, dispatch] = useReducer(reducer, initialState);
   //   const [contributionType, setContributionType] = useState("lesson");
+
+  useEffect(() => {
+    const fetchFiles = async () => {
+      try {
+        console.log("Fetching audio tracks...");
+        const data = await getMyAudioTracks();
+        console.log("Received tracks data:", data);
+        console.log("Number of tracks:", data?.length || 0);
+        dispatch({ type: "setTracks", payload: data });
+      } catch (error) {
+        console.error("Error fetching tracks:", error);
+      }
+    };
+    fetchFiles();
+  }, []);
 
   return (
     <div className="container d-flex flex-column align-items-center">
@@ -23,7 +72,7 @@ function UserContributionPage() {
       <div>
         {/* {contributionType === "lesson" && <LessonContributionForm />}
         {contributionType === "track" && <TrackContributionForm />} */}
-        <TrackContributionForm />
+        <TrackContributionForm state={state} dispatch={dispatch} />
       </div>
     </div>
   );

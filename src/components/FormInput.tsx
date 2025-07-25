@@ -12,7 +12,7 @@ function FormInput({
   placeholder: string;
   disabled: boolean;
   formText: string;
-  state: { [key: string]: string };
+  state: string;
   dispatch: (action: { type: string; payload: string }) => void;
 }) {
   return (
@@ -21,9 +21,9 @@ function FormInput({
       <input
         type="text"
         className="form-control"
-        value={state[value]}
+        value={state}
         onChange={(e) =>
-          dispatch({ type: "SET_" + value, payload: e.target.value })
+          dispatch({ type: "set" + value, payload: e.target.value })
         }
         placeholder={placeholder}
         disabled={disabled}

@@ -1,41 +1,30 @@
-import { useState, useEffect, useReducer } from "react";
+import { useState } from "react";
 import { getMyAudioTracks, upsertAudioTrack } from "../services/api";
 import type { AudioTrack } from "../assets/earTrainerTypesAndInterfaces";
 import FormInput from "./FormInput";
+import TrackList from "./TrackList";
 
-const initialState = {
-  songTip: "",
-  songKey: "",
-  songChords: "",
-  songInstrument: "",
-  songDifficulty: "",
-  tracks: [] as AudioTrack[],
-};
+interface TrackFormState {
+  songName: string;
+  songTip: string;
+  songKey: string;
+  songChords: string;
+  songInstrument: string;
+  songDifficulty: string;
+  tracks: AudioTrack[];
+}
 
-const reducer = (state: typeof initialState, action: any) => {
-  switch (action.type) {
-    case "setSongTip":
-      return { ...state, songTip: action.payload };
-    case "setSongKey":
-      return { ...state, songKey: action.payload };
-    case "setSongChords":
-      return { ...state, songChords: action.payload };
-    case "setSongInstrument":
-      return { ...state, songInstrument: action.payload };
-    case "setSongDifficulty":
-      return { ...state, songDifficulty: action.payload };
-    case "setTracks":
-      return { ...state, tracks: action.payload };
-  }
-  return { ...state, ...action };
-};
-
-function TrackContributionForm() {
+function TrackContributionForm({
+  state,
+  dispatch,
+}: {
+  state: TrackFormState;
+  dispatch: (action: { type: string; payload: string | AudioTrack[] }) => void;
+}) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -44,14 +33,6 @@ function TrackContributionForm() {
       setFileName(file.name);
     }
   };
-
-  useEffect(() => {
-    const fetchFiles = async () => {
-      const data = await getMyAudioTracks();
-      dispatch({ type: "setTracks", payload: data });
-    };
-    fetchFiles();
-  }, []);
 
   const fileToBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -80,7 +61,7 @@ function TrackContributionForm() {
       const base64Data = await fileToBase64(selectedFile);
 
       const audioTrack: AudioTrack = {
-        songName: fileName,
+        songName: state.songName,
         songTip: state.songTip,
         songKey: state.songKey,
         songChords: state.songChords,
@@ -186,62 +167,62 @@ function TrackContributionForm() {
           {/* File Name */}
           <FormInput
             label="File Name"
-            value="fileName"
+            value="SongName"
             placeholder="Enter a descriptive name for your audio file"
             disabled={loading}
             formText=""
-            state={state}
+            state={state.songName}
             dispatch={dispatch}
           />
 
           {/* Song Tip */}
           <FormInput
             label="Song Tip"
-            value="songTip"
+            value="SongTip"
             placeholder="Enter a tip for this track"
             disabled={loading}
             formText=""
-            state={state}
+            state={state.songTip}
             dispatch={dispatch}
           />
           {/* Song Key */}
           <FormInput
             label="Song Key"
-            value="songKey"
+            value="SongKey"
             placeholder="Enter the key of the song"
             disabled={loading}
             formText=""
-            state={state}
+            state={state.songKey}
             dispatch={dispatch}
           />
           {/* Song Chords */}
           <FormInput
             label="Song Chords"
-            value="songChords"
+            value="SongChords"
             placeholder="Enter the chords of the song"
             disabled={loading}
             formText=""
-            state={state}
+            state={state.songChords}
             dispatch={dispatch}
           />
           {/* Song Instrument*/}
           <FormInput
             label="Song Instrument"
-            value="songInstrument"
+            value="SongInstrument"
             placeholder="Enter the instrument of the song"
             disabled={loading}
             formText=""
-            state={state}
+            state={state.songInstrument}
             dispatch={dispatch}
           />
           {/* Song Difficulty*/}
           <FormInput
             label="Song Difficulty"
-            value="songDifficulty"
+            value="SongDifficulty"
             placeholder="Enter the difficulty of the song"
             disabled={loading}
             formText=""
-            state={state}
+            state={state.songDifficulty}
             dispatch={dispatch}
           />
 
@@ -307,49 +288,7 @@ function TrackContributionForm() {
           {message}
         </div>
       )}
-
-      {/* Files Display Section */}
-      <div className="card" style={{ width: "100%", maxWidth: "600px" }}>
-        <div className="card-header">
-          <h5 className="mb-0">
-            <i className="fas fa-music me-2"></i>
-            Your Audio Files
-          </h5>
-        </div>
-        <div className="card-body">
-          {state.tracks.length > 0 ? (
-            <div className="list-group">
-              {state.tracks.map((track, i) => (
-                <div
-                  key={`${track.songName}-${i}`}
-                  className="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  <div>
-                    <h6 className="mb-1">{track.songName}</h6>
-                    {track.userId && (
-                      <small className="text-muted">
-                        User ID: {track.userId}
-                      </small>
-                    )}
-                    <span> </span>
-                    {track.songTip && (
-                      <small className="text-muted">
-                        Song Tip: {track.songTip}
-                      </small>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center text-muted py-4">
-              <i className="fas fa-music fa-3x mb-3"></i>
-              <p>No audio files found</p>
-              <small>Upload your first audio file to get started!</small>
-            </div>
-          )}
-        </div>
-      </div>
+      <TrackList tracks={state.tracks} dispatch={dispatch} />
     </div>
   );
 }

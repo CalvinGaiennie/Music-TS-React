@@ -250,6 +250,9 @@ function EarTrainerPage() {
           <div className="mt-2">Song Title: {state.selectedSong.Title}</div>
         )}
       </div>
+      <div className="mt-5">
+        <p>Create an account to contribute your own tracks.</p>
+      </div>
     </div>
   );
 }

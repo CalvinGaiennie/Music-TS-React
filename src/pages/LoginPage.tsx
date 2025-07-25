@@ -1,12 +1,16 @@
-import { useState } from "react";
-import { login } from "../services/api";
+import { useContext, useState } from "react";
+import { handleLogin } from "../services/api";
+import { useNavigate } from "react-router-dom";
+import { AuthContext, type AuthContextType } from "../context/AuthContextDef";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [message, setMessage] = useState("");
+  const { login } = useContext(AuthContext) as AuthContextType;
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,13 +18,15 @@ function LoginPage() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    login(formData.username, formData.password)
+    handleLogin(formData.email, formData.password)
       .then((data) => {
         // Store the token in localStorage
         if (data.token) {
           localStorage.setItem("token", data.token);
           setMessage("Login successful! Token saved.");
           console.log("Token saved:", data.token);
+          login(formData.email, data.token, data.userId);
+          setTimeout(() => navigate("/"), 1500);
         } else {
           setMessage("Login successful but no token received!");
         }
@@ -40,14 +46,14 @@ function LoginPage() {
         style={{ maxWidth: "600px" }}
       >
         <div className="mb-3">
-          <label className="form-label">Username</label>
+          <label className="form-label">Email</label>
           <input
             type="text"
-            name="username"
+            name="email"
             className="form-control"
-            placeholder="enter your username"
+            placeholder="enter your email"
             onChange={handleChange}
-            value={formData.username}
+            value={formData.email}
           />
         </div>
         <div className="mb-3">
@@ -66,6 +72,13 @@ function LoginPage() {
           Submit
         </button>
       </form>
+      <div className="mt-5">
+        <h3>Test Account</h3>
+        <p>
+          Email: testuser@testuser.com <br />
+          Password: testuser
+        </p>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,10 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext, type AuthContextType } from "../context/AuthContextDef";
+
 function NavBar() {
+  const { isLoggedIn, logout } = useContext(AuthContext) as AuthContextType;
+
   return (
     <nav className="nav pt-3">
       <ul className="navbar d-flex justify-content-center w-100 list-unstyled gap-0 gap-md-1 gap-lg-4 gap-xl-5">
@@ -32,16 +37,33 @@ function NavBar() {
             Lessons
           </NavLink>
         </li>
-        <li className="nav-item">
-          <NavLink className="nav-link fs-5 text-dark" to="/contribute">
-            Contribute
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className="nav-link fs-5 text-dark" to="/login">
-            Login
-          </NavLink>
-        </li>
+        {isLoggedIn ? (
+          <li className="nav-item">
+            <NavLink className="nav-link fs-5 text-dark" to="/contribute">
+              Contribute
+            </NavLink>
+          </li>
+        ) : null}
+        {!isLoggedIn ? (
+          <>
+            <li className="nav-item">
+              <NavLink className="nav-link fs-5 text-dark" to="/login">
+                Login
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link fs-5 text-dark" to="/create-account">
+                Create Account
+              </NavLink>
+            </li>
+          </>
+        ) : (
+          <li className="nav-item">
+            <button className="btn btn-outline-danger" onClick={logout}>
+              Logout
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   );

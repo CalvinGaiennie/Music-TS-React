@@ -35,7 +35,7 @@ const reducer = (
   }
   return { ...state, ...action };
 };
-function UserContributionPage() {
+function ContributePage() {
   const [state, dispatch] = useReducer(reducer, initialState);
   //   const [contributionType, setContributionType] = useState("lesson");
 
@@ -78,4 +78,4 @@ function UserContributionPage() {
   );
 }
 
-export default UserContributionPage;
+export default ContributePage;

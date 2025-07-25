@@ -32,7 +32,7 @@ export const getUsers = async (userId = 0, active = true) => {
   }
 };
 
-export const login = async (email: string, password: string) => {
+export const handleLogin = async (email: string, password: string) => {
   try {
     const response = await fetch(`${API_BASE_URL}/Auth/Login`, {
       method: "POST",
@@ -53,6 +53,46 @@ export const login = async (email: string, password: string) => {
 
     const data = await response.json();
     console.log("Login:", data);
+    return data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};
+export const createAccount = async (
+  password: string,
+  passwordConfirm: string,
+  firstName: string,
+  lastName: string,
+  email: string,
+  active: boolean
+) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Auth/Register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        password,
+        passwordConfirm,
+        firstName,
+        lastName,
+        email,
+        active,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Server error:", errorText);
+      throw new Error(
+        `Failed to create account: ${response.status} ${response.statusText}`
+      );
+    }
+
+    const data = await response.json();
+    console.log("Account created:", data);
     return data;
   } catch (error) {
     console.error("Error:", error);

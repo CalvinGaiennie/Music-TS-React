@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getMyAudioTracks, upsertAudioTrack } from "../services/api";
 import type { AudioTrack } from "../assets/earTrainerTypesAndInterfaces";
 import FormInput from "./FormInput";
 import TrackList from "./TrackList";
+import { instrumentDifficulties } from "../assets/resources";
+import FormSelect from "./FormSelect";
 
+const instruments = Object.keys(instrumentDifficulties);
 interface TrackFormState {
   songName: string;
   songTip: string;
@@ -95,6 +98,17 @@ function TrackContributionForm({
     }
   };
 
+  useEffect(() => {
+    dispatch({ type: "setSongInstrument", payload: instruments[0] });
+    dispatch({
+      type: "setSongDifficulty",
+      payload:
+        instrumentDifficulties[
+          instruments[0] as keyof typeof instrumentDifficulties
+        ][0],
+    });
+  }, [dispatch]);
+
   return (
     <div className="d-flex flex-column align-items-center">
       <h1 className="mb-4">TrackContributionForm</h1>
@@ -169,7 +183,6 @@ function TrackContributionForm({
             label="File Name"
             value="SongName"
             placeholder="Enter a descriptive name for your audio file"
-            disabled={loading}
             formText=""
             state={state.songName}
             dispatch={dispatch}
@@ -180,51 +193,65 @@ function TrackContributionForm({
             label="Song Tip"
             value="SongTip"
             placeholder="Enter a tip for this track"
-            disabled={loading}
             formText=""
             state={state.songTip}
             dispatch={dispatch}
           />
           {/* Song Key */}
-          <FormInput
+          <FormSelect
             label="Song Key"
             value="SongKey"
-            placeholder="Enter the key of the song"
-            disabled={loading}
             formText=""
             state={state.songKey}
             dispatch={dispatch}
+            options={[
+              "C",
+              "C#",
+              "D",
+              "D#",
+              "E",
+              "F",
+              "F#",
+              "G",
+              "G#",
+              "A",
+              "A#",
+              "B",
+            ]}
           />
           {/* Song Chords */}
           <FormInput
             label="Song Chords"
             value="SongChords"
             placeholder="Enter the chords of the song"
-            disabled={loading}
             formText=""
             state={state.songChords}
             dispatch={dispatch}
           />
           {/* Song Instrument*/}
-          <FormInput
+          <FormSelect
             label="Song Instrument"
             value="SongInstrument"
-            placeholder="Enter the instrument of the song"
-            disabled={loading}
             formText=""
             state={state.songInstrument}
             dispatch={dispatch}
+            options={instruments}
           />
           {/* Song Difficulty*/}
-          <FormInput
-            label="Song Difficulty"
-            value="SongDifficulty"
-            placeholder="Enter the difficulty of the song"
-            disabled={loading}
-            formText=""
-            state={state.songDifficulty}
-            dispatch={dispatch}
-          />
+          {state.songInstrument && (
+            <FormSelect
+              label="Song Difficulty"
+              value="SongDifficulty"
+              formText=""
+              state={state.songDifficulty}
+              dispatch={dispatch}
+              options={
+                instrumentDifficulties[
+                  state.songInstrument as keyof typeof instrumentDifficulties
+                ]
+              }
+            />
+          )}
 
           {/* Upload Progress */}
           {loading && (

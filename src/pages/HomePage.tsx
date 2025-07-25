@@ -1,10 +1,10 @@
 // import GetUsers from "../components/GetUsers";
-
+import styles from "./HomePage.module.css";
 function HomePage() {
   return (
     <div className="container d-flex flex-column align-items-center">
       <h1 className="mb-4">Welcome to Ear Trainer!</h1>
-      <div>
+      <div className={styles.content}>
         <p>
           This site is intended for begginer and Intermediate guitar players. It
           conains some basic lessons and a couple tools I wish existed when I

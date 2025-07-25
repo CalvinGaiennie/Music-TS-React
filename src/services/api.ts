@@ -1,8 +1,5 @@
 const API_BASE_URL = "http://localhost:5000";
-import type {
-  AudioFile,
-  AudioTrack,
-} from "../assets/earTrainerTypesAndInterfaces";
+import type { AudioTrack } from "../assets/earTrainerTypesAndInterfaces";
 
 // Helper function to get auth token
 const getAuthToken = () => {
@@ -63,154 +60,6 @@ export const login = async (email: string, password: string) => {
   }
 };
 
-// Get audio files
-export const getAudioFiles = async (
-  fileId: number = 0,
-  userId: number = 0,
-  searchParam: string = "None"
-) => {
-  try {
-    const token = getAuthToken();
-    if (!token) {
-      throw new Error("No authentication token found. Please log in first.");
-    }
-
-    // Handle empty searchParam properly
-    const searchValue = searchParam.trim() === "" ? "None" : searchParam;
-    console.log(
-      "Making request to:",
-      `${API_BASE_URL}/AudioFile/GetAudioFiles/${fileId}/${userId}/${encodeURIComponent(
-        searchValue
-      )}`
-    );
-
-    const response = await fetch(
-      `${API_BASE_URL}/AudioFile/GetAudioFiles/${fileId}/${userId}/${encodeURIComponent(
-        searchValue
-      )}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Server error:", errorText);
-      throw new Error(
-        `Failed to get audio files: ${response.status} ${response.statusText}`
-      );
-    }
-
-    const data = await response.json();
-    console.log("Audio files:", data);
-    return data;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
-};
-
-// Get My Audio Files
-export const getMyAudioFiles = async () => {
-  try {
-    const token = getAuthToken();
-    if (!token) {
-      throw new Error("No authentication token found. Please log in first.");
-    }
-    const response = await fetch(`${API_BASE_URL}/AudioFile/GetMyAudioFiles`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Server error:", errorText);
-      throw new Error(
-        `Failed to get my audio files: ${response.status} ${response.statusText}`
-      );
-    }
-
-    const data = await response.json();
-    console.log("My audio files:", data);
-    return data;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
-};
-
-// Upsert audio file
-export const upsertAudioFile = async (audioFile: AudioFile) => {
-  try {
-    const token = getAuthToken();
-    if (!token) {
-      throw new Error("No authentication token found. Please log in first.");
-    }
-
-    const response = await fetch(`${API_BASE_URL}/AudioFile/UpsertAudioFile`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(audioFile),
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Server error:", errorText);
-      throw new Error(
-        `Failed to upsert audio file: ${response.status} ${response.statusText}`
-      );
-    }
-
-    console.log("Audio file upserted successfully");
-    return true;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
-};
-
-// Delete audio file
-export const deleteAudioFile = async (audioFileId: number) => {
-  try {
-    const token = getAuthToken();
-    if (!token) {
-      throw new Error("No authentication token found. Please log in first.");
-    }
-
-    const response = await fetch(
-      `${API_BASE_URL}/AudioFile/DeleteAudioFile/${audioFileId}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Server error:", errorText);
-      throw new Error(
-        `Failed to delete audio file: ${response.status} ${response.statusText}`
-      );
-    }
-
-    console.log("Audio file deleted successfully");
-    return true;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
-};
-
-//////////////////////////////////////
-
 export const getAudioTracks = async (
   fileId: number = 0,
   userId: number = 0,
@@ -259,7 +108,7 @@ export const getAudioTracks = async (
   }
 };
 
-// Get My Audio Files
+// Get My Audio Tracks
 export const getMyAudioTracks = async () => {
   try {
     const token = getAuthToken();
@@ -292,7 +141,7 @@ export const getMyAudioTracks = async () => {
   }
 };
 
-// Upsert audio file
+// Upsert audio track
 export const upsertAudioTrack = async (audioTrack: AudioTrack) => {
   try {
     const token = getAuthToken();
@@ -328,7 +177,7 @@ export const upsertAudioTrack = async (audioTrack: AudioTrack) => {
   }
 };
 
-// Delete audio file
+// Delete audio track
 export const deleteAudioTrack = async (audioTrackId: number) => {
   try {
     const token = getAuthToken();

@@ -83,6 +83,20 @@ function TrackContributionForm({
         (document.getElementById("fileInput") as HTMLInputElement).value = "";
       }
 
+      // Clear form fields
+      dispatch({ type: "setSongName", payload: "" });
+      dispatch({ type: "setSongTip", payload: "" });
+      dispatch({ type: "setSongKey", payload: "" });
+      dispatch({ type: "setSongChords", payload: "" });
+      dispatch({ type: "setSongInstrument", payload: instruments[0] });
+      dispatch({
+        type: "setSongDifficulty",
+        payload:
+          instrumentDifficulties[
+            instruments[0] as keyof typeof instrumentDifficulties
+          ][0],
+      });
+
       // Reload files
       const updatedTracks = await getMyAudioTracks();
       dispatch({ type: "setTracks", payload: updatedTracks });

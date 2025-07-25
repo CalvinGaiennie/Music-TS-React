@@ -1,10 +1,4 @@
-// AudioFile interfaces
-export interface AudioFile {
-  audioFileId?: number;
-  userId?: number;
-  fileName: string;
-  fileData?: string; // Base64 encoded file data
-}
+// AudioTrack interfaces
 
 export interface AudioTrack {
   audioTrackId?: number;

@@ -1,4 +1,5 @@
-const API_BASE_URL = "http://localhost:5000";
+// const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://musicbackend.azurewebsites.net";
 import type { AudioTrack } from "../assets/earTrainerTypesAndInterfaces";
 
 // Helper function to get auth token

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { createAccount } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContextDef";
 
 function CreateAccountPage() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState<User>({
     password: "",
     passwordConfirm: "",
@@ -43,11 +45,20 @@ function CreateAccountPage() {
         // Store the token in localStorage
         if (data.token) {
           localStorage.setItem("token", data.token);
-          setMessage("Account created successfully! Token saved.");
-          console.log("Token saved:", data.token);
-          setTimeout(() => navigate("/"), 1500);
+
+          // Log the user in using auth context
+          // Assuming the API returns user info, adjust these fields based on your API response
+          const username = data.email || data.firstName || data.userName;
+          const userId = data.userId || data.id || "";
+          const permissions = data.permissions || "user";
+
+          login(username, permissions, userId);
+
+          setMessage("Account created successfully! You are now logged in.");
+          console.log("Account created and logged in:", data);
+          setTimeout(() => navigate("/"), 500);
         } else {
-          setMessage("Login successful but no token received!");
+          setMessage("Account created but no token received!");
         }
       })
       .catch((error) => {

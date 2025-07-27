@@ -26,7 +26,7 @@ function LoginPage() {
           setMessage("Login successful! Token saved.");
           console.log("Token saved:", data.token);
           login(formData.email, data.token, data.userId);
-          setTimeout(() => navigate("/"), 1500);
+          setTimeout(() => navigate("/"), 500);
         } else {
           setMessage("Login successful but no token received!");
         }

@@ -116,13 +116,13 @@ export const getAudioTracks = async (
     const searchValue = searchParam.trim() === "" ? "None" : searchParam;
     console.log(
       "Making request to:",
-      `${API_BASE_URL}/AudioFile/GetAudioTracks/${fileId}/${userId}/${encodeURIComponent(
+      `${API_BASE_URL}/AudioTrack/GetAudioTracks/${fileId}/${userId}/${encodeURIComponent(
         searchValue
       )}`
     );
 
     const response = await fetch(
-      `${API_BASE_URL}/AudioFile/GetAudioTracks/${fileId}/${userId}/${encodeURIComponent(
+      `${API_BASE_URL}/AudioTrack/GetAudioTracks/${fileId}/${userId}/${encodeURIComponent(
         searchValue
       )}`,
       {

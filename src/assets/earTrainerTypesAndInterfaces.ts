@@ -36,6 +36,7 @@ export interface State {
   showSong: boolean;
   showTip: boolean;
   availableSongsNumber: number;
+  userTracks: AudioTrack[];
 }
 
 export type Action =
@@ -44,4 +45,5 @@ export type Action =
   | { type: "SHOW_SONG"; payload: boolean }
   | { type: "SHOW_TIP"; payload: boolean }
   | { type: "SET_DIFFICULTY"; payload: string }
-  | { type: "SET_AVAILABLE_SONGS_NUMBER"; payload: number };
+  | { type: "SET_AVAILABLE_SONGS_NUMBER"; payload: number }
+  | { type: "SET_USER_TRACKS"; payload: AudioTrack[] };

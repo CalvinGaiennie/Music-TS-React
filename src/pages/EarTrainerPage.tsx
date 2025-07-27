@@ -8,7 +8,9 @@ import {
   type Action,
   type Song,
   type Instrument,
+  type AudioTrack,
 } from "../assets/earTrainerTypesAndInterfaces";
+import { getAudioTracks } from "../services/api";
 
 const initialState: State = {
   instrument: "guitar",
@@ -23,6 +25,7 @@ const initialState: State = {
   showSong: false,
   showTip: false,
   availableSongsNumber: 0,
+  userTracks: [] as AudioTrack[],
 };
 
 function reducer(state: State, action: Action) {
@@ -48,6 +51,11 @@ function reducer(state: State, action: Action) {
       return {
         ...state,
         availableSongsNumber: action.payload,
+      };
+    case "SET_USER_TRACKS":
+      return {
+        ...state,
+        userTracks: action.payload,
       };
     default:
       return state;
@@ -107,12 +115,41 @@ function EarTrainerPage() {
     dispatch({ type: "SHOW_SONG", payload: false });
   }
 
+  // function mergeTracks(tracks: AudioTrack[]) {}
+
   useEffect(() => {
     dispatch({
       type: "SET_AVAILABLE_SONGS_NUMBER",
       payload: getAvailableSongsNumber(),
     });
   }, [state.instrument, state.difficulty]);
+
+  useEffect(() => {
+    const getTracks = async () => {
+      try {
+        console.log("Fetching user tracks...");
+        const startTime = performance.now();
+        const userTracks = await getAudioTracks();
+        const endTime = performance.now();
+        const duration = endTime - startTime;
+
+        console.log(
+          `User tracks received in ${duration.toFixed(2)}ms:`,
+          userTracks
+        );
+        console.log("Number of user tracks:", userTracks?.length || 0);
+        dispatch({ type: "SET_USER_TRACKS", payload: userTracks });
+      } catch (error) {
+        console.error("Failed to fetch user tracks:", error);
+        dispatch({ type: "SET_USER_TRACKS", payload: [] });
+      }
+    };
+    getTracks();
+  }, []);
+
+  // Debug logging
+  console.log("Current state userTracks:", state.userTracks);
+  console.log("User tracks length:", state.userTracks?.length || 0);
 
   return (
     <div className="container d-flex flex-column align-items-center">
@@ -127,14 +164,17 @@ function EarTrainerPage() {
       </p>
 
       <div style={{ width: "100%", maxWidth: "400px" }}>
-        <audio
-          src={state.selectedSong.Path}
-          id="audioPlayer"
-          controls
-          style={{ width: "100%" }}
-        >
-          Your browser does not support the audio tag.
-        </audio>
+        <h2 className="mb-4 text-center">Random Song Player</h2>
+        {state.selectedSong.Path && (
+          <audio
+            src={state.selectedSong.Path}
+            id="audioPlayer"
+            controls
+            style={{ width: "100%" }}
+          >
+            Your browser does not support the audio tag.
+          </audio>
+        )}
 
         {/* Instrument Selector */}
         <div className="mb-3 mt-4">
@@ -249,6 +289,12 @@ function EarTrainerPage() {
         {state.showSong && (
           <div className="mt-2">Song Title: {state.selectedSong.Title}</div>
         )}
+      </div>
+      <div className="d-flex flex-column align-items-center justify-content-center gap-2 mt-5">
+        <h2 className="mb-4 text-center">Song List</h2>
+        {state.userTracks.map((track) => (
+          <div key={track.audioTrackId}>{JSON.stringify(track)}</div>
+        ))}
       </div>
       <div className="mt-5">
         <p>Create an account to contribute your own tracks.</p>

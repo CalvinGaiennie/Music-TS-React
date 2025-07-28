@@ -245,47 +245,27 @@ function EarTrainerPage() {
 
   return (
     <div className="container d-flex flex-column align-items-center mb-5">
-      <div className="position-relative w-100 mb-4">
-        <h1 className="text-center mb-0">Ear Trainer</h1>
-        {/* <div className="position-absolute top-0 end-0 d-flex flex-row align-items-center gap-2">
-          <select
-            className="form-select"
-            value={state.songPlayerType}
-            onChange={(e) =>
-              dispatch({
-                type: "SET_SONG_PLAYER_TYPE",
-                payload: e.target.value as SongPlayerType,
-              })
-            }
-          >
-            <option value="random">Random</option>
-            <option value="choosen">Choosen</option>
-          </select>
-        </div> */}
+      <div className="position-relative text-center w-100 mb-5">
+        <h1 className="text-center mb-3">Ear Trainer</h1>
+        <p className="text-center mb-2">
+          Select a song of your desired difficulty and see if you can figure it
+          out.
+        </p>
+        <p className="text-muted small">
+          (See the <a href="/">Home Page</a> for more information on how this
+          tool works and what the different difficulty levels mean.)
+        </p>
       </div>
-      {/* <p
-        style={{ maxWidth: "600px", width: "100%" }}
-        className="text-center mb-4"
-      >
-        Here are banks of songs with very stripped down arrangements organized
-        by instrument and difficulty, making it easy to find songs that are
-        appropriate for your skill level.
-      </p> */}
-      {/* Random or choosen */}
-      {/* {state.songPlayerType === "random" ? (
-        <RandomSongPlayer
-          state={state}
-          dispatch={dispatch}
-          initialState={initialState}
-        />
-      ) : (
-        <SongListPlayer state={state} dispatch={dispatch} />
-      )} */}
       <SongListPlayer state={state} dispatch={dispatch} />
       <SongPlayerSettings state={state} dispatch={dispatch} />
       {/* Call to action */}
-      <div className="mt-5">
-        <h5>Create an account to contribute your own tracks.</h5>
+      <div className="mt-5 text-center">
+        <h5 className="text-muted">
+          Create an account to contribute your own tracks.
+        </h5>
+        <a href="/contribute" className="btn btn-outline-primary mt-2">
+          Start Contributing
+        </a>
       </div>
     </div>
   );

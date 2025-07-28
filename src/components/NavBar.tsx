@@ -31,12 +31,12 @@ function NavBar() {
           <NavLink className="nav-link fs-5 text-dark" to="/metronome">
             Metronome
           </NavLink>
-        </li>
+        </li> */}
         <li className="nav-item">
           <NavLink className="nav-link fs-5 text-dark" to="/lessons">
             Lessons
           </NavLink>
-        </li> */}
+        </li>
         {isLoggedIn ? (
           <li className="nav-item">
             <NavLink className="nav-link fs-5 text-dark" to="/contribute">

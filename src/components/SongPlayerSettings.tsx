@@ -29,25 +29,27 @@ function SongPlayerSettings({
     <div className="mt-5">
       <h2 className="mb-4 text-center">Select A Song Bank</h2>
       {/* Track Type Selector */}
-      <div className="mb-3">
-        <label className="form-label">Track Type:</label>
-        <select
-          className="form-select"
-          value={state.trackType}
-          onChange={(e) =>
-            dispatch({
-              type: "SET_TRACK_TYPE",
-              payload: e.target.value as TrackType,
-            })
-          }
-        >
-          <option value="all">All</option>
-          <option value="user">User</option>
-          <option value="official">Official</option>
-        </select>
+      <div className="row g-3">
+        <div className="col-md-4">
+          <label className="form-label fw-bold">Track Type:</label>
+          <select
+            className="form-select"
+            value={state.trackType}
+            onChange={(e) =>
+              dispatch({
+                type: "SET_TRACK_TYPE",
+                payload: e.target.value as TrackType,
+              })
+            }
+          >
+            <option value="all">All</option>
+            <option value="user">User</option>
+            <option value="official">Official</option>
+          </select>
+        </div>
         {/* Instrument Selector */}
-        <div className="mb-3">
-          <label className="form-label">Instrument:</label>
+        <div className="col-md-4">
+          <label className="form-label fw-bold">Instrument:</label>
           <select
             className="form-select"
             value={state.instrument}
@@ -90,8 +92,8 @@ function SongPlayerSettings({
           </select>
         </div>
         {/* Difficulty Selector */}
-        <div className="mb-3">
-          <label className="form-label">Difficulty:</label>
+        <div className="col-md-4">
+          <label className="form-label fw-bold">Difficulty:</label>
           <select
             className="form-select"
             value={state.difficulty}

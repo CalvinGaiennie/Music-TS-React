@@ -4,39 +4,115 @@ function HomePage() {
   return (
     <div className="container d-flex flex-column align-items-center">
       <h1 className="mb-4">Welcome to Ear Trainer!</h1>
+      {/* <h3>Lets learn some songs by ear!</h3> */}
       <div className={styles.content}>
-        <p>
-          This site is intended for begginer and Intermediate guitar players. It
-          conains some basic lessons and a couple tools I wish existed when I
-          was learning guitar...
+        <h3 className="text-center mb-4">What is this?</h3>
+        <p className="lead text-center mb-4">
+          This site contains simple, short, often looped tracks organized by
+          difficulty so that you can find songs that match your skill level to
+          learn by ear.
         </p>
+        <hr className="my-5" />
+        <h2 className="text-center mb-4">Difficulty Definitions</h2>
+        <h4>What do these terms mean?</h4>
         <p>
-          I used to struggle to learn songs by ear. My biggest problem was that
-          most songs I attempted were much to difficult but I could not know how
-          difficult a song was until I had learned it.
+          If any of these definitions dont make sense click{" "}
+          <a href="/lessons/2">HERE</a> to view a lesson explaining these terms
+          and concepts.
         </p>
-        <p>
-          This difficulty sent me on a search of different ear training methods
-          and tools and eventually inspired me to build one of my own.
-        </p>
-        <p>
-          Most methods I encountered were either just pick random songs and
-          attempt to play them until you get it or the more traditional interval
-          method.
-        </p>
-        <p>
-          {" "}
-          I wished there was a way to find stripped down songs of specific
-          difficulties but knew there was no way to get it so I am providing it
-          here for others.
-        </p>
-        <p>
-          I added a few other tools as well that I thought could be userful or
-          fun.
-        </p>
-        {/* <p>This all needs heavy editing.</p> */}
-        {/* <hr />
-        <GetUsers /> */}
+        <div className="alert alert-info mb-4">
+          <h4 className="alert-heading">🎸 New to Guitar?</h4>
+          <p className="mb-0">
+            If you are very new to theory and ear training try out one of these
+            sections: <strong>Intervals</strong>,{" "}
+            <strong>One String Melodies</strong>,{" "}
+            <strong>Key of G Diatonic Chords Easy</strong>. These are the
+            easiest sections and will help you get started on your ear training
+            journey.
+          </p>
+        </div>
+
+        <div className="text-center mb-4">
+          <p className="text-muted">
+            Want to learn more? Check out{" "}
+            <a href="/lessons/1">How to Learn Guitar</a> and{" "}
+            <a href="/lessons/2">Essential Music Theory</a> lessons.
+          </p>
+        </div>
+        <div className="row">
+          <div className="col-md-6">
+            <div className="card mb-3">
+              <div className="card-body">
+                <h5 className="card-title">🎵 Melodies and Riffs</h5>
+                <p>
+                  <strong>Intervals:</strong> These are simply two notes being
+                  played one after the other or together.
+                </p>
+                <p>
+                  <strong>One String Melodies:</strong> These are simple
+                  melodies that can be played on a single string.
+                </p>
+                <p>
+                  <strong>Simple Melodies:</strong>
+                </p>
+                <p>
+                  <strong>Complex Melodies:</strong>
+                </p>
+                <p>
+                  <strong>Easy Riffs:</strong>
+                </p>
+                <p>
+                  <strong>Hard Riffs:</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-6">
+            <div className="card mb-3">
+              <div className="card-body">
+                <h5 className="card-title">🎸 Chord Progressions</h5>
+                <p>
+                  <strong>Key of G Diatonic Chords Easy:</strong> Simple chord
+                  progressions only in the key of G exluding the diminished 7th
+                  chord. Put simply these songs only use G, A minor, B minor, C,
+                  D, and E minor chords.
+                </p>
+                <p>
+                  <strong>Key of G Diatonic Chords Hard:</strong> These chord
+                  progressions contain the chords in the key of G but are longer
+                  and have more changes than the easy ones.
+                </p>
+                <p>
+                  <strong>Key of G Diatonic Chords With Extensions:</strong>{" "}
+                  This section contains progressions similar to the hard section
+                  but can also contain any chord extensions allowed in the key
+                  of G. Ex: D7, Dsus4, Cadd9, among others.
+                </p>
+                <p>
+                  <strong>Any Key Diatonic Chords Easy:</strong> These
+                  progressions are short, contain few changes, and are diatonic,
+                  but can be in any key.
+                </p>
+                <p>
+                  <strong>Any Key Diatonic Chords Hard:</strong> These
+                  progressions are longer, contain more changes, are diatonic,
+                  and can be in any key.
+                </p>
+
+                <p>
+                  <strong>Any Key Diatonic Chords With Extensions:</strong>{" "}
+                  These progressions are diatonic, can be in any key and can
+                  contain extended chords.
+                </p>
+                <p>
+                  <strong>No Restrictions:</strong> These progressions are not
+                  restricted to any key, chord progression, length, or
+                  complexity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

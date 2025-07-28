@@ -11,8 +11,8 @@ import {
   type SongPlayerType,
   type Instrument,
 } from "../assets/earTrainerTypesAndInterfaces";
-import { getAudioTracksList } from "../services/api";
-import RandomSongPlayer from "../components/RandomSongPlayer";
+import { getAudioTracks } from "../services/api";
+// import RandomSongPlayer from "../components/RandomSongPlayer";
 import SongListPlayer from "../components/SongListPlayer";
 import SongPlayerSettings from "../components/SongPlayerSettings";
 
@@ -102,7 +102,7 @@ function EarTrainerPage() {
       try {
         // console.log("Fetching user tracks...");
         // const startTime = performance.now();
-        const availableTracks = await getAudioTracksList();
+        const availableTracks = await getAudioTracks();
         // const endTime = performance.now();
         // const duration = endTime - startTime;
         // console.log("duration", duration);

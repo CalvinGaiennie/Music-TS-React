@@ -19,12 +19,12 @@ function NavBar() {
             Ear Trainer
           </NavLink>
         </li>
-        {/* <li className="nav-item">
+        <li className="nav-item">
           <NavLink
             className="nav-link fs-5 text-dark"
             to="/fretboard-simulator"
-          >s
-            Fretboard Simulator
+          >
+            s Fretboard Simulator
           </NavLink>
         </li>
         <li className="nav-item">
@@ -36,7 +36,7 @@ function NavBar() {
           <NavLink className="nav-link fs-5 text-dark" to="/lessons">
             Lessons
           </NavLink>
-        </li> */}
+        </li>
         {isLoggedIn ? (
           <li className="nav-item">
             <NavLink className="nav-link fs-5 text-dark" to="/contribute">

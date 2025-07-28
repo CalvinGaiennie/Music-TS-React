@@ -23,7 +23,7 @@ function RandomSongPlayer({
     dispatch({ type: "SET_AVAILABLE_SONGS_NUMBER", payload: songs.length });
     const selectedSong = songs[randomIndex];
 
-    // If it's a user track (has audioTrackId), fetch the audio data
+    // If it's a user track (has audioTrackId), fetch the full track data
     if (selectedSong.audioTrackId && selectedSong.audioTrackId > 0) {
       try {
         console.log("Fetching audio track for ID:", selectedSong.audioTrackId);
@@ -31,14 +31,6 @@ function RandomSongPlayer({
         console.log("Audio track returned:", audioTrack);
         if (audioTrack && audioTrack.length > 0) {
           const track = audioTrack[0]; // Get the first element from the array
-          // Convert base64 audio data to data URL if needed
-          if (
-            track.songData &&
-            !track.songData.startsWith("/") &&
-            !track.songData.startsWith("data:")
-          ) {
-            track.songData = `data:audio/mpeg;base64,${track.songData}`;
-          }
           return track; // Return the single track
         }
       } catch (error) {
@@ -51,7 +43,7 @@ function RandomSongPlayer({
   async function handleNewSong() {
     const newestSong = await newSong();
     console.log("New song selected:", newestSong);
-    console.log("Song data:", newestSong.songData);
+    console.log("Song blob URL:", newestSong.songBlobUrl);
     dispatch({ type: "SET_SONG", payload: newestSong });
     dispatch({ type: "SHOW_TIP", payload: false });
     dispatch({ type: "SHOW_SONG", payload: false });
@@ -69,7 +61,7 @@ function RandomSongPlayer({
     <div style={{ width: "100%", maxWidth: "400px" }}>
       <h2 className="mb-4 mt-4 text-center">Random Song Player</h2>
       <audio
-        src={state.selectedSong.songData || undefined}
+        src={state.selectedSong.songBlobUrl || undefined}
         id="audioPlayer"
         controls
         style={{ width: "100%" }}

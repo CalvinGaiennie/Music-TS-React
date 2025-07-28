@@ -60,7 +60,7 @@ function TrackContributionForm({
       setLoading(true);
       setMessage("");
 
-      // Convert file to base64
+      // Convert file to base64 for upload
       const base64Data = await fileToBase64(selectedFile);
 
       const audioTrack: AudioTrack = {
@@ -70,7 +70,7 @@ function TrackContributionForm({
         songChords: state.songChords,
         songInstrument: state.songInstrument,
         songDifficulty: state.songDifficulty,
-        songData: base64Data,
+        songBlobUrl: base64Data,
       };
 
       await upsertAudioTrack(audioTrack);

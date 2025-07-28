@@ -210,8 +210,12 @@ export const upsertAudioTrack = async (audioTrack: AudioTrack) => {
       );
     }
 
-    console.log("Audio file upserted successfully");
-    return true;
+    const result = await response.json();
+    console.log("Audio file upserted successfully:", result.message);
+    if (result.blobUrl) {
+      console.log("Blob URL:", result.blobUrl);
+    }
+    return result;
   } catch (error) {
     console.error("Error:", error);
     throw error;
@@ -244,8 +248,9 @@ export const deleteAudioTrack = async (audioTrackId: number) => {
       );
     }
 
-    console.log("Audio file deleted successfully");
-    return true;
+    const result = await response.json();
+    console.log("Audio file deleted successfully:", result.message);
+    return result;
   } catch (error) {
     console.error("Error:", error);
     throw error;

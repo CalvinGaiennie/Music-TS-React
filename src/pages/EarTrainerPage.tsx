@@ -28,7 +28,7 @@ const initialState: State = {
     songChords: "",
     songInstrument: "",
     songDifficulty: "",
-    songData: "",
+    songBlobUrl: "",
   } as AudioTrack,
   showSong: false,
   showTip: false,
@@ -107,12 +107,7 @@ function EarTrainerPage() {
         // const duration = endTime - startTime;
         // console.log("duration", duration);
 
-        // Add blank songData to tracks that don't have it
-        const tracksWithSongData = availableTracks.map((track: AudioTrack) => ({
-          ...track,
-          songData: track.songData || "",
-        }));
-        return tracksWithSongData;
+        return availableTracks;
       } catch (error) {
         console.error("Failed to fetch available tracks:", error);
         return [];
@@ -292,7 +287,7 @@ function EarTrainerPage() {
       <SongPlayerSettings state={state} dispatch={dispatch} />
       {/* Call to action */}
       <div className="mt-5">
-        <h6>Create an account to contribute your own tracks.</h6>
+        <h5>Create an account to contribute your own tracks.</h5>
       </div>
     </div>
   );

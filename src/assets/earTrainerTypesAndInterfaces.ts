@@ -9,7 +9,7 @@ export interface AudioTrack {
   songChords: string;
   songInstrument: string;
   songDifficulty: string;
-  songData: string;
+  songBlobUrl: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

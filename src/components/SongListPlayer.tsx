@@ -41,21 +41,22 @@ function SongListPlayer({
             (track) => track.songName === e.target.value
           ) as AudioTrack;
 
-          // If it's a user track (has audioTrackId), fetch the audio data
+          // If it's a user track (has audioTrackId), fetch the full track data
           if (selectedTrack.audioTrackId && selectedTrack.audioTrackId > 0) {
             try {
               const audioTracks = await getAudioTracks(
                 selectedTrack.audioTrackId
               );
               if (audioTracks && audioTracks.length > 0) {
+                const trackWithAudio = audioTracks[0];
                 dispatch({
                   type: "SET_SONG",
-                  payload: audioTracks[0], // Use the track with audio data
+                  payload: trackWithAudio,
                 });
                 return;
               }
             } catch (error) {
-              console.error("Error fetching audio track:", error);
+              console.error("Error fetching track:", error);
             }
           }
 
@@ -79,7 +80,7 @@ function SongListPlayer({
             </option>
           ))}
       </select>
-      <audio src={state.selectedSong.songData} id="audioPlayer" controls />
+      <audio src={state.selectedSong.songBlobUrl} id="audioPlayer" controls />
       {/* Buttons */}
       <div className="d-flex flex-row align-items-center justify-content-center gap-2">
         <button

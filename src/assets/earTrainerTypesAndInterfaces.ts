@@ -30,7 +30,7 @@ export interface State {
   availableSongsNumber: number;
   availableTracks: AudioTrack[];
   trackType: TrackType;
-  songListHiddenStatus: boolean;
+  songPlayerType: SongPlayerType;
 }
 
 export type Action =
@@ -42,6 +42,8 @@ export type Action =
   | { type: "SET_AVAILABLE_SONGS_NUMBER"; payload: number }
   | { type: "SET_AVAILABLE_TRACKS"; payload: AudioTrack[] }
   | { type: "SET_TRACK_TYPE"; payload: TrackType }
-  | { type: "SET_SONG_LIST_HIDDEN_STATUS"; payload: boolean };
+  | { type: "SET_SONG_PLAYER_TYPE"; payload: SongPlayerType };
 
-export type TrackType = "all" | "user" | "standard";
+export type TrackType = "all" | "user" | "official";
+
+export type SongPlayerType = "random" | "choosen";

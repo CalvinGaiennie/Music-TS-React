@@ -249,7 +249,7 @@ function EarTrainerPage() {
     <div className="container d-flex flex-column align-items-center mb-5">
       <div className="position-relative w-100 mb-4">
         <h1 className="text-center mb-0">Ear Trainer</h1>
-        <div className="position-absolute top-0 end-0 d-flex flex-row align-items-center gap-2">
+        {/* <div className="position-absolute top-0 end-0 d-flex flex-row align-items-center gap-2">
           <select
             className="form-select"
             value={state.songPlayerType}
@@ -263,7 +263,7 @@ function EarTrainerPage() {
             <option value="random">Random</option>
             <option value="choosen">Choosen</option>
           </select>
-        </div>
+        </div> */}
       </div>
       {/* <p
         style={{ maxWidth: "600px", width: "100%" }}

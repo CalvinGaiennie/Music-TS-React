@@ -43,8 +43,8 @@ function SongPlayerSettings({
             }
           >
             <option value="all">All</option>
-            <option value="user">User</option>
-            <option value="official">Official</option>
+            <option value="user">User Submitted Tracks</option>
+            <option value="official">Built-in Tracks</option>
           </select>
         </div>
         {/* Instrument Selector */}

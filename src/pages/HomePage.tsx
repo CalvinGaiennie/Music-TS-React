@@ -43,7 +43,7 @@ function HomePage() {
           <div className="col-md-6">
             <div className="card mb-3">
               <div className="card-body">
-                <h5 className="card-title">🎵 Riffs andMelodies </h5>
+                <h5 className="card-title">🎵 Melodies and Riffs</h5>
                 <p>
                   <strong>Intervals:</strong> These are simply two notes being
                   played one after the other or together.

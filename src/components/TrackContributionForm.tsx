@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getMyAudioTracks, upsertAudioTrack } from "../services/api";
+import { AuthContext, type AuthContextType } from "../context/AuthContextDef";
 import type {
   AudioTrack,
   AudioTrackToUpsert,
@@ -27,6 +28,7 @@ function TrackContributionForm({
   state: TrackFormState;
   dispatch: (action: { type: string; payload: string | AudioTrack[] }) => void;
 }) {
+  const { isLoggedIn } = useContext(AuthContext) as AuthContextType;
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -54,6 +56,13 @@ function TrackContributionForm({
   };
 
   const handleUpload = async () => {
+    if (!isLoggedIn) {
+      setMessage(
+        "You must be logged in to upload tracks. Please log in and try again."
+      );
+      return;
+    }
+
     if (!selectedFile || !fileName.trim()) {
       setMessage("Please select a file and enter a name");
       return;
@@ -137,6 +146,12 @@ function TrackContributionForm({
             <i className="fas fa-upload me-2"></i>
             Upload Audio File
           </h5>
+          {!isLoggedIn && (
+            <div className="alert alert-warning mt-2 mb-0">
+              <i className="fas fa-exclamation-triangle me-2"></i>
+              You must be logged in to upload tracks.
+            </div>
+          )}
         </div>
         <div className="card-body">
           {/* File Selection */}
@@ -292,12 +307,19 @@ function TrackContributionForm({
             <button
               className="btn btn-primary btn-lg"
               onClick={handleUpload}
-              disabled={loading || !selectedFile || !fileName.trim()}
+              disabled={
+                loading || !selectedFile || !fileName.trim() || !isLoggedIn
+              }
             >
               {loading ? (
                 <>
                   <i className="fas fa-spinner fa-spin me-2"></i>
                   Uploading...
+                </>
+              ) : !isLoggedIn ? (
+                <>
+                  <i className="fas fa-lock me-2"></i>
+                  Login Required
                 </>
               ) : (
                 <>

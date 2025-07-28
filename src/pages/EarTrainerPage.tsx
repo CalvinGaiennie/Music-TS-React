@@ -1,4 +1,5 @@
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   realSongListRealDifficultyFlatArray,
   instrumentDifficulties,
@@ -12,6 +13,7 @@ import {
   type Instrument,
 } from "../assets/earTrainerTypesAndInterfaces";
 import { getAudioTracks } from "../services/api";
+import { AuthContext, type AuthContextType } from "../context/AuthContextDef";
 // import RandomSongPlayer from "../components/RandomSongPlayer";
 import SongListPlayer from "../components/SongListPlayer";
 import SongPlayerSettings from "../components/SongPlayerSettings";
@@ -87,6 +89,16 @@ function reducer(state: State, action: Action) {
 
 function EarTrainerPage() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { isLoggedIn } = useContext(AuthContext) as AuthContextType;
+  const navigate = useNavigate();
+
+  const handleContributeClick = () => {
+    if (isLoggedIn) {
+      navigate("/contribute");
+    } else {
+      navigate("/create-account");
+    }
+  };
 
   function getAvailableSongsNumber() {
     const songs = state.availableTracks.filter(
@@ -263,9 +275,12 @@ function EarTrainerPage() {
         <h5 className="text-muted">
           Create an account to contribute your own tracks.
         </h5>
-        <a href="/contribute" className="btn btn-outline-primary mt-2">
+        <button
+          onClick={handleContributeClick}
+          className="btn btn-outline-primary mt-2"
+        >
           Start Contributing
-        </a>
+        </button>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ function HelpPage() {
           and concepts.
         </p>
         <div className="alert alert-info mb-4">
-          <h4 className="alert-heading">🎸 New to Guitar?</h4>
+          <h4 className="alert-heading">🎹 🎸 New to Music?</h4>
           <p className="mb-0">
             If you are very new to theory and ear training try out one of these
             sections: <strong>Intervals</strong>,{" "}

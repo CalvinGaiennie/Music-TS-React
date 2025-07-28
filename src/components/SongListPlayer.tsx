@@ -1,5 +1,10 @@
-import type { State, Action } from "../assets/earTrainerTypesAndInterfaces";
-import { useState } from "react";
+import type {
+  State,
+  Action,
+  AudioTrack,
+} from "../assets/earTrainerTypesAndInterfaces";
+import { useEffect } from "react";
+import { getAudioTracks } from "../services/api";
 function SongListPlayer({
   state,
   dispatch,
@@ -7,22 +12,20 @@ function SongListPlayer({
   state: State;
   dispatch: (action: Action) => void;
 }) {
-  const [selectedSong, setSelectedSong] = useState<number | null>(null);
-
   function playSong() {
-    if (!selectedSong) {
+    const audioPlayer = document.getElementById(
+      "audioPlayer"
+    ) as HTMLAudioElement;
+    if (!audioPlayer) {
       return;
     }
-    const song = state.availableTracks.find(
-      (track) => track.audioTrackId === selectedSong
-    );
-    if (!song) {
-      return;
-    }
-    dispatch({ type: "SET_SONG", payload: song });
+    audioPlayer.play();
+  }
+  useEffect(() => {
+    dispatch({ type: "SHOW_CHORDS", payload: false });
     dispatch({ type: "SHOW_TIP", payload: false });
     dispatch({ type: "SHOW_SONG", payload: false });
-  }
+  }, [state.selectedSong]);
   return (
     <div className="d-flex flex-column align-items-center justify-content-center gap-2">
       {/* <h2 className="mb-2 text-center">Song List</h2> */}
@@ -33,8 +36,36 @@ function SongListPlayer({
       <h2 className="mb-2 text-center">Select a Song</h2>
       <select
         className="form-select mb-2"
-        onChange={(e) => setSelectedSong(parseInt(e.target.value))}
-        value={selectedSong || ""}
+        onChange={async (e) => {
+          const selectedTrack = state.availableTracks.find(
+            (track) => track.songName === e.target.value
+          ) as AudioTrack;
+
+          // If it's a user track (has audioTrackId), fetch the audio data
+          if (selectedTrack.audioTrackId && selectedTrack.audioTrackId > 0) {
+            try {
+              const audioTracks = await getAudioTracks(
+                selectedTrack.audioTrackId
+              );
+              if (audioTracks && audioTracks.length > 0) {
+                dispatch({
+                  type: "SET_SONG",
+                  payload: audioTracks[0], // Use the track with audio data
+                });
+                return;
+              }
+            } catch (error) {
+              console.error("Error fetching audio track:", error);
+            }
+          }
+
+          // For hardcoded tracks or if fetch fails, use the original track
+          dispatch({
+            type: "SET_SONG",
+            payload: selectedTrack,
+          });
+        }}
+        value={state.selectedSong.songName}
       >
         {state.availableTracks
           .filter(
@@ -43,7 +74,7 @@ function SongListPlayer({
               track.songDifficulty === state.difficulty
           )
           .map((track) => (
-            <option key={track.audioTrackId} value={track.audioTrackId}>
+            <option key={track.audioTrackId} value={track.songName}>
               {track.songName}
             </option>
           ))}
@@ -51,7 +82,12 @@ function SongListPlayer({
       <audio src={state.selectedSong.songData} id="audioPlayer" controls />
       {/* Buttons */}
       <div className="d-flex flex-row align-items-center justify-content-center gap-2">
-        <button className="btn btn-primary mt-3" onClick={() => playSong()}>
+        <button
+          className="btn btn-primary mt-3"
+          onClick={() => {
+            playSong();
+          }}
+        >
           Play Song
         </button>
         <button
@@ -65,17 +101,16 @@ function SongListPlayer({
         >
           Show Tip
         </button>
-
         <button
           className="btn btn-primary mt-3"
           onClick={() =>
             dispatch({
-              type: "SHOW_SONG",
+              type: "SHOW_CHORDS",
               payload: true,
             })
           }
         >
-          Show Song
+          Show Chords
         </button>
       </div>
       {/* Tip and Song Title */}
@@ -83,8 +118,10 @@ function SongListPlayer({
         {state.showTip && (
           <div className="mt-2">Tip: {state.selectedSong.songTip}</div>
         )}
-        {state.showSong && (
-          <div className="mt-2">Song Title: {state.selectedSong.songName}</div>
+        {state.showChords && (
+          <div className="mt-2">
+            Song Chords: {state.selectedSong.songChords}
+          </div>
         )}
       </div>
     </div>

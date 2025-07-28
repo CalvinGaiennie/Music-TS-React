@@ -27,6 +27,7 @@ export interface State {
   selectedSong: AudioTrack;
   showSong: boolean;
   showTip: boolean;
+  showChords: boolean;
   availableSongsNumber: number;
   availableTracks: AudioTrack[];
   trackType: TrackType;
@@ -38,6 +39,7 @@ export type Action =
   | { type: "SET_INSTRUMENT"; payload: Instrument }
   | { type: "SHOW_SONG"; payload: boolean }
   | { type: "SHOW_TIP"; payload: boolean }
+  | { type: "SHOW_CHORDS"; payload: boolean }
   | { type: "SET_DIFFICULTY"; payload: string }
   | { type: "SET_AVAILABLE_SONGS_NUMBER"; payload: number }
   | { type: "SET_AVAILABLE_TRACKS"; payload: AudioTrack[] }

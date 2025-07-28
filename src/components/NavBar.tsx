@@ -23,7 +23,7 @@ function NavBar() {
           <NavLink
             className="nav-link fs-5 text-dark"
             to="/fretboard-simulator"
-          >
+          >s
             Fretboard Simulator
           </NavLink>
         </li>

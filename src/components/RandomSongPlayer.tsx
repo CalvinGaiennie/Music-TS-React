@@ -1,4 +1,5 @@
 import type { State, Action } from "../assets/earTrainerTypesAndInterfaces";
+import { getAudioTracks } from "../services/api";
 
 function RandomSongPlayer({
   state,
@@ -9,7 +10,7 @@ function RandomSongPlayer({
   dispatch: (action: Action) => void;
   initialState: State;
 }) {
-  function newSong() {
+  async function newSong() {
     const songs = state.availableTracks.filter(
       (song) =>
         song.songInstrument === state.instrument &&
@@ -20,10 +21,38 @@ function RandomSongPlayer({
     }
     const randomIndex = Math.floor(Math.random() * songs.length);
     dispatch({ type: "SET_AVAILABLE_SONGS_NUMBER", payload: songs.length });
-    return songs[randomIndex];
+    const selectedSong = songs[randomIndex];
+
+    // If it's a user track (has audioTrackId), fetch the audio data
+    if (selectedSong.audioTrackId && selectedSong.audioTrackId > 0) {
+      try {
+        console.log("Fetching audio track for ID:", selectedSong.audioTrackId);
+        const audioTrack = await getAudioTracks(selectedSong.audioTrackId);
+        console.log("Audio track returned:", audioTrack);
+        if (audioTrack && audioTrack.length > 0) {
+          const track = audioTrack[0]; // Get the first element from the array
+          // Convert base64 audio data to data URL if needed
+          if (
+            track.songData &&
+            !track.songData.startsWith("/") &&
+            !track.songData.startsWith("data:")
+          ) {
+            track.songData = `data:audio/mpeg;base64,${track.songData}`;
+          }
+          return track; // Return the single track
+        }
+      } catch (error) {
+        console.error("Error fetching audio track:", error);
+      }
+    }
+
+    return selectedSong;
   }
-  function handleNewSong() {
-    dispatch({ type: "SET_SONG", payload: newSong() });
+  async function handleNewSong() {
+    const newestSong = await newSong();
+    console.log("New song selected:", newestSong);
+    console.log("Song data:", newestSong.songData);
+    dispatch({ type: "SET_SONG", payload: newestSong });
     dispatch({ type: "SHOW_TIP", payload: false });
     dispatch({ type: "SHOW_SONG", payload: false });
 
@@ -39,16 +68,14 @@ function RandomSongPlayer({
   return (
     <div style={{ width: "100%", maxWidth: "400px" }}>
       <h2 className="mb-4 mt-4 text-center">Random Song Player</h2>
-      {state.selectedSong.songData && (
-        <audio
-          src={state.selectedSong.songData}
-          id="audioPlayer"
-          controls
-          style={{ width: "100%" }}
-        >
-          Your browser does not support the audio tag.
-        </audio>
-      )}
+      <audio
+        src={state.selectedSong.songData || undefined}
+        id="audioPlayer"
+        controls
+        style={{ width: "100%" }}
+      >
+        Your browser does not support the audio tag.
+      </audio>
       {/* Buttons */}
       <div className="d-flex flex-row align-items-center justify-content-center gap-2">
         <button

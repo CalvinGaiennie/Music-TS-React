@@ -72,13 +72,6 @@ function LoginPage() {
           Submit
         </button>
       </form>
-      <div className="mt-5">
-        <h3>Test Account</h3>
-        <p>
-          Email: testuser@testuser.com <br />
-          Password: testuser
-        </p>
-      </div>
     </div>
   );
 }

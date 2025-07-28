@@ -12,13 +12,13 @@ import {
   type Instrument,
 } from "../assets/earTrainerTypesAndInterfaces";
 import { getAudioTracksList } from "../services/api";
-// import RandomSongPlayer from "../components/RandomSongPlayer";
+import RandomSongPlayer from "../components/RandomSongPlayer";
 import SongListPlayer from "../components/SongListPlayer";
 import SongPlayerSettings from "../components/SongPlayerSettings";
 
 const initialState: State = {
   instrument: "guitar",
-  difficulty: "simple-melody",
+  difficulty: "",
   selectedSong: {
     audioTrackId: 0,
     userId: 0,
@@ -32,10 +32,11 @@ const initialState: State = {
   } as AudioTrack,
   showSong: false,
   showTip: false,
+  showChords: false,
   availableSongsNumber: 0,
   availableTracks: [] as AudioTrack[],
   trackType: "all" as TrackType,
-  songPlayerType: "choosen" as SongPlayerType,
+  songPlayerType: "random" as SongPlayerType,
 };
 
 function reducer(state: State, action: Action) {
@@ -55,6 +56,8 @@ function reducer(state: State, action: Action) {
       return { ...state, showSong: action.payload };
     case "SHOW_TIP":
       return { ...state, showTip: action.payload };
+    case "SHOW_CHORDS":
+      return { ...state, showChords: action.payload };
     case "SET_DIFFICULTY":
       return { ...state, difficulty: action.payload };
     case "SET_AVAILABLE_SONGS_NUMBER":
@@ -97,25 +100,18 @@ function EarTrainerPage() {
   async function getUserTrackList() {
     const getTracksList = async () => {
       try {
-        console.log("Fetching user tracks...");
-        const startTime = performance.now();
+        // console.log("Fetching user tracks...");
+        // const startTime = performance.now();
         const availableTracks = await getAudioTracksList();
-        const endTime = performance.now();
-        const duration = endTime - startTime;
+        // const endTime = performance.now();
+        // const duration = endTime - startTime;
+        // console.log("duration", duration);
 
         // Add blank songData to tracks that don't have it
         const tracksWithSongData = availableTracks.map((track: AudioTrack) => ({
           ...track,
           songData: track.songData || "",
         }));
-        console.log(
-          `User tracks received in ${duration.toFixed(2)}ms:`,
-          tracksWithSongData
-        );
-        console.log(
-          "Number of available tracks:",
-          tracksWithSongData?.length || 0
-        );
         return tracksWithSongData;
       } catch (error) {
         console.error("Failed to fetch available tracks:", error);
@@ -225,13 +221,55 @@ function EarTrainerPage() {
     }
   }, [state.instrument, state.availableTracks]);
 
-  // Debug logging
-  console.log("Current state availableTracks:", state.availableTracks);
-  console.log("Available tracks length:", state.availableTracks?.length || 0);
+  // Auto-select first available song when tracks change
+  useEffect(() => {
+    dispatch({ type: "SHOW_CHORDS", payload: false });
+    dispatch({ type: "SHOW_TIP", payload: false });
+    dispatch({ type: "SHOW_SONG", payload: false });
+    console.log(state.instrument, state.difficulty);
+    console.log(state.selectedSong.songName);
+    const filteredTracks = state.availableTracks.filter(
+      (track) =>
+        track.songInstrument === state.instrument &&
+        track.songDifficulty === state.difficulty
+    );
+
+    // Check if current selected song is valid for current instrument/difficulty
+    const isCurrentSongValid = filteredTracks.some(
+      (track) => track.songName === state.selectedSong.songName
+    );
+
+    if (
+      filteredTracks.length > 0 &&
+      (!state.selectedSong.songName || !isCurrentSongValid)
+    ) {
+      dispatch({
+        type: "SET_SONG",
+        payload: filteredTracks[0],
+      });
+    }
+  }, [state.availableTracks, state.instrument, state.difficulty]);
 
   return (
     <div className="container d-flex flex-column align-items-center mb-5">
-      <h1 className="mb-4">Ear Trainer</h1>
+      <div className="position-relative w-100 mb-4">
+        <h1 className="text-center mb-0">Ear Trainer</h1>
+        <div className="position-absolute top-0 end-0 d-flex flex-row align-items-center gap-2">
+          <select
+            className="form-select"
+            value={state.songPlayerType}
+            onChange={(e) =>
+              dispatch({
+                type: "SET_SONG_PLAYER_TYPE",
+                payload: e.target.value as SongPlayerType,
+              })
+            }
+          >
+            <option value="random">Random</option>
+            <option value="choosen">Choosen</option>
+          </select>
+        </div>
+      </div>
       {/* <p
         style={{ maxWidth: "600px", width: "100%" }}
         className="text-center mb-4"
@@ -241,23 +279,7 @@ function EarTrainerPage() {
         appropriate for your skill level.
       </p> */}
       {/* Random or choosen */}
-      {/* <div className="mt-4 d-flex flex-row align-items-center justify-content-center gap-2">
-        <label className="form-label">Player:</label>
-        <select
-          className="form-select"
-          value={state.songPlayerType}
-          onChange={(e) =>
-            dispatch({
-              type: "SET_SONG_PLAYER_TYPE",
-              payload: e.target.value as SongPlayerType,
-            })
-          }
-        >
-          <option value="random">Random</option>
-          <option value="choosen">Choosen</option>
-        </select>
-      </div> */}
-      {/* {state.songPlayerType === "random" ? (
+      {state.songPlayerType === "random" ? (
         <RandomSongPlayer
           state={state}
           dispatch={dispatch}
@@ -265,8 +287,8 @@ function EarTrainerPage() {
         />
       ) : (
         <SongListPlayer state={state} dispatch={dispatch} />
-      )} */}
-      <SongListPlayer state={state} dispatch={dispatch} />
+      )}
+      {/* <SongListPlayer state={state} dispatch={dispatch} /> */}
       <SongPlayerSettings state={state} dispatch={dispatch} />
       {/* Call to action */}
       <div className="mt-5">

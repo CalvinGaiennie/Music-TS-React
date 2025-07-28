@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   realSongListRealDifficultyFlatArray,
   instrumentDifficulties,
@@ -273,6 +273,14 @@ function EarTrainerPage() {
       <div className="w-100">
         <SongListPlayer state={state} dispatch={dispatch} />
         <SongPlayerSettings state={state} dispatch={dispatch} />
+
+        {/* Quick Access to Song Library */}
+        <div className="text-center mt-4">
+          <Link to="/song-library" className="btn btn-outline-secondary">
+            <i className="fas fa-list me-2"></i>
+            View Complete Song Library
+          </Link>
+        </div>
       </div>
 
       {/* Call to action */}

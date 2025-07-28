@@ -11,6 +11,7 @@ import { AuthProvider } from "./context/AuthContext";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import ContributePage from "./pages/ContributePage";
 import HelpPage from "./pages/HelpPage";
+import SongLibraryPage from "./pages/SongLibraryPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               element={<FretboardSimulatorPage />}
             />
             <Route path="/ear-trainer" element={<EarTrainerPage />} />
+            <Route path="/song-library" element={<SongLibraryPage />} />
             <Route path="/metronome" element={<MetronomePage />} />
             <Route path="/contribute" element={<ContributePage />} />
             <Route path="/login" element={<LoginPage />} />

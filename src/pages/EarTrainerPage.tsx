@@ -294,3 +294,5 @@ function EarTrainerPage() {
 }
 
 export default EarTrainerPage;
+
+//add a basic normal metronome

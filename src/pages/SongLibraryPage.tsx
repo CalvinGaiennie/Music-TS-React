@@ -102,7 +102,7 @@ function SongLibraryPage() {
       case "no-restrictions":
         return "dark";
       default:
-        return "light";
+        return "danger";
     }
   };
 
@@ -235,13 +235,6 @@ function SongLibraryPage() {
                     )} text-primary`}
                   ></i>
                 </div>
-
-                {track.songTip && (
-                  <p className="card-text text-muted small mb-2">
-                    {track.songTip}
-                  </p>
-                )}
-
                 <div className="d-flex flex-wrap gap-1 mb-3">
                   <span
                     className={`badge bg-${getDifficultyColor(
@@ -261,18 +254,6 @@ function SongLibraryPage() {
                     <span className="badge bg-info">User Submitted</span>
                   )}
                 </div>
-
-                {track.songChords && (
-                  <p className="card-text small">
-                    <strong>Chords:</strong> {track.songChords}
-                  </p>
-                )}
-
-                {track.songKey && (
-                  <p className="card-text small">
-                    <strong>Key:</strong> {track.songKey}
-                  </p>
-                )}
               </div>
 
               <div className="card-footer bg-transparent">

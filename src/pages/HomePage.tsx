@@ -33,7 +33,7 @@ function HomePage() {
                   Browse our complete collection of songs organized by
                   instrument and difficulty level.
                 </p>
-                <div className="row text-center">
+                {/* <div className="row text-center">
                   <div className="col-md-4 mb-3">
                     <i className="fas fa-guitar fa-2x text-primary mb-2"></i>
                     <h6>Guitar</h6>
@@ -51,7 +51,7 @@ function HomePage() {
                     <h6>Bass</h6>
                     <small className="text-muted">Rhythm & Melody</small>
                   </div>
-                </div>
+                </div> */}
                 <div className="text-center mt-3">
                   <Link to="/song-library" className="btn btn-primary btn-lg">
                     <i className="fas fa-search me-2"></i>

@@ -274,7 +274,7 @@ function EarTrainerPage() {
         appropriate for your skill level.
       </p> */}
       {/* Random or choosen */}
-      {state.songPlayerType === "random" ? (
+      {/* {state.songPlayerType === "random" ? (
         <RandomSongPlayer
           state={state}
           dispatch={dispatch}
@@ -282,8 +282,8 @@ function EarTrainerPage() {
         />
       ) : (
         <SongListPlayer state={state} dispatch={dispatch} />
-      )}
-      {/* <SongListPlayer state={state} dispatch={dispatch} /> */}
+      )} */}
+      <SongListPlayer state={state} dispatch={dispatch} />
       <SongPlayerSettings state={state} dispatch={dispatch} />
       {/* Call to action */}
       <div className="mt-5">

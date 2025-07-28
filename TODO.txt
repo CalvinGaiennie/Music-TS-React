@@ -16,6 +16,7 @@ Features
         -Maybe do some strumming patterns and exercises
         -allow people to log workouts to see progress over time
 -when you login change the login page to a profile page and auto move to the home page 
+give users ability to hide song list and to choose if they want to see user songs hardcoded or both
 
 Bugs
 -fix the measure counter and the changing of the rudiment.

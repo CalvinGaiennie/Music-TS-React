@@ -1,31 +1,38 @@
 import { useReducer, useEffect } from "react";
 import {
-  realSongListRealDifficulty,
+  realSongListRealDifficultyFlatArray,
   instrumentDifficulties,
 } from "../assets/resources";
 import {
   type State,
   type Action,
-  type Song,
   type Instrument,
   type AudioTrack,
+  type TrackType,
 } from "../assets/earTrainerTypesAndInterfaces";
-import { getAudioTracks } from "../services/api";
+import { getAudioTracksList } from "../services/api";
 
 const initialState: State = {
   instrument: "guitar",
   difficulty: "simple-melody",
   selectedSong: {
-    Path: "",
-    Title: "",
-    Tip: "",
-    Key: "",
-    Chords: "",
-  } as Song,
+    audioTrackId: 0,
+    userId: 0,
+    songName: "",
+    songTip: "",
+    songKey: "",
+    songChords: "",
+    songInstrument: "",
+    songDifficulty: "",
+    songData: "",
+    songListHiddenStatus: false,
+  } as AudioTrack,
   showSong: false,
   showTip: false,
   availableSongsNumber: 0,
-  userTracks: [] as AudioTrack[],
+  availableTracks: [] as AudioTrack[],
+  trackType: "all" as TrackType,
+  songListHiddenStatus: false,
 };
 
 function reducer(state: State, action: Action) {
@@ -52,10 +59,20 @@ function reducer(state: State, action: Action) {
         ...state,
         availableSongsNumber: action.payload,
       };
-    case "SET_USER_TRACKS":
+    case "SET_AVAILABLE_TRACKS":
       return {
         ...state,
-        userTracks: action.payload,
+        availableTracks: action.payload,
+      };
+    case "SET_TRACK_TYPE":
+      return {
+        ...state,
+        trackType: action.payload,
+      };
+    case "SET_SONG_LIST_HIDDEN_STATUS":
+      return {
+        ...state,
+        songListHiddenStatus: action.payload,
       };
     default:
       return state;
@@ -66,20 +83,22 @@ function EarTrainerPage() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   function getAvailableSongsNumber() {
-    const songs =
-      realSongListRealDifficulty[state.instrument][
-        state.difficulty as keyof (typeof realSongListRealDifficulty)[typeof state.instrument]
-      ];
+    const songs = state.availableTracks.filter(
+      (song) =>
+        song.songInstrument === state.instrument &&
+        song.songDifficulty === state.difficulty
+    );
     return songs.length;
   }
 
   // Update available songs number when instrument or difficulty changes
 
   function newSong() {
-    const songs =
-      realSongListRealDifficulty[state.instrument][
-        state.difficulty as keyof (typeof realSongListRealDifficulty)[typeof state.instrument]
-      ];
+    const songs = state.availableTracks.filter(
+      (song) =>
+        song.songInstrument === state.instrument &&
+        song.songDifficulty === state.difficulty
+    );
     if (!songs || songs.length === 0) {
       return initialState.selectedSong;
     }
@@ -115,6 +134,37 @@ function EarTrainerPage() {
     dispatch({ type: "SHOW_SONG", payload: false });
   }
 
+  async function getUserTrackList() {
+    const getTracksList = async () => {
+      try {
+        console.log("Fetching user tracks...");
+        const startTime = performance.now();
+        const availableTracks = await getAudioTracksList();
+        const endTime = performance.now();
+        const duration = endTime - startTime;
+
+        // Add blank songData to tracks that don't have it
+        const tracksWithSongData = availableTracks.map((track: AudioTrack) => ({
+          ...track,
+          songData: track.songData || "",
+        }));
+        console.log(
+          `User tracks received in ${duration.toFixed(2)}ms:`,
+          tracksWithSongData
+        );
+        console.log(
+          "Number of available tracks:",
+          tracksWithSongData?.length || 0
+        );
+        return tracksWithSongData;
+      } catch (error) {
+        console.error("Failed to fetch available tracks:", error);
+        return [];
+      }
+    };
+    return getTracksList();
+  }
+
   // function mergeTracks(tracks: AudioTrack[]) {}
 
   useEffect(() => {
@@ -125,31 +175,28 @@ function EarTrainerPage() {
   }, [state.instrument, state.difficulty]);
 
   useEffect(() => {
-    const getTracks = async () => {
-      try {
-        console.log("Fetching user tracks...");
-        const startTime = performance.now();
-        const userTracks = await getAudioTracks();
-        const endTime = performance.now();
-        const duration = endTime - startTime;
-
-        console.log(
-          `User tracks received in ${duration.toFixed(2)}ms:`,
-          userTracks
-        );
-        console.log("Number of user tracks:", userTracks?.length || 0);
-        dispatch({ type: "SET_USER_TRACKS", payload: userTracks });
-      } catch (error) {
-        console.error("Failed to fetch user tracks:", error);
-        dispatch({ type: "SET_USER_TRACKS", payload: [] });
+    const fetchTracks = async () => {
+      if (state.trackType === "user") {
+        const userTracks = (await getUserTrackList()) as AudioTrack[];
+        dispatch({ type: "SET_AVAILABLE_TRACKS", payload: userTracks });
+      } else if (state.trackType === "standard") {
+        dispatch({
+          type: "SET_AVAILABLE_TRACKS",
+          payload: realSongListRealDifficultyFlatArray,
+        });
+      } else if (state.trackType === "all") {
+        const userTracks = await getUserTrackList();
+        const standardTracks = realSongListRealDifficultyFlatArray;
+        const allTracks = [...userTracks, ...standardTracks];
+        dispatch({ type: "SET_AVAILABLE_TRACKS", payload: allTracks });
       }
     };
-    getTracks();
-  }, []);
+    fetchTracks();
+  }, [state.trackType]);
 
   // Debug logging
-  console.log("Current state userTracks:", state.userTracks);
-  console.log("User tracks length:", state.userTracks?.length || 0);
+  console.log("Current state availableTracks:", state.availableTracks);
+  console.log("Available tracks length:", state.availableTracks?.length || 0);
 
   return (
     <div className="container d-flex flex-column align-items-center">
@@ -163,11 +210,12 @@ function EarTrainerPage() {
         appropriate for your skill level.
       </p>
 
+      {/* Random Song Player */}
       <div style={{ width: "100%", maxWidth: "400px" }}>
         <h2 className="mb-4 text-center">Random Song Player</h2>
-        {state.selectedSong.Path && (
+        {state.selectedSong.songData && (
           <audio
-            src={state.selectedSong.Path}
+            src={state.selectedSong.songData}
             id="audioPlayer"
             controls
             style={{ width: "100%" }}
@@ -175,80 +223,102 @@ function EarTrainerPage() {
             Your browser does not support the audio tag.
           </audio>
         )}
-
-        {/* Instrument Selector */}
-        <div className="mb-3 mt-4">
-          <label className="form-label">Instrument:</label>
-          <select
-            className="form-select"
-            value={state.instrument}
-            onChange={(e) =>
-              handleInstrumentChange(e.target.value as Instrument)
-            }
-          >
-            {(
-              [
-                "guitar",
-                "piano",
-                "bass",
-                "guitar-bass",
-                "guitar-bass-piano",
-              ] as Instrument[]
-            ).map((instrument) => {
-              const hasAnySongs = instrumentDifficulties[instrument].some(
-                (difficulty) => {
-                  const songs =
-                    realSongListRealDifficulty[instrument][
-                      difficulty as keyof (typeof realSongListRealDifficulty)[typeof instrument]
-                    ];
-                  return songs && songs.length > 0;
-                }
-              );
-              return (
-                <option
-                  key={instrument}
-                  value={instrument}
-                  style={{ color: hasAnySongs ? "inherit" : "red" }}
-                >
-                  {instrument
-                    .replace(/-/g, " ")
-                    .replace(/\b\w/g, (l) => l.toUpperCase())}
-                  {!hasAnySongs && " (No songs)"}
-                </option>
-              );
-            })}
-          </select>
+        {/* Selectors */}
+        <div className="mt-4">
+          {/* Track Type Selector */}
+          <div className="mb-3">
+            <label className="form-label">Track Type:</label>
+            <select
+              className="form-select"
+              value={state.trackType}
+              onChange={(e) =>
+                dispatch({
+                  type: "SET_TRACK_TYPE",
+                  payload: e.target.value as TrackType,
+                })
+              }
+            >
+              <option value="all">All</option>
+              <option value="user">User</option>
+              <option value="standard">Standard</option>
+            </select>
+          </div>
+          {/* Instrument Selector */}
+          <div className="mb-3">
+            <label className="form-label">Instrument:</label>
+            <select
+              className="form-select"
+              value={state.instrument}
+              onChange={(e) =>
+                handleInstrumentChange(e.target.value as Instrument)
+              }
+            >
+              {(
+                [
+                  "guitar",
+                  "piano",
+                  "bass",
+                  "guitar-bass",
+                  "guitar-bass-piano",
+                ] as Instrument[]
+              ).map((instrument) => {
+                const hasAnySongs = instrumentDifficulties[instrument].some(
+                  (difficulty) => {
+                    const songs = state.availableTracks.filter(
+                      (song) =>
+                        song.songInstrument === instrument &&
+                        song.songDifficulty === difficulty
+                    );
+                    return songs.length > 0;
+                  }
+                );
+                return (
+                  <option
+                    key={instrument}
+                    value={instrument}
+                    style={{ color: hasAnySongs ? "inherit" : "red" }}
+                  >
+                    {instrument
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (l) => l.toUpperCase())}
+                    {!hasAnySongs && " (No songs)"}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          {/* Difficulty Selector */}
+          <div className="mb-3">
+            <label className="form-label">Difficulty:</label>
+            <select
+              className="form-select"
+              value={state.difficulty}
+              onChange={(e) => handleDifficultyChange(e.target.value)}
+            >
+              {instrumentDifficulties[state.instrument].map((difficulty) => {
+                const songs = state.availableTracks.filter(
+                  (song) =>
+                    song.songInstrument === state.instrument &&
+                    song.songDifficulty === difficulty
+                );
+                const hasSongs = songs.length > 0;
+                return (
+                  <option
+                    key={difficulty}
+                    value={difficulty}
+                    style={{ color: hasSongs ? "inherit" : "red" }}
+                  >
+                    {difficulty
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (l) => l.toUpperCase())}
+                    {hasSongs ? ` (${songs.length})` : " (No songs)"}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
         </div>
-
-        {/* Difficulty Selector */}
-        <div className="mb-3">
-          <label className="form-label">Difficulty:</label>
-          <select
-            className="form-select"
-            value={state.difficulty}
-            onChange={(e) => handleDifficultyChange(e.target.value)}
-          >
-            {instrumentDifficulties[state.instrument].map((difficulty) => {
-              const songs =
-                realSongListRealDifficulty[state.instrument][
-                  difficulty as keyof (typeof realSongListRealDifficulty)[typeof state.instrument]
-                ];
-              const hasSongs = songs && songs.length > 0;
-              return (
-                <option
-                  key={difficulty}
-                  value={difficulty}
-                  style={{ color: hasSongs ? "inherit" : "red" }}
-                >
-                  {difficulty
-                    .replace(/-/g, " ")
-                    .replace(/\b\w/g, (l) => l.toUpperCase())}
-                  {hasSongs ? ` (${songs.length})` : " (No songs)"}
-                </option>
-              );
-            })}
-          </select>
-        </div>
+        {/* Buttons */}
         <div className="d-flex flex-row align-items-center justify-content-center gap-2">
           <button
             className="btn btn-primary mt-3"
@@ -281,21 +351,37 @@ function EarTrainerPage() {
             Show Song
           </button>
         </div>
+        {/* Tip and Song Title */}
+        <div className="d-flex flex-column align-items-center justify-content-center gap-2">
+          {state.showTip && (
+            <div className="mt-2">Tip: {state.selectedSong.songTip}</div>
+          )}
+          {state.showSong && (
+            <div className="mt-2">
+              Song Title: {state.selectedSong.songName}
+            </div>
+          )}
+        </div>
       </div>
-      <div className="d-flex flex-column align-items-center justify-content-center gap-2">
-        {state.showTip && (
-          <div className="mt-2">Tip: {state.selectedSong.Tip}</div>
-        )}
-        {state.showSong && (
-          <div className="mt-2">Song Title: {state.selectedSong.Title}</div>
-        )}
-      </div>
-      <div className="d-flex flex-column align-items-center justify-content-center gap-2 mt-5">
-        <h2 className="mb-4 text-center">Song List</h2>
-        {state.userTracks.map((track) => (
-          <div key={track.audioTrackId}>{JSON.stringify(track)}</div>
-        ))}
-      </div>
+      {/* MAKE THIS POSSIBLE TO HIDE */}
+      {/* Song List */}
+      {!state.songListHiddenStatus && (
+        <div className="d-flex flex-column align-items-center justify-content-center gap-2 mt-5">
+          <h2 className="mb-4 text-center">Song List</h2>
+          <h4 className="mb-4 text-center">
+            {state.instrument.charAt(0).toUpperCase() +
+              state.instrument.slice(1)}{" "}
+            {state.difficulty}
+          </h4>
+
+          {state.availableTracks.map((track) => (
+            <div key={track.audioTrackId}>
+              <p>{track.songName}</p>
+            </div>
+          ))}
+        </div>
+      )}
+      {/* Call to action */}
       <div className="mt-5">
         <p>Create an account to contribute your own tracks.</p>
       </div>

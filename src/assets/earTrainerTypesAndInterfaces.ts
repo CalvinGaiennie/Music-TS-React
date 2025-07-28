@@ -21,29 +21,27 @@ export type Instrument =
   | "guitar-bass"
   | "guitar-bass-piano";
 
-export interface Song {
-  Path: string;
-  Title: string;
-  Tip: string;
-  Key: string;
-  Chords: string;
-}
-
 export interface State {
   instrument: Instrument;
   difficulty: string;
-  selectedSong: Song;
+  selectedSong: AudioTrack;
   showSong: boolean;
   showTip: boolean;
   availableSongsNumber: number;
-  userTracks: AudioTrack[];
+  availableTracks: AudioTrack[];
+  trackType: TrackType;
+  songListHiddenStatus: boolean;
 }
 
 export type Action =
-  | { type: "SET_SONG"; payload: Song }
+  | { type: "SET_SONG"; payload: AudioTrack }
   | { type: "SET_INSTRUMENT"; payload: Instrument }
   | { type: "SHOW_SONG"; payload: boolean }
   | { type: "SHOW_TIP"; payload: boolean }
   | { type: "SET_DIFFICULTY"; payload: string }
   | { type: "SET_AVAILABLE_SONGS_NUMBER"; payload: number }
-  | { type: "SET_USER_TRACKS"; payload: AudioTrack[] };
+  | { type: "SET_AVAILABLE_TRACKS"; payload: AudioTrack[] }
+  | { type: "SET_TRACK_TYPE"; payload: TrackType }
+  | { type: "SET_SONG_LIST_HIDDEN_STATUS"; payload: boolean };
+
+export type TrackType = "all" | "user" | "standard";

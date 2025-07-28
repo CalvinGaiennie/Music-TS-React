@@ -251,3 +251,84 @@ export const deleteAudioTrack = async (audioTrackId: number) => {
     throw error;
   }
 };
+
+export const getAudioTracksList = async (
+  fileId: number = 0,
+  userId: number = 0,
+  searchParam: string = "None"
+) => {
+  try {
+    const token = getAuthToken();
+    if (!token) {
+      throw new Error("No authentication token found. Please log in first.");
+    }
+
+    // Handle empty searchParam properly
+    const searchValue = searchParam.trim() === "" ? "None" : searchParam;
+    console.log(
+      "Making request to:",
+      `${API_BASE_URL}/AudioTrack/GetAudioTracksList/${fileId}/${userId}/${encodeURIComponent(
+        searchValue
+      )}`
+    );
+
+    const response = await fetch(
+      `${API_BASE_URL}/AudioTrack/GetAudioTracksList/${fileId}/${userId}/${encodeURIComponent(
+        searchValue
+      )}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Server error:", errorText);
+      throw new Error(
+        `Failed to get audio track list: ${response.status} ${response.statusText}`
+      );
+    }
+
+    const data = await response.json();
+    console.log("Audio track list:", data);
+    return data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};
+
+// Get My Audio Tracks
+export const getMyAudioTracksList = async () => {
+  try {
+    const token = getAuthToken();
+    if (!token) {
+      throw new Error("No authentication token found. Please log in first.");
+    }
+    const response = await fetch(
+      `${API_BASE_URL}/AudioTrack/GetMyAudioTracksList`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Server error:", errorText);
+      throw new Error(
+        `Failed to get my audio track list: ${response.status} ${response.statusText}`
+      );
+    }
+
+    const data = await response.json();
+    console.log("My audio track list:", data);
+    return data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};

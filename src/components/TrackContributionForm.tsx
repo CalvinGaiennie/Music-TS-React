@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMyAudioTracks, upsertAudioTrack } from "../services/api";
+import { getMyAudioTracksList, upsertAudioTrack } from "../services/api";
 import type { AudioTrack } from "../assets/earTrainerTypesAndInterfaces";
 import FormInput from "./FormInput";
 import TrackList from "./TrackList";
@@ -98,7 +98,7 @@ function TrackContributionForm({
       });
 
       // Reload files
-      const updatedTracks = await getMyAudioTracks();
+      const updatedTracks = await getMyAudioTracksList();
       dispatch({ type: "setTracks", payload: updatedTracks });
     } catch (error) {
       console.error("Error uploading file:", error);

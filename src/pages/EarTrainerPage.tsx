@@ -137,7 +137,7 @@ function EarTrainerPage() {
       if (state.trackType === "user") {
         const userTracks = (await getUserTrackList()) as AudioTrack[];
         dispatch({ type: "SET_AVAILABLE_TRACKS", payload: userTracks });
-      } else if (state.trackType === "standard") {
+      } else if (state.trackType === "official") {
         dispatch({
           type: "SET_AVAILABLE_TRACKS",
           payload: realSongListRealDifficultyFlatArray,

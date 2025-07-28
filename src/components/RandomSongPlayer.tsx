@@ -26,9 +26,7 @@ function RandomSongPlayer({
     // If it's a user track (has audioTrackId), fetch the full track data
     if (selectedSong.audioTrackId && selectedSong.audioTrackId > 0) {
       try {
-        console.log("Fetching audio track for ID:", selectedSong.audioTrackId);
         const audioTrack = await getAudioTracks(selectedSong.audioTrackId);
-        console.log("Audio track returned:", audioTrack);
         if (audioTrack && audioTrack.length > 0) {
           const track = audioTrack[0]; // Get the first element from the array
           return track; // Return the single track
@@ -42,8 +40,6 @@ function RandomSongPlayer({
   }
   async function handleNewSong() {
     const newestSong = await newSong();
-    console.log("New song selected:", newestSong);
-    console.log("Song blob URL:", newestSong.songBlobUrl);
     dispatch({ type: "SET_SONG", payload: newestSong });
     dispatch({ type: "SHOW_TIP", payload: false });
     dispatch({ type: "SHOW_SONG", payload: false });

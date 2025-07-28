@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { getMyAudioTracks, upsertAudioTrack } from "../services/api";
-import type { AudioTrack } from "../assets/earTrainerTypesAndInterfaces";
+import type {
+  AudioTrack,
+  AudioTrackToUpsert,
+} from "../assets/earTrainerTypesAndInterfaces";
 import FormInput from "./FormInput";
 import TrackList from "./TrackList";
 import { instrumentDifficulties } from "../assets/resources";
@@ -63,14 +66,15 @@ function TrackContributionForm({
       // Convert file to base64 for upload
       const base64Data = await fileToBase64(selectedFile);
 
-      const audioTrack: AudioTrack = {
+      const audioTrack: AudioTrackToUpsert = {
         songName: state.songName,
         songTip: state.songTip,
         songKey: state.songKey,
         songChords: state.songChords,
         songInstrument: state.songInstrument,
         songDifficulty: state.songDifficulty,
-        songBlobUrl: base64Data,
+        songData: base64Data, // Backend expects songData for uploads
+        songBlobUrl: base64Data, // Also include songBlobUrl field
       };
 
       await upsertAudioTrack(audioTrack);

@@ -1,6 +1,6 @@
 // const API_BASE_URL = "http://localhost:5000";
 const API_BASE_URL = "https://musicbackend.azurewebsites.net";
-import type { AudioTrack } from "../assets/earTrainerTypesAndInterfaces";
+import type { AudioTrackToUpsert } from "../assets/earTrainerTypesAndInterfaces";
 
 // Helper function to get auth token
 const getAuthToken = () => {
@@ -141,12 +141,6 @@ export const getAudioTracks = async (
     }
 
     const data = await response.json();
-    console.log("Audio files:", data);
-    console.log(
-      "First track structure:",
-      data[0] ? Object.keys(data[0]) : "No tracks"
-    );
-    console.log("Sample track data:", data[0]);
     return data;
   } catch (error) {
     console.error("Error:", error);
@@ -179,12 +173,6 @@ export const getMyAudioTracks = async () => {
     }
 
     const data = await response.json();
-    console.log("My audio files:", data);
-    console.log(
-      "First track structure:",
-      data[0] ? Object.keys(data[0]) : "No tracks"
-    );
-    console.log("Sample track data:", data[0]);
     return data;
   } catch (error) {
     console.error("Error:", error);
@@ -193,7 +181,7 @@ export const getMyAudioTracks = async () => {
 };
 
 // Upsert audio track
-export const upsertAudioTrack = async (audioTrack: AudioTrack) => {
+export const upsertAudioTrack = async (audioTrack: AudioTrackToUpsert) => {
   try {
     const token = getAuthToken();
     if (!token) {
@@ -211,6 +199,7 @@ export const upsertAudioTrack = async (audioTrack: AudioTrack) => {
         body: JSON.stringify(audioTrack),
       }
     );
+    console.log("Audio file to upsert", JSON.stringify(audioTrack));
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -222,6 +211,7 @@ export const upsertAudioTrack = async (audioTrack: AudioTrack) => {
 
     const result = await response.json();
     console.log("Audio file upserted successfully:", result.message);
+    console.log("Audio file upserted successfully:", result);
     if (result.blobUrl) {
       console.log("Blob URL:", result.blobUrl);
     }

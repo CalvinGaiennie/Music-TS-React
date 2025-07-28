@@ -14,6 +14,19 @@ export interface AudioTrack {
   updatedAt?: Date;
 }
 
+export interface AudioTrackToUpsert {
+  audioTrackId?: number;
+  userId?: number;
+  songName: string;
+  songTip: string;
+  songKey: string;
+  songChords: string;
+  songInstrument: string;
+  songDifficulty: string;
+  songData: string; // Base64 encoded audio data for upload
+  songBlobUrl?: string; // Blob URL for upload
+}
+
 export type Instrument =
   | "guitar"
   | "piano"

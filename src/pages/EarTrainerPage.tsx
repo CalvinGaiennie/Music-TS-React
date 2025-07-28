@@ -221,8 +221,6 @@ function EarTrainerPage() {
     dispatch({ type: "SHOW_CHORDS", payload: false });
     dispatch({ type: "SHOW_TIP", payload: false });
     dispatch({ type: "SHOW_SONG", payload: false });
-    console.log(state.instrument, state.difficulty);
-    console.log(state.selectedSong.songName);
     const filteredTracks = state.availableTracks.filter(
       (track) =>
         track.songInstrument === state.instrument &&

@@ -42,10 +42,7 @@ function ContributePage() {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        console.log("Fetching audio tracks...");
         const data = await getMyAudioTracks();
-        console.log("Received tracks data:", data);
-        console.log("Number of tracks:", data?.length || 0);
         dispatch({ type: "setTracks", payload: data });
       } catch (error) {
         console.error("Error fetching tracks:", error);

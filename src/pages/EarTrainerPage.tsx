@@ -268,19 +268,28 @@ function EarTrainerPage() {
           tool works and what the different difficulty levels mean.)
         </p>
       </div>
-      <SongListPlayer state={state} dispatch={dispatch} />
-      <SongPlayerSettings state={state} dispatch={dispatch} />
+
+      {/* Main Content */}
+      <div className="w-100">
+        <SongListPlayer state={state} dispatch={dispatch} />
+        <SongPlayerSettings state={state} dispatch={dispatch} />
+      </div>
+
       {/* Call to action */}
       <div className="mt-5 text-center">
-        <h5 className="text-muted">
-          Create an account to contribute your own tracks.
-        </h5>
-        <button
-          onClick={handleContributeClick}
-          className="btn btn-outline-primary mt-2"
-        >
-          Start Contributing
-        </button>
+        <div className="bg-light p-4 rounded-3 border">
+          <h5 className="text-muted mb-3">
+            <i className="fas fa-users me-2"></i>
+            Join the community and contribute your own tracks!
+          </h5>
+          <button
+            onClick={handleContributeClick}
+            className="btn btn-primary btn-lg"
+          >
+            <i className="fas fa-plus me-2"></i>
+            Start Contributing
+          </button>
+        </div>
       </div>
     </div>
   );

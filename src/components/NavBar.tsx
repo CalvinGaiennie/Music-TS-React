@@ -15,8 +15,15 @@ function NavBar() {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link fs-5 text-dark" to="/ear-trainer">
-            Ear Trainer
+          <NavLink
+            className="nav-link fs-5 fw-bold text-primary position-relative"
+            to="/ear-trainer"
+            style={{
+              borderBottom: "2px solid #0d6efd",
+              paddingBottom: "2px",
+            }}
+          >
+            🎵 Ear Trainer
           </NavLink>
         </li>
         {/* <li className="nav-item">

@@ -10,6 +10,7 @@ import IndividualLessonPage from "./pages/IndividualLessonPage";
 import { AuthProvider } from "./context/AuthContext";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import ContributePage from "./pages/ContributePage";
+import HelpPage from "./pages/HelpPage";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/contribute" element={<ContributePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/create-account" element={<CreateAccountPage />} />
+            <Route path="/help" element={<HelpPage />} />
           </Routes>
         </BrowserRouter>
       </div>

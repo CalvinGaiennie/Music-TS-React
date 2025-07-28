@@ -259,11 +259,11 @@ function EarTrainerPage() {
     <div className="container d-flex flex-column align-items-center mb-5">
       <div className="position-relative text-center w-100 mb-5">
         <h1 className="text-center mb-3">Ear Trainer</h1>
-        <p className="text-center mb-2">
+        <p className="text-center mb-2 fs-5">
           Select a song of your desired difficulty and see if you can figure it
           out.
         </p>
-        <p className="text-muted small">
+        <p className="text-muted">
           (See the <a href="/">Home Page</a> for more information on how this
           tool works and what the different difficulty levels mean.)
         </p>

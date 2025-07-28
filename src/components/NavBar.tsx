@@ -37,6 +37,11 @@ function NavBar() {
             Lessons
           </NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className="nav-link fs-5 text-dark" to="/help">
+            Help
+          </NavLink>
+        </li>
         {isLoggedIn ? (
           <li className="nav-item">
             <NavLink className="nav-link fs-5 text-dark" to="/contribute">

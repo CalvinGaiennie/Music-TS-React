@@ -19,7 +19,7 @@ function TrackList({
     }
   }
   return (
-    <div className="card" style={{ width: "100%", maxWidth: "600px" }}>
+    <div className="card mb-5" style={{ width: "100%", maxWidth: "600px" }}>
       <div className="card-header">
         <h5 className="mb-0">
           <i className="fas fa-music me-2"></i>

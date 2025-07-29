@@ -27,7 +27,6 @@ Research
 -look into how difficult it would be to change songs speeds without changing their keys
 
 ADD SONGS
-
 Melodies
 - here comes the sun melodies
 - the long and winding road
@@ -37,6 +36,8 @@ Melodies
 -too many people
 Onestring 
 -happy birthday
+Key of G Diatonic With Extensions
+-Take it Easy
 
 Riffs
 -my girl 

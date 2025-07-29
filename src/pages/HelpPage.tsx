@@ -48,10 +48,12 @@ function HelpPage() {
                   melodies that can be played on a single string.
                 </p>
                 <p>
-                  <strong>Simple Melodies:</strong>
+                  <strong>Simple Melodies:</strong> These melodies are shorter
+                  and slower.
                 </p>
                 <p>
-                  <strong>Complex Melodies:</strong>
+                  <strong>Complex Melodies:</strong> These melodies are longer
+                  and faster.
                 </p>
                 <p>
                   <strong>Easy Riffs:</strong>

@@ -39,7 +39,7 @@ const initialState: State = {
   availableSongsNumber: 0,
   availableTracks: [] as AudioTrack[],
   trackType: "all" as TrackType,
-  songPlayerType: "random" as SongPlayerType,
+  songPlayerType: "choosen" as SongPlayerType,
 };
 
 function reducer(state: State, action: Action) {
@@ -271,8 +271,8 @@ function EarTrainerPage() {
               })
             }
           >
-            <option value="random">Random</option>
             <option value="choosen">Choosen</option>
+            <option value="random">Random</option>
           </select>
         </div>
         <p className="text-center mb-2 fs-5">

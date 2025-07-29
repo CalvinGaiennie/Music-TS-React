@@ -17,9 +17,15 @@ function HomePage() {
         <p className="lead text-center mb-4">
           (Visit the <a href="/help">Help Page</a> to learn more.)
         </p>
+        <div className="text-center">
+          <Link to="/ear-trainer" className="btn btn-primary btn-lg">
+            <i className="fas fa-music me-2"></i>
+            Ear Trainer
+          </Link>
+        </div>
 
         {/* Song Library Section */}
-        <div className="row mt-5">
+        {/* <div className="row mt-5">
           <div className="col-md-8 mx-auto">
             <div className="card border-primary">
               <div className="card-header bg-primary text-white">
@@ -33,7 +39,7 @@ function HomePage() {
                   Browse our complete collection of songs organized by
                   instrument and difficulty level.
                 </p>
-                {/* <div className="row text-center">
+                <div className="row text-center">
                   <div className="col-md-4 mb-3">
                     <i className="fas fa-guitar fa-2x text-primary mb-2"></i>
                     <h6>Guitar</h6>
@@ -51,7 +57,7 @@ function HomePage() {
                     <h6>Bass</h6>
                     <small className="text-muted">Rhythm & Melody</small>
                   </div>
-                </div> */}
+                </div>
                 <div className="text-center mt-3">
                   <Link to="/song-library" className="btn btn-primary btn-lg">
                     <i className="fas fa-search me-2"></i>
@@ -61,7 +67,7 @@ function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

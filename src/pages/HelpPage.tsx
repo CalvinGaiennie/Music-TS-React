@@ -26,6 +26,12 @@ function HelpPage() {
             <a href="/lessons/1">How to Learn Guitar</a> and{" "}
             <a href="/lessons/2">Essential Music Theory</a> lessons.
           </p>
+          <p className="text-muted small">
+            <i className="fas fa-lightbulb me-1"></i>
+            <strong>Tip:</strong> Use the random song player for "Intervals" and
+            "Key of G/C easy." These tracks have information about them in their
+            titles that would give the answer away if you selected it.
+          </p>
         </div>
         <h2 className="text-center mb-4">Difficulty Definitions</h2>
         <div className="row">

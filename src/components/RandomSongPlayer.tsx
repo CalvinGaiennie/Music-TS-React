@@ -54,7 +54,10 @@ function RandomSongPlayer({
     }
   }
   return (
-    <div style={{ width: "100%", maxWidth: "400px" }}>
+    <div
+      className="d-flex flex-column align-items-center justify-content-center gap-2"
+      style={{ width: "100%", maxWidth: "400px" }}
+    >
       <h2 className="mb-4 mt-4 text-center">Random Song Player</h2>
       <audio
         src={state.selectedSong.songBlobUrl || undefined}

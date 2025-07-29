@@ -17,6 +17,7 @@ import { AuthContext, type AuthContextType } from "../context/AuthContextDef";
 // import RandomSongPlayer from "../components/RandomSongPlayer";
 import SongListPlayer from "../components/SongListPlayer";
 import SongPlayerSettings from "../components/SongPlayerSettings";
+import RandomSongPlayer from "../components/RandomSongPlayer";
 
 const initialState: State = {
   instrument: "guitar",
@@ -143,7 +144,7 @@ function EarTrainerPage() {
       } else if (state.trackType === "official") {
         dispatch({
           type: "SET_AVAILABLE_TRACKS",
-          payload: realSongListRealDifficultyFlatArray,
+          payload: realSongListRealDifficultyFlatArray as AudioTrack[],
         });
       } else if (state.trackType === "all") {
         const userTracks = await getUserTrackList();
@@ -259,6 +260,21 @@ function EarTrainerPage() {
     <div className="container d-flex flex-column align-items-center mb-5">
       <div className="position-relative text-center w-100 mb-5">
         <h1 className="text-center mb-3">Ear Trainer</h1>
+        <div className="position-absolute top-0 end-0 d-flex flex-row align-items-center gap-2">
+          <select
+            className="form-select"
+            value={state.songPlayerType}
+            onChange={(e) =>
+              dispatch({
+                type: "SET_SONG_PLAYER_TYPE",
+                payload: e.target.value as SongPlayerType,
+              })
+            }
+          >
+            <option value="random">Random</option>
+            <option value="choosen">Choosen</option>
+          </select>
+        </div>
         <p className="text-center mb-2 fs-5">
           Select a song of your desired difficulty and see if you can figure it
           out.
@@ -270,8 +286,16 @@ function EarTrainerPage() {
       </div>
 
       {/* Main Content */}
-      <div className="w-100">
-        <SongListPlayer state={state} dispatch={dispatch} />
+      <div className="w-100 d-flex flex-column align-items-center">
+        {state.songPlayerType === "random" ? (
+          <RandomSongPlayer
+            state={state}
+            dispatch={dispatch}
+            initialState={initialState}
+          />
+        ) : (
+          <SongListPlayer state={state} dispatch={dispatch} />
+        )}
         <SongPlayerSettings state={state} dispatch={dispatch} />
 
         {/* Quick Access to Song Library */}

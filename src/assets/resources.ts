@@ -384,7 +384,7 @@ export const instrumentDifficulties = {
 
 export const realSongListRealDifficultyFlatArray = [
   {
-    audioTrackId: 1,
+    audioTrackId: 1001,
     userId: 1,
     songName: "El Paso",
     songTip: "el paso tip",
@@ -397,7 +397,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 2,
+    audioTrackId: 1002,
     userId: 1,
     songName: "GOTTV1",
     songTip: "gotv1 tip",
@@ -410,7 +410,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 3,
+    audioTrackId: 1003,
     userId: 1,
     songName: "1415G",
     songTip: "Come on dude really?",
@@ -423,7 +423,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 4,
+    audioTrackId: 1004,
     userId: 1,
     songName: "1465G",
     songTip: "Come on dude really?",
@@ -436,7 +436,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 5,
+    audioTrackId: 1005,
     userId: 1,
     songName: "1524G",
     songTip: "Come on dude really?",
@@ -449,7 +449,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 6,
+    audioTrackId: 1006,
     userId: 1,
     songName: "1645G",
     songTip: "Come on dude really?",
@@ -462,7 +462,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 7,
+    audioTrackId: 1007,
     userId: 1,
     songName: "5411G",
     songTip: "Come on dude really?",
@@ -475,7 +475,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 8,
+    audioTrackId: 1008,
     userId: 1,
     songName: "Blue Chorus",
     songTip: "Blue Chorus tip",
@@ -488,7 +488,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 9,
+    audioTrackId: 1009,
     userId: 1,
     songName: "Simple Man",
     songTip: "Simple Man tip",
@@ -501,7 +501,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 10,
+    audioTrackId: 1010,
     userId: 1,
     songName: "Hurt",
     songTip: "Hurt tip",
@@ -514,7 +514,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 11,
+    audioTrackId: 1011,
     userId: 1,
     songName: "Cavalry",
     songTip: "Cavalry tip",
@@ -527,7 +527,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 12,
+    audioTrackId: 1012,
     userId: 1,
     songName: "Nobody Knows You When You're Down And Out",
     songTip: "Nobody Knows You When You're Down And Out tip",
@@ -541,7 +541,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 13,
+    audioTrackId: 1013,
     userId: 1,
     songName: "Something",
     songTip: "Something tip",
@@ -554,7 +554,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 14,
+    audioTrackId: 1014,
     userId: 1,
     songName: "G 15",
     songTip: "G 15 tip",
@@ -567,7 +567,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 15,
+    audioTrackId: 1015,
     userId: 1,
     songName: "G 1415",
     songTip: "G 1415 tip",
@@ -580,7 +580,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 16,
+    audioTrackId: 1016,
     userId: 1,
     songName: "A 1415",
     songTip: "A 1415 tip",
@@ -593,7 +593,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 17,
+    audioTrackId: 1017,
     userId: 1,
     songName: "12BB",
     songTip: "12BB tip",
@@ -606,7 +606,7 @@ export const realSongListRealDifficultyFlatArray = [
     updatedAt: new Date("2024-01-09"),
   },
   {
-    audioTrackId: 18,
+    audioTrackId: 1018,
     userId: 1,
     songName: "Fifth",
     songTip: "G",
@@ -615,6 +615,45 @@ export const realSongListRealDifficultyFlatArray = [
     songInstrument: "guitar",
     songDifficulty: "intervals",
     songBlobUrl: "/Songs/1-5GI.mp3",
+    createdAt: new Date("2024-01-09"),
+    updatedAt: new Date("2024-01-09"),
+  },
+  {
+    audioTrackId: 1019,
+    userId: 1,
+    songName: "Here Comes The Sun Chorus",
+    songTip: "",
+    songKey: "",
+    songChords: "",
+    songInstrument: "guitar",
+    songDifficulty: "simple-melody",
+    songBlobUrl: "Songs/HereComesTheSunChorusMelodyOnAcoustic.mp3",
+    createdAt: new Date("2024-01-09"),
+    updatedAt: new Date("2024-01-09"),
+  },
+  {
+    audioTrackId: 1020,
+    userId: 1,
+    songName: "Here Comes The Sun Chorus Lick",
+    songTip: "",
+    songKey: "",
+    songChords: "",
+    songInstrument: "guitar",
+    songDifficulty: "complex-melody",
+    songBlobUrl: "Songs/HereComesTheSunEndOfChorusDLick.mp3",
+    createdAt: new Date("2024-01-09"),
+    updatedAt: new Date("2024-01-09"),
+  },
+  {
+    audioTrackId: 1021,
+    userId: 1,
+    songName: "TheLongAndWindingRoadVerseMelodyGuitar",
+    songTip: "",
+    songKey: "",
+    songChords: "",
+    songInstrument: "guitar",
+    songDifficulty: "complex-melody",
+    songBlobUrl: "Songs/TheLongAndWindingRoadVerseMelodyGuitar.mp3",
     createdAt: new Date("2024-01-09"),
     updatedAt: new Date("2024-01-09"),
   },

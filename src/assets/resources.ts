@@ -13,7 +13,7 @@ export const lessons = [
         type: "p",
         style: "",
         content:
-          "kind of guitar, type of music, ect. explain that I am going to cover the stuff that applies to pretty much everyone and helps you to be well rounded",
+          "What you need to learn depends on what you want to do, and what kind of music you want to play. I am going to focus on skills that are useful for all types of guitar players and essential for most.",
       },
       {
         type: "h3",
@@ -21,16 +21,93 @@ export const lessons = [
         content: "What I'm going to cover",
       },
       {
-        type: "p",
+        type: "h3",
         style: "",
-        content:
-          "I am going to cover the stuff that applies to pretty much everyone and helps you to be well rounded",
+        content: "The Basics",
       },
       {
         type: "p",
         style: "",
         content:
           "Mention the absolute basics, how to hold it learn the parts, ect",
+      },
+      {
+        type: "h3",
+        style: "",
+        content: "Guitar Specific Technique",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "Open Chords and basic strumming.",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "Barre Chords and the caged system.",
+      },
+      {
+        type: "p",
+        style: "",
+        content:
+          "The Pentatonic Scale and basic lead playing skills, phrasing, tone, ect.",
+      },
+      {
+        type: "p",
+        style: "",
+        content:
+          "Advanced lead playing including arpeggios the major scale, chromaticism, right hand technique.",
+      },
+      {
+        type: "p",
+        style: "",
+        content:
+          "Advanced rhythm playing including right hand technique, extended chords, voiceings, inversions, and more.",
+      },
+      {
+        type: "h3",
+        style: "",
+        content: "Learning Songs",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "Youtube, By ear, Tabs, Chord charts, Standard notation",
+      },
+      {
+        type: "h3",
+        style: "",
+        content: "Essential Music Theory",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "time signatures, rythym and counting",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "the major scale making chords, and keys",
+      },
+      {
+        type: "h3",
+        style: "",
+        content: "Musicianship",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "timing and feel",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "ear training",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "playing with others.",
       },
       {
         type: "p",
@@ -49,12 +126,12 @@ export const lessons = [
       { type: "p", style: "", content: "Notes In Music" },
       { type: "h3", style: "", content: "Major Scale" },
       { type: "p", style: "", content: "Major Scale" },
-      { type: "h3", style: "", content: "Minor Scale" },
-      { type: "p", content: "Minor Scale" },
       { type: "h3", style: "", content: "Invtervals and How to Make Chords" },
       { type: "p", style: "", content: "Invtervals and How to Make Chords" },
       { type: "h3", style: "", content: "Keys" },
       { type: "p", style: "", content: "Keys" },
+      { type: "h3", style: "", content: "Minor Scale" },
+      { type: "p", content: "Minor Scale and minor keys" },
     ],
   },
   {
@@ -63,7 +140,28 @@ export const lessons = [
     description: "Thoughts on ear training",
     sections: [
       { type: "h3", style: "", content: "Why ear training" },
-      { type: "p", style: "", content: "Why ear training" },
+      {
+        type: "p",
+        style: "",
+        content:
+          "Learning songs that have't been written down and dont have videos.",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "Learning songs on the fly while playing with others.",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "Being able to play whats in your head.",
+      },
+      {
+        type: "p",
+        style: "",
+        content:
+          "Being able to remember things you hear and remember things longer.",
+      },
       {
         type: "h3",
         style: "",
@@ -72,7 +170,8 @@ export const lessons = [
       {
         type: "p",
         style: "",
-        content: "super quick note about the traditiional interval method",
+        content:
+          "Traditional methods of ear training teach you to recongnize one interval at a time. (Being able to know what one note is if you know what the previous note was.) Then they work on recognizing chords.super quick note about the traditiional interval method",
       },
       {
         type: "h3",
@@ -84,7 +183,7 @@ export const lessons = [
         type: "p",
         style: "",
         content:
-          "why I built my ear training system,easy acoustic songs and melodies vs full tracks",
+          "why I built my ear training system,easy acoustic songs and melodies vs full tracks. I would rather spend my time learning songs and melodies than just intervals.",
       },
       {
         type: "h3",
@@ -95,6 +194,16 @@ export const lessons = [
         type: "p",
         style: "",
         content: "using the pentatonic scale to find the key of a song",
+      },
+      {
+        type: "h3",
+        style: "",
+        content: "not talking about how ear training effects",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "tone, hearing theory, developing timing",
       },
     ],
   },
@@ -116,7 +225,13 @@ export const lessons = [
           "Prerequisites Learning the Fretboard, learn the E and A String, Fretboard Octive Hack,",
       },
       { type: "h3", style: "", content: "Barre Chords and the Caged System," },
-      { type: "p", style: "", content: "Barre Chords and the Caged System," },
+      { type: "p", style: "", content: "Barre Chords and the Caged System" },
+      { type: "h3", style: "", content: "Right Hand Technique" },
+      {
+        type: "p",
+        style: "",
+        content: "Advanced strumming, muting, travis picking,",
+      },
       { type: "h3", style: "", content: "The Pentatonic Scale," },
       { type: "p", style: "", content: "The Pentatonic Scale," },
       { type: "h3", style: "", content: "Triads" },
@@ -140,6 +255,7 @@ export const lessons = [
       { type: "p", style: "", content: "feel and ears. Musicianship" },
       { type: "h3", style: "", content: "Nashville Number System" },
       { type: "p", style: "", content: "standard tunes" },
+      { type: "p", style: "", content: "Gear and Tone" },
     ],
   },
   {
@@ -185,7 +301,18 @@ export const lessons = [
         style: "",
         content: "My Favorite Online Resources and Teachers",
       },
-      { type: "p", style: "", content: "the importance of the blues" },
+      { type: "p", style: "", content: "Marty Music" },
+      { type: "p", style: "", content: "Michael Palmisano" },
+      { type: "p", style: "", content: "Eric Haughen" },
+      { type: "p", style: "", content: "Desi Serna" },
+      { type: "p", style: "", content: "Ultimate Guitar" },
+      { type: "p", style: "", content: "UK Guitar Chords" },
+      { type: "p", style: "", content: "Chord Sheets" },
+      {
+        type: "h3",
+        style: "",
+        content: "Other Mentions",
+      },
     ],
   },
 ];

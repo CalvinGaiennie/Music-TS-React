@@ -29,3 +29,5 @@ Research
 
 PRIORITY
 HOST BACKEND
+
+add artist and recording quality feildss

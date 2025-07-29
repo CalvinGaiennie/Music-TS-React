@@ -657,6 +657,32 @@ export const realSongListRealDifficultyFlatArray = [
     createdAt: new Date("2024-01-09"),
     updatedAt: new Date("2024-01-09"),
   },
+  {
+    audioTrackId: 1022,
+    userId: 1,
+    songName: "My Girl",
+    songTip: "",
+    songKey: "",
+    songChords: "",
+    songInstrument: "guitar",
+    songDifficulty: "easy-riffs",
+    songBlobUrl: "/Songs/MyGirlLeadRiff.mp3",
+    createdAt: new Date("2024-01-09"),
+    updatedAt: new Date("2024-01-09"),
+  },
+  {
+    audioTrackId: 1023,
+    userId: 1,
+    songName: "Day Tripper",
+    songTip: "",
+    songKey: "",
+    songChords: "",
+    songInstrument: "guitar",
+    songDifficulty: "easy-riffs",
+    songBlobUrl: "/Songs/DayTripperRiff.mp3",
+    createdAt: new Date("2024-01-09"),
+    updatedAt: new Date("2024-01-09"),
+  },
 ];
 
 export const notes = [

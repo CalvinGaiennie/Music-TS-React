@@ -46,7 +46,7 @@ function NavBar() {
         </li>
         <li className="nav-item">
           <NavLink className="nav-link fs-5 text-dark" to="/song-library">
-            📚 Song Library
+            Song Library
           </NavLink>
         </li>
         <li className="nav-item">

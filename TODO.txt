@@ -8,15 +8,12 @@ Styling
 -improve the individual lessongs page padding / max width styling transition
 
 Features
--Get the backend hosted and connected
--Host the frontend
     Metronome
         -add tomo's finger exercise (try it more extensively before posting here)
         -add scales. maybe integrate this with the fretboard simulator
         -Maybe do some strumming patterns and exercises
         -allow people to log workouts to see progress over time
--when you login change the login page to a profile page and auto move to the home page 
-give users ability to hide song list and to choose if they want to see user songs hardcoded or both
+-removed the songlength calculation add a feild telling users that that is the length of the melody or progressio n not of the song
 
 Bugs
 - fix the measure counter and the changing of the rudiment.

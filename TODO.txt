@@ -19,15 +19,30 @@ Features
 give users ability to hide song list and to choose if they want to see user songs hardcoded or both
 
 Bugs
--fix the measure counter and the changing of the rudiment.
--test settings
+- fix the measure counter and the changing of the rudiment.
+- test settings
+- See if i can make api calls for audioTracks faster
 
 Research
 -look into how difficult it would be to change songs speeds without changing their keys
 
+ADD SONGS
+Melodies
+- here comes the sun melodies
+- the long and winding road
+- smells like teen spirit
+- wonderful tonight solo
+
+Riffs
+-my girl 
+-crossroads
+-daytripper
+
+Bass
+-penny lane intro lick 
+-
 
 
-PRIORITY
-HOST BACKEND
 
-add artist and recording quality feildss
+
+the word is ENUM

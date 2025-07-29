@@ -9,6 +9,10 @@ export interface AudioTrack {
   songChords: string;
   songInstrument: string;
   songDifficulty: string;
+  songArtist: string;
+  songAlbum: string;
+  songLength: number;
+  recordingQuality: string;
   songBlobUrl: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -23,6 +27,10 @@ export interface AudioTrackToUpsert {
   songChords: string;
   songInstrument: string;
   songDifficulty: string;
+  songArtist: string;
+  songAlbum: string;
+  songLength: string; // Backend expects string, not number
+  recordingQuality: string;
   songData: string; // Base64 encoded audio data for upload
   songBlobUrl?: string; // Blob URL for upload
 }
@@ -62,3 +70,10 @@ export type Action =
 export type TrackType = "all" | "user" | "official";
 
 export type SongPlayerType = "random" | "choosen";
+
+export type RecordingQuality =
+  | "atrocious"
+  | "acceptable"
+  | "good"
+  | "proffessional"
+  | "insane";

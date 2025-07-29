@@ -10,12 +10,19 @@ const initialState = {
   songChords: "",
   songInstrument: "",
   songDifficulty: "",
+  songArtist: "",
+  songAlbum: "",
+  recordingQuality: "",
+  songLength: 0,
   tracks: [] as AudioTrack[],
 };
 
 const reducer = (
   state: typeof initialState,
-  action: { type: string; payload: string | AudioTrack[] }
+  action: {
+    type: string;
+    payload: string | AudioTrack[] | number;
+  }
 ) => {
   switch (action.type) {
     case "setSongName":
@@ -30,6 +37,14 @@ const reducer = (
       return { ...state, songInstrument: action.payload as string };
     case "setSongDifficulty":
       return { ...state, songDifficulty: action.payload as string };
+    case "setSongArtist":
+      return { ...state, songArtist: action.payload as string };
+    case "setSongAlbum":
+      return { ...state, songAlbum: action.payload as string };
+    case "setRecordingQuality":
+      return { ...state, recordingQuality: action.payload as string };
+    case "setSongLength":
+      return { ...state, songLength: action.payload as number };
     case "setTracks":
       return { ...state, tracks: action.payload as AudioTrack[] };
   }

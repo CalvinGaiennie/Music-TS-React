@@ -18,6 +18,10 @@ interface TrackFormState {
   songChords: string;
   songInstrument: string;
   songDifficulty: string;
+  songArtist: string;
+  songAlbum: string;
+  songLength: number;
+  recordingQuality: string;
   tracks: AudioTrack[];
 }
 
@@ -26,7 +30,10 @@ function TrackContributionForm({
   dispatch,
 }: {
   state: TrackFormState;
-  dispatch: (action: { type: string; payload: string | AudioTrack[] }) => void;
+  dispatch: (action: {
+    type: string;
+    payload: string | AudioTrack[] | number;
+  }) => void;
 }) {
   const { isLoggedIn } = useContext(AuthContext) as AuthContextType;
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -39,7 +46,36 @@ function TrackContributionForm({
     if (file) {
       setSelectedFile(file);
       setFileName(file.name);
+
+      // Get audio duration
+      getAudioDuration(file)
+        .then((duration) => {
+          dispatch({ type: "setSongLength", payload: Math.round(duration) });
+        })
+        .catch((error) => {
+          console.error("Error getting audio duration:", error);
+          dispatch({ type: "setSongLength", payload: 0 });
+        });
     }
+  };
+
+  const getAudioDuration = (file: File): Promise<number> => {
+    return new Promise((resolve, reject) => {
+      const audio = new Audio();
+      const url = URL.createObjectURL(file);
+
+      audio.addEventListener("loadedmetadata", () => {
+        URL.revokeObjectURL(url); // Clean up the object URL
+        resolve(audio.duration);
+      });
+
+      audio.addEventListener("error", (error) => {
+        URL.revokeObjectURL(url); // Clean up the object URL
+        reject(error);
+      });
+
+      audio.src = url;
+    });
   };
 
   const fileToBase64 = (file: File): Promise<string> => {
@@ -82,6 +118,10 @@ function TrackContributionForm({
         songChords: state.songChords,
         songInstrument: state.songInstrument,
         songDifficulty: state.songDifficulty,
+        songArtist: state.songArtist,
+        songAlbum: state.songAlbum,
+        recordingQuality: state.recordingQuality,
+        songLength: state.songLength.toString(), // Convert to string for backend compatibility
         songData: base64Data, // Backend expects songData for uploads
         songBlobUrl: base64Data, // Also include songBlobUrl field
       };
@@ -109,7 +149,10 @@ function TrackContributionForm({
             instruments[0] as keyof typeof instrumentDifficulties
           ][0],
       });
-
+      dispatch({ type: "setSongArtist", payload: "" });
+      dispatch({ type: "setSongAlbum", payload: "" });
+      dispatch({ type: "setSongLength", payload: 0 });
+      dispatch({ type: "setRecordingQuality", payload: "" });
       // Reload files
       const updatedTracks = await getMyAudioTracks();
       dispatch({ type: "setTracks", payload: updatedTracks });
@@ -189,6 +232,12 @@ function TrackContributionForm({
                   <h6 className="mb-1">{selectedFile.name}</h6>
                   <small className="text-muted">
                     Size: {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
+                    {state.songLength > 0 && (
+                      <span className="ms-2">
+                        • Duration: {Math.floor(state.songLength / 60)}:
+                        {(state.songLength % 60).toString().padStart(2, "0")}
+                      </span>
+                    )}
                   </small>
                 </div>
                 <button
@@ -196,6 +245,7 @@ function TrackContributionForm({
                   onClick={() => {
                     setSelectedFile(null);
                     setFileName("");
+                    dispatch({ type: "setSongLength", payload: 0 });
                     if (
                       document.getElementById("fileInput") as HTMLInputElement
                     ) {
@@ -286,6 +336,40 @@ function TrackContributionForm({
               }
             />
           )}
+
+          {/* Song Artist */}
+          <FormInput
+            label="Song Artist"
+            value="SongArtist"
+            placeholder="Enter the artist of the song"
+            formText=""
+            state={state.songArtist}
+            dispatch={dispatch}
+          />
+          {/* Song Album */}
+          <FormInput
+            label="Song Album"
+            value="SongAlbum"
+            placeholder="Enter the album of the song"
+            formText=""
+            state={state.songAlbum}
+            dispatch={dispatch}
+          />
+          {/* Recording Quality */}
+          <FormSelect
+            label="Recording Quality"
+            value="RecordingQuality"
+            formText=""
+            state={state.recordingQuality}
+            dispatch={dispatch}
+            options={[
+              "atrocious",
+              "acceptable",
+              "good",
+              "proffessional",
+              "insane",
+            ]}
+          />
 
           {/* Upload Progress */}
           {loading && (

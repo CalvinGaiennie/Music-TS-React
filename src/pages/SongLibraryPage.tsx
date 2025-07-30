@@ -41,7 +41,7 @@ function SongLibraryPage() {
   if (loading) {
     return (
       <div
-        className="container d-flex justify-content-center align-items-center"
+        className="container d-flex flex-column align-items-center justify-content-center"
         style={{ minHeight: "60vh" }}
       >
         <div className="text-center">
@@ -55,65 +55,72 @@ function SongLibraryPage() {
   }
 
   return (
-    <div className="container">
+    <div className="container d-flex flex-column align-items-center">
       {/* Header */}
-      <div className="text-center mb-5">
-        <h1 className="display-4 mb-3">Song Library</h1>
-        <p className=" fs-5">
-          Browse all available songs by instrument and difficulty
-        </p>
-      </div>
+      <h1 className="mb-4">Song Library</h1>
+      <p className="lead text-center mb-4">
+        Browse all available songs by instrument and difficulty
+      </p>
 
-      {Object.keys(instrumentDifficulties).map((instrument) => {
-        return (
-          <div key={instrument} className="mb-5">
-            <h2 className="border-bottom pb-3 mb-4">
-              {instrument
-                .replace(/-/g, " ")
-                .replace(/\b\w/g, (l) => l.toUpperCase())}
-            </h2>
-            <div className="row">
-              {instrumentDifficulties[instrument as Instrument].map(
-                (difficulty) => {
-                  return (
-                    <div className="col-12 mb-4" key={difficulty}>
-                      <h4 className=" mb-3 fw-normal">
-                        {difficulty
-                          .replace(/-/g, " ")
-                          .replace(/\b\w/g, (l) => l.toUpperCase())}
-                      </h4>
-                      <div className="row" style={{ marginLeft: "0.1rem" }}>
-                        {allTracks.map((track) => {
-                          if (
-                            track.songInstrument === instrument &&
-                            track.songDifficulty === difficulty
-                          ) {
-                            return (
-                              <div
-                                key={track.audioTrackId}
-                                className="col-6 col-md-4 col-lg-4 mb-2"
-                              >
-                                <p className="mb-0 fs-6">{track.songName}</p>
-                              </div>
-                            );
-                          }
-                        })}
+      <div style={{ maxWidth: "900px", width: "100%" }}>
+        {Object.keys(instrumentDifficulties).map((instrument) => {
+          return (
+            <div key={instrument} className="mb-5">
+              <h2 className="text-center mb-4">
+                {instrument
+                  .replace(/-/g, " ")
+                  .replace(/\b\w/g, (l) => l.toUpperCase())}
+              </h2>
+              <div className="row">
+                {instrumentDifficulties[instrument as Instrument].map(
+                  (difficulty) => {
+                    return (
+                      <div className="col-12 col-lg-6 mb-4" key={difficulty}>
+                        <div className="card">
+                          <div className="card-body">
+                            <h4 className="card-title mb-3">
+                              {difficulty
+                                .replace(/-/g, " ")
+                                .replace(/\b\w/g, (l) => l.toUpperCase())}
+                            </h4>
+                            <div className="row">
+                              {allTracks.map((track) => {
+                                if (
+                                  track.songInstrument === instrument &&
+                                  track.songDifficulty === difficulty
+                                ) {
+                                  return (
+                                    <div
+                                      key={track.audioTrackId}
+                                      className="col-6 col-md-4 col-lg-4 mb-2"
+                                    >
+                                      <p className="mb-0 fs-6">
+                                        {track.songName}
+                                      </p>
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  );
-                }
-              )}
+                    );
+                  }
+                )}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
 
-      {/* Back to Ear Trainer */}
-      <div className="text-center mt-5 mb-5">
-        <Link to="/ear-trainer" className="btn btn-outline-secondary">
-          <i className="fas fa-arrow-left me-2"></i>
-          Back to Ear Trainer
-        </Link>
+        {/* Back to Ear Trainer */}
+        <div className="text-center mt-5 mb-5">
+          <Link to="/ear-trainer" className="btn btn-outline-secondary">
+            <i className="fas fa-arrow-left me-2"></i>
+            Back to Ear Trainer
+          </Link>
+        </div>
       </div>
     </div>
   );

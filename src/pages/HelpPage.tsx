@@ -12,12 +12,13 @@ function HelpPage() {
         <div className="alert alert-info mb-4">
           <h4 className="alert-heading">🎹 🎸 New to Music?</h4>
           <p className="mb-0">
-            If you are very new to theory and ear training try out one of these
-            sections: <strong>Intervals</strong>,{" "}
+            If you are new to ear training try out one of these sections:{" "}
+            <strong>Intervals</strong>, <strong>Easy Riffs</strong>,{" "}
             <strong>One String Melodies</strong>,{" "}
             <strong>Key of G Diatonic Chords Easy</strong>. These are the
             easiest sections and will help you get started on your ear training
-            journey.
+            journey. (<strong>Tip:</strong> Use the random song player for these
+            sections. Their names are a giveaway.)
           </p>
         </div>
         <div className="text-center mb-4">
@@ -25,12 +26,6 @@ function HelpPage() {
             Want to learn more? Check out{" "}
             <a href="/lessons/1">How to Learn Guitar</a> and{" "}
             <a href="/lessons/2">Essential Music Theory</a> lessons.
-          </p>
-          <p className="text-muted small">
-            <i className="fas fa-lightbulb me-1"></i>
-            <strong>Tip:</strong> Use the random song player for "Intervals" and
-            "Key of G/C easy." These tracks have information about them in their
-            titles that would give the answer away if you selected it.
           </p>
         </div>
         <h2 className="text-center mb-4">Difficulty Definitions</h2>
@@ -40,26 +35,31 @@ function HelpPage() {
               <div className="card-body">
                 <h5 className="card-title">🎵 Melodies and Riffs</h5>
                 <p>
+                  <strong>Intervals G:</strong> These are simply two notes being
+                  played one after the other in the Key of G.
+                </p>
+                <p>
                   <strong>Intervals:</strong> These are simply two notes being
-                  played one after the other or together.
+                  played one after the other in any key.
                 </p>
                 <p>
                   <strong>One String Melodies:</strong> These are simple
                   melodies that can be played on a single string.
                 </p>
                 <p>
-                  <strong>Simple Melodies:</strong> These melodies are shorter
-                  and slower.
+                  <strong>Easy Melodies:</strong> These melodies are shorter and
+                  slower.
                 </p>
                 <p>
-                  <strong>Complex Melodies:</strong> These melodies are longer
-                  and faster.
+                  <strong>Hard Melodies:</strong> These melodies are longer and
+                  faster.
                 </p>
                 <p>
-                  <strong>Easy Riffs:</strong>
+                  <strong>Easy Riffs:</strong> These riffs are slow and short.
                 </p>
                 <p>
                   <strong>Hard Riffs:</strong>
+                  These riffs are faster and longer.
                 </p>
               </div>
             </div>

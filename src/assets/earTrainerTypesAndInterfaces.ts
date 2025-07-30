@@ -35,12 +35,11 @@ export interface AudioTrackToUpsert {
   songBlobUrl?: string; // Blob URL for upload
 }
 
-export type Instrument =
-  | "guitar"
-  | "piano"
-  | "bass"
-  | "guitar-bass"
-  | "guitar-bass-piano";
+export type Instrument = "guitar";
+// | "piano"
+// | "bass"
+// | "guitar-bass"
+// | "guitar-bass-piano";
 
 export interface State {
   instrument: Instrument;

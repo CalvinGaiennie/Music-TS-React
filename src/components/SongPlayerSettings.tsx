@@ -27,6 +27,13 @@ function SongPlayerSettings({
 
   return (
     <div className="mt-5">
+      <style>
+        {`
+          select option.text-muted {
+            color: #6c757d !important;
+          }
+        `}
+      </style>
       <h2 className="mb-4 text-center">Select A Song Bank</h2>
       {/* Track Type Selector */}
       <div className="row g-3">
@@ -60,10 +67,10 @@ function SongPlayerSettings({
             {(
               [
                 "guitar",
-                "piano",
-                "bass",
-                "guitar-bass",
-                "guitar-bass-piano",
+                // "piano",
+                // "bass",
+                // "guitar-bass",
+                // "guitar-bass-piano",
               ] as Instrument[]
             ).map((instrument) => {
               const hasAnySongs = instrumentDifficulties[instrument].some(
@@ -80,7 +87,7 @@ function SongPlayerSettings({
                 <option
                   key={instrument}
                   value={instrument}
-                  style={{ color: hasAnySongs ? "inherit" : "red" }}
+                  disabled={!hasAnySongs}
                 >
                   {instrument
                     .replace(/-/g, " ")
@@ -110,7 +117,7 @@ function SongPlayerSettings({
                 <option
                   key={difficulty}
                   value={difficulty}
-                  style={{ color: hasSongs ? "inherit" : "red" }}
+                  disabled={!hasSongs}
                 >
                   {difficulty
                     .replace(/-/g, " ")

@@ -2,34 +2,34 @@ function HelpPage() {
   return (
     <div className="container d-flex flex-column align-items-center">
       <h1 className="mb-4">Help Page</h1>
-      <div>
-        <h2 className="text-center mb-4">What do these terms mean?</h2>
+      <div className="row mb-4" style={{ maxWidth: "640px" }}>
+        <h2 className="text-center mb-4">What is Ear Trainer?</h2>
         <p>
-          If any of these definitions dont make sense click{" "}
-          <a href="/lessons/2">HERE</a> to view a lesson explaining these terms
-          and concepts.
+          Having good ears is the ability to understand and play music simply by
+          listening to it.
         </p>
-        <div className="alert alert-info mb-4">
-          <h4 className="alert-heading">🎹 🎸 New to Music?</h4>
-          <p className="mb-0">
-            If you are new to ear training try out one of these sections:{" "}
-            <strong>Intervals</strong>, <strong>Easy Riffs</strong>,{" "}
-            <strong>One String Melodies</strong>,{" "}
-            <strong>Key of G Diatonic Chords Easy</strong>. These are the
-            easiest sections and will help you get started on your ear training
-            journey. (<strong>Tip:</strong> Use the random song player for these
-            sections. Their names are a giveaway.)
-          </p>
-        </div>
-        <div className="text-center mb-4">
-          <p className="text-muted">
-            Want to learn more? Check out{" "}
-            <a href="/lessons/1">How to Learn Guitar</a> and{" "}
-            <a href="/lessons/2">Essential Music Theory</a> lessons.
-          </p>
-        </div>
-        <h2 className="text-center mb-4">Difficulty Definitions</h2>
+        <p>
+          Ear training is the process of developing this ability. It involves
+          multiple skills and various methods for improving them.
+        </p>
+        <p>
+          The goal of this site is to help people get better at learning popular
+          music by ear.
+        </p>
+        <p>
+          It does this by providing simple recordings of popular songs,
+          organized by complexity and difficulty. This makes it easy for users
+          to find songs that match their current skill level.
+        </p>
+        <p>
+          Learn more about ear training and how to get the most out of this site
+          by reading this article{" "}
+          <a href="/lessons/3">Thoughts on Ear Training.</a>
+        </p>
+      </div>
+      <div>
         <div className="row">
+          <h2 className="text-center mb-4">Difficulty Definitions</h2>
           <div className="col-md-6">
             <div className="card mb-3">
               <div className="card-body">
@@ -109,6 +109,37 @@ function HelpPage() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-6 my-4">
+            <h2 className="text-center mb-4">What do these terms mean?</h2>
+            <p>
+              If any of these definitions dont make sense click{" "}
+              <a href="/lessons/2">HERE</a> to view a lesson explaining these
+              terms and concepts.
+            </p>
+          </div>
+          <div className="col-lg-6 my-4">
+            <div className="alert alert-info mb-4">
+              <h4 className="alert-heading">🎹 🎸 New to Music?</h4>
+              <p className="mb-0">
+                If you are new to ear training try out one of these sections:{" "}
+                <strong>Intervals</strong>, <strong>Easy Riffs</strong>,{" "}
+                <strong>One String Melodies</strong>,{" "}
+                <strong>Key of G Diatonic Chords Easy</strong>. These are the
+                easiest sections and will help you get started on your ear
+                training journey. (<strong>Tip:</strong> Use the random song
+                player for these sections. Their names are a giveaway.)
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className=" row text-center mb-4">
+          <p className="text-muted">
+            Want to learn more? Check out{" "}
+            <a href="/lessons/1">How to Learn Guitar</a> and{" "}
+            <a href="/lessons/2">Essential Music Theory</a> lessons.
+          </p>
         </div>
       </div>
     </div>

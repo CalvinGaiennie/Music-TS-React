@@ -280,8 +280,8 @@ function EarTrainerPage() {
           out.
         </p>
         <p className="text-muted">
-          (See the <a href="/">Home Page</a> for more information on how this
-          tool works and what the different difficulty levels mean.)
+          (See the <a href="/help">Help Page</a> for more information on how
+          this tool works and what the different difficulty levels mean.)
         </p>
       </div>
 

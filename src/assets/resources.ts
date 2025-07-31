@@ -1,5 +1,91 @@
 export const lessons = [
   {
+    id: 3,
+    title:
+      "What is Ear Training, how do you do it, and what is the purpose of this site?",
+    description: "Thoughts on ear training",
+    sections: [
+      { type: "h3", style: "", content: "Why ear training" },
+      {
+        type: "p",
+        style: "",
+        content:
+          "Learning songs that have't been written down and dont have videos.",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "Learning songs on the fly while playing with others.",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "Being able to play whats in your head.",
+      },
+      {
+        type: "p",
+        style: "",
+        content:
+          "Being able to remember things you hear and remember things longer.",
+      },
+      {
+        type: "h3",
+        style: "",
+        content: "super quick note about the traditiional interval method",
+      },
+      {
+        type: "p",
+        style: "",
+        content:
+          "Traditional methods of ear training teach you to recongnize one interval at a time. (Being able to know what one note is if you know what the previous note was.) Then they work on recognizing chords.super quick note about the traditiional interval method",
+      },
+      {
+        type: "h3",
+        style: "",
+        content:
+          "why I built my ear training system,easy acoustic songs and melodies vs full tracks",
+      },
+      {
+        type: "p",
+        style: "",
+        content:
+          "why I built my ear training system,easy acoustic songs and melodies vs full tracks. I would rather spend my time learning songs and melodies than just intervals.",
+      },
+      {
+        type: "h3",
+        style: "",
+        content: "How to use this site.",
+      },
+      {
+        type: "p",
+        style: "",
+        content:
+          "Where to start. How to progress. When to use the random song player.",
+      },
+
+      {
+        type: "h3",
+        style: "",
+        content: "Using the pentatonic scale to find the key of a song",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "using the pentatonic scale to find the key of a song",
+      },
+      {
+        type: "h3",
+        style: "",
+        content: "not talking about how ear training effects",
+      },
+      {
+        type: "p",
+        style: "",
+        content: "tone, hearing theory, developing timing",
+      },
+    ],
+  },
+  {
     id: 1,
     title: "How to Learn Guitar",
     description: "How to learn guitar.",
@@ -132,79 +218,6 @@ export const lessons = [
       { type: "p", style: "", content: "Keys" },
       { type: "h3", style: "", content: "Minor Scale" },
       { type: "p", content: "Minor Scale and minor keys" },
-    ],
-  },
-  {
-    id: 3,
-    title: "Thoughts on Ear Training",
-    description: "Thoughts on ear training",
-    sections: [
-      { type: "h3", style: "", content: "Why ear training" },
-      {
-        type: "p",
-        style: "",
-        content:
-          "Learning songs that have't been written down and dont have videos.",
-      },
-      {
-        type: "p",
-        style: "",
-        content: "Learning songs on the fly while playing with others.",
-      },
-      {
-        type: "p",
-        style: "",
-        content: "Being able to play whats in your head.",
-      },
-      {
-        type: "p",
-        style: "",
-        content:
-          "Being able to remember things you hear and remember things longer.",
-      },
-      {
-        type: "h3",
-        style: "",
-        content: "super quick note about the traditiional interval method",
-      },
-      {
-        type: "p",
-        style: "",
-        content:
-          "Traditional methods of ear training teach you to recongnize one interval at a time. (Being able to know what one note is if you know what the previous note was.) Then they work on recognizing chords.super quick note about the traditiional interval method",
-      },
-      {
-        type: "h3",
-        style: "",
-        content:
-          "why I built my ear training system,easy acoustic songs and melodies vs full tracks",
-      },
-      {
-        type: "p",
-        style: "",
-        content:
-          "why I built my ear training system,easy acoustic songs and melodies vs full tracks. I would rather spend my time learning songs and melodies than just intervals.",
-      },
-      {
-        type: "h3",
-        style: "",
-        content: "using the pentatonic scale to find the key of a song",
-      },
-      {
-        type: "p",
-        style: "",
-        content: "using the pentatonic scale to find the key of a song",
-      },
-      {
-        type: "h3",
-        style: "",
-        content: "not talking about how ear training effects",
-      },
-      {
-        type: "p",
-        style: "",
-        content: "tone, hearing theory, developing timing",
-      },
     ],
   },
   {

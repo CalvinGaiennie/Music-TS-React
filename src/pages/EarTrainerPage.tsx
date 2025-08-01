@@ -276,8 +276,8 @@ function EarTrainerPage() {
           </select>
         </div>
         <p className="text-center mb-2 fs-5">
-          Select a song of your desired difficulty and see if you can figure it
-          out.
+          Select a song of your desired difficulty and see if you can figure out
+          how to play it.
         </p>
         <p className="text-muted">
           (See the <a href="/help">Help Page</a> for more information on how

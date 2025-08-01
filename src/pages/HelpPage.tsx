@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function HelpPage() {
   return (
     <div className="container d-flex flex-column align-items-center">
@@ -21,6 +23,9 @@ function HelpPage() {
           organized by complexity and difficulty. This makes it easy for users
           to find songs that match their current skill level.
         </p>
+        <Link to="/ear-trainer" className="btn btn-primary">
+          Try it out
+        </Link>
         <p>
           Learn more about ear training and how to get the most out of this site
           by reading this article{" "}

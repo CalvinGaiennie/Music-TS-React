@@ -35,11 +35,12 @@ export interface AudioTrackToUpsert {
   songBlobUrl?: string; // Blob URL for upload
 }
 
-export type Instrument = "guitar";
-// | "piano"
-// | "bass"
-// | "guitar-bass"
-// | "guitar-bass-piano";
+export type Instrument =
+  | "guitar"
+  | "piano"
+  | "bass"
+  | "guitar-bass"
+  | "guitar-bass-piano";
 
 export interface State {
   instrument: Instrument;
@@ -76,3 +77,60 @@ export type RecordingQuality =
   | "good"
   | "proffessional"
   | "insane";
+
+export const instrumentDifficulties = {
+  guitar: [
+    "intervals-g",
+    "intervals",
+    "one-string-melody",
+    "one-bar-lines",
+    "melodies",
+    "easy-riffs",
+    "hard-riffs",
+    "key-of-g-diatonic-chords-easy",
+    "key-of-g-diatonic-chords-hard",
+    "key-of-g-diatonic-chords-with-extensions",
+    "any-key-diatonic-chords-easy",
+    "any-key-diatonic-chords-hard",
+    "any-key-diatonic-chords-with-extensions",
+    "no-restrictions",
+  ],
+  piano: [
+    "intervals",
+    "easy-melodies-or-basslines",
+    "hard-melodies-or-basslines",
+    "key-of-c-diatonic-chords-easy",
+    "key-of-c-diatonic-chords-hard",
+    "key-of-c-diatonic-chords-with-extensions",
+    "key-of-c-diatonic-chords-easy-two-hands",
+    "key-of-c-diatonic-chords-hard-two-hands",
+    "key-of-c-diatonic-chords-with-extensions-two-hands",
+    "any-key-diatonic-chords-easy",
+    "any-key-diatonic-chords-hard",
+    "any-key-diatonic-chords-with-extensions",
+    "no-restrictions",
+  ],
+  bass: [
+    "intervals",
+    "one-string-only",
+    "licks-and-melodies-easy",
+    "key-of-g-riffs-and-chord-progressions-easy",
+    "key-of-g-riffs-and-chord-progressions-hard",
+    "any-key-riffs-and-chord-progressions-easy",
+    "no-restrictions",
+  ],
+  "guitar-bass": [
+    "key-of-g-diatonic-chords-easy",
+    "key-of-g-diatonic-chords-hard",
+    "any-key-diatonic-chords-easy",
+    "any-key-diatonic-chords-hard",
+    "no-restrictions",
+  ],
+  "guitar-bass-piano": [
+    "key-of-g-diatonic-chords-easy",
+    "key-of-g-diatonic-chords-hard",
+    "any-key-diatonic-chords-easy",
+    "any-key-diatonic-chords-hard",
+    "no-restrictions",
+  ],
+};

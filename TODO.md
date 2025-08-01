@@ -55,6 +55,23 @@
 ### Chords
 
 - Me and Bobby McGee KK
+- her majesty
+
+### Single Open Chords
+
+- G
+- A
+- Amin
+- B7
+- C
+- C7
+- C6
+- D
+- Dsus2
+- Dsus4
+- E
+- Emin
+- E7
 
 ### Riffs
 

@@ -28,11 +28,6 @@ function SongListPlayer({
   }, [state.selectedSong]);
   return (
     <div className="d-flex flex-column align-items-center justify-content-center gap-2">
-      {/* <h2 className="mb-2 text-center">Song List</h2> */}
-      {/* <h4 className="mb-2 text-center">
-        {state.instrument.charAt(0).toUpperCase() + state.instrument.slice(1)}{" "}
-        {state.difficulty}
-      </h4> */}
       <h2 className="mb-2 text-center">Select a Song</h2>
       <select
         className="form-select mb-2"

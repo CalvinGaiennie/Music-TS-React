@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 
 import { lessons } from "../assets/resources";
-import styles from "./IndividualLessonPage.module.css";
 
 function IndividualLessonPage() {
   const { lessonId } = useParams<{ lessonId: string }>();
@@ -26,8 +25,8 @@ function IndividualLessonPage() {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
+    <div className="container d-flex flex-column align-items-center custom-container">
+      <div className="content">
         <h1 className="text-center mb-4">{lesson?.title}</h1>
         {lesson?.sections?.map((section, index) => (
           <div key={`${lesson.id}-section-${index}`} className={section.style}>

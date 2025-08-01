@@ -4,7 +4,7 @@ import type {
   TrackType,
   Instrument,
 } from "../assets/earTrainerTypesAndInterfaces";
-import { instrumentDifficulties } from "../assets/resources";
+import { instrumentDifficulties } from "../assets/earTrainerTypesAndInterfaces";
 
 function SongPlayerSettings({
   state,
@@ -26,7 +26,7 @@ function SongPlayerSettings({
   }
 
   return (
-    <div className="mt-5">
+    <div className="mt-4">
       <style>
         {`
           select option.text-muted {
@@ -67,10 +67,10 @@ function SongPlayerSettings({
             {(
               [
                 "guitar",
-                // "piano",
-                // "bass",
-                // "guitar-bass",
-                // "guitar-bass-piano",
+                "piano",
+                "bass",
+                "guitar-bass",
+                "guitar-bass-piano",
               ] as Instrument[]
             ).map((instrument) => {
               const hasAnySongs = instrumentDifficulties[instrument].some(
@@ -107,21 +107,24 @@ function SongPlayerSettings({
             onChange={(e) => handleDifficultyChange(e.target.value)}
           >
             {instrumentDifficulties[state.instrument].map((difficulty) => {
+              const difficultyName = difficulty;
+              const difficultyDisplay = difficulty
+                .replace(/-/g, " ")
+                .replace(/\b\w/g, (l) => l.toUpperCase());
+
               const songs = state.availableTracks.filter(
                 (song) =>
                   song.songInstrument === state.instrument &&
-                  song.songDifficulty === difficulty
+                  song.songDifficulty === difficultyName
               );
               const hasSongs = songs.length > 0;
               return (
                 <option
-                  key={difficulty}
-                  value={difficulty}
+                  key={difficultyName}
+                  value={difficultyName}
                   disabled={!hasSongs}
                 >
-                  {difficulty
-                    .replace(/-/g, " ")
-                    .replace(/\b\w/g, (l) => l.toUpperCase())}
+                  {difficultyDisplay}
                   {hasSongs ? ` (${songs.length})` : " (No songs)"}
                 </option>
               );

@@ -7,7 +7,7 @@ import type {
 } from "../assets/earTrainerTypesAndInterfaces";
 import FormInput from "./FormInput";
 import TrackList from "./TrackList";
-import { instrumentDifficulties } from "../assets/resources";
+import { instrumentDifficulties } from "../assets/earTrainerTypesAndInterfaces";
 import FormSelect from "./FormSelect";
 
 const instruments = Object.keys(instrumentDifficulties);
@@ -145,9 +145,15 @@ function TrackContributionForm({
       dispatch({
         type: "setSongDifficulty",
         payload:
-          instrumentDifficulties[
+          typeof instrumentDifficulties[
             instruments[0] as keyof typeof instrumentDifficulties
-          ][0],
+          ][0] === "string"
+            ? instrumentDifficulties[
+                instruments[0] as keyof typeof instrumentDifficulties
+              ][0]
+            : instrumentDifficulties[
+                instruments[0] as keyof typeof instrumentDifficulties
+              ][0],
       });
       dispatch({ type: "setSongArtist", payload: "" });
       dispatch({ type: "setSongAlbum", payload: "" });
@@ -173,9 +179,15 @@ function TrackContributionForm({
     dispatch({
       type: "setSongDifficulty",
       payload:
-        instrumentDifficulties[
+        typeof instrumentDifficulties[
           instruments[0] as keyof typeof instrumentDifficulties
-        ][0],
+        ][0] === "string"
+          ? instrumentDifficulties[
+              instruments[0] as keyof typeof instrumentDifficulties
+            ][0]
+          : instrumentDifficulties[
+              instruments[0] as keyof typeof instrumentDifficulties
+            ][0],
     });
   }, [dispatch]);
 

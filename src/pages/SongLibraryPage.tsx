@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  realSongListRealDifficultyFlatArray,
-  instrumentDifficulties,
-} from "../assets/resources";
+import { realSongListRealDifficultyFlatArray } from "../assets/resources";
 import { getAudioTracks } from "../services/api";
 import type {
   AudioTrack,
   Instrument,
 } from "../assets/earTrainerTypesAndInterfaces";
+import { instrumentDifficulties } from "../assets/earTrainerTypesAndInterfaces";
 
 function SongLibraryPage() {
   const [loading, setLoading] = useState(true);
@@ -74,20 +72,26 @@ function SongLibraryPage() {
               <div className="row">
                 {instrumentDifficulties[instrument as Instrument].map(
                   (difficulty) => {
+                    const difficultyName = difficulty;
+                    const difficultyDisplay = difficulty
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (l) => l.toUpperCase());
+
                     return (
-                      <div className="col-12 col-lg-6 mb-4" key={difficulty}>
+                      <div
+                        className="col-12 col-lg-6 mb-4"
+                        key={difficultyName}
+                      >
                         <div className="card">
                           <div className="card-body">
                             <h4 className="card-title mb-3">
-                              {difficulty
-                                .replace(/-/g, " ")
-                                .replace(/\b\w/g, (l) => l.toUpperCase())}
+                              {difficultyDisplay}
                             </h4>
                             <div className="row">
                               {allTracks.map((track) => {
                                 if (
                                   track.songInstrument === instrument &&
-                                  track.songDifficulty === difficulty
+                                  track.songDifficulty === difficultyName
                                 ) {
                                   return (
                                     <div

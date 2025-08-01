@@ -3,7 +3,7 @@ import { lessons } from "../assets/resources";
 
 function LessonListPage() {
   return (
-    <div className="container d-flex flex-column align-items-center">
+    <div className="container d-flex flex-column align-items-center custom-container">
       <h1 className="mb-4">Lesson List</h1>
       <div>
         <ul className="list-unstyled">

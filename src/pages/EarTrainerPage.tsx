@@ -1,9 +1,6 @@
 import { useReducer, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  realSongListRealDifficultyFlatArray,
-  instrumentDifficulties,
-} from "../assets/resources";
+import { realSongListRealDifficultyFlatArray } from "../assets/resources";
 import {
   type State,
   type Action,
@@ -11,6 +8,7 @@ import {
   type TrackType,
   type SongPlayerType,
   type Instrument,
+  instrumentDifficulties,
 } from "../assets/earTrainerTypesAndInterfaces";
 import { getAudioTracks } from "../services/api";
 import { AuthContext, type AuthContextType } from "../context/AuthContextDef";
@@ -21,7 +19,7 @@ import RandomSongPlayer from "../components/RandomSongPlayer";
 
 const initialState: State = {
   instrument: "guitar",
-  difficulty: "",
+  difficulty: "intervals-g",
   selectedSong: {
     audioTrackId: 0,
     userId: 0,
@@ -257,8 +255,8 @@ function EarTrainerPage() {
   }, [state.availableTracks, state.instrument, state.difficulty]);
 
   return (
-    <div className="container d-flex flex-column align-items-center mb-5">
-      <div className="position-relative text-center w-100 mb-5">
+    <div className="container d-flex flex-column align-items-center mb-5 custom-container">
+      <div className="position-relative text-center w-100 mb-2">
         <h1 className="text-center mb-3">Ear Trainer</h1>
         <div className="position-absolute top-0 end-0 d-flex flex-row align-items-center gap-2">
           <select
@@ -275,14 +273,6 @@ function EarTrainerPage() {
             <option value="random">Random</option>
           </select>
         </div>
-        <p className="text-center mb-2 fs-5">
-          Select a song of your desired difficulty and see if you can figure out
-          how to play it.
-        </p>
-        <p className="text-muted">
-          (See the <a href="/help">Help Page</a> for more information on how
-          this tool works and what the different difficulty levels mean.)
-        </p>
       </div>
 
       {/* Main Content */}
@@ -296,8 +286,16 @@ function EarTrainerPage() {
         ) : (
           <SongListPlayer state={state} dispatch={dispatch} />
         )}
+        <p className="text-center mt-4">
+          Select a song of your desired difficulty and see if you can figure out
+          how to play it.
+        </p>
         <SongPlayerSettings state={state} dispatch={dispatch} />
 
+        <p className="text-muted mt-4">
+          (See the <a href="/help">Help Page</a> for more information on how
+          this tool works and what the different difficulty levels mean.)
+        </p>
         {/* Quick Access to Song Library */}
         <div className="text-center mt-4">
           <Link to="/song-library" className="btn btn-outline-secondary">
@@ -306,7 +304,6 @@ function EarTrainerPage() {
           </Link>
         </div>
       </div>
-
       {/* Call to action */}
       <div className="mt-5 text-center">
         <div className="bg-light p-4 rounded-3 border">

@@ -11,7 +11,7 @@ function FormSelect({
   formText: string;
   state: string;
   dispatch: (action: { type: string; payload: string }) => void;
-  options: string[];
+  options: (string | { name: string; definition: string })[];
 }) {
   return (
     <div className="mb-3">
@@ -23,11 +23,17 @@ function FormSelect({
           dispatch({ type: "set" + value, payload: e.target.value })
         }
       >
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
+        {options.map((option) => {
+          const optionValue = typeof option === "string" ? option : option.name;
+          const optionDisplay =
+            typeof option === "string" ? option : option.definition;
+
+          return (
+            <option key={optionValue} value={optionValue}>
+              {optionDisplay}
+            </option>
+          );
+        })}
       </select>
       <div className="form-text">{formText}</div>
     </div>

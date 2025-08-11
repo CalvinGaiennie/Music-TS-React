@@ -12,6 +12,8 @@
 
 ## Features
 
+- Add the ability to show tabs for the show chords button for melodys riffs ect
+
 ### Metronome
 
 - Add tomo's finger exercise (try it more extensively before posting here)
